@@ -1,0 +1,29 @@
+{
+  "index.qmd": {
+    "index.html": "2defd22b"
+  },
+  "about.qmd": {
+    "about.html": "bfdc4d4f"
+  },
+  "materials.qmd": {
+    "materials.html": "123c3991"
+  },
+  "syllabus.qmd": {
+    "syllabus.html": "ad5835f0"
+  },
+  "schedule.qmd": {
+    "schedule.html": "a1ed5294"
+  },
+  "slides/day_1.qmd": {
+    "day_1.html": "462482d4"
+  },
+  "syllabus_most_updated.qmd": {
+    "syllabus_most_updated.html": "05f94ceb"
+  },
+  "slides/day_2.qmd": {
+    "day_2.html": "7de7a670"
+  },
+  "slides/day_3.qmd": {
+    "day_3.html": "c3a4e9f5"
+  }
+}

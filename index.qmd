@@ -1,0 +1,30 @@
+---
+title: "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models"
+subtitle: "Winter School - Iesp UERJ"
+---
+
+## Course Description
+
+In recent years, the surge in the availability of textual data, ranging from the digitalization of archival documents, political speeches, social media posts, and online news articles, has led to a growing demand for statistical analysis using large corpora. Once dominated by sparse bag-of-words models, the field of Natural Language Processing (NLP) is now increasingly driven by dense vector representations, deep learning, and the rapid evolution of Large Language Models (LLMs). This course offers an introduction to this new generation of models, serving as hands-on approach to this new landscape of computational text analysis with a focus on political science research and applications.
+
+The class will cover four broad topics. We start with an overview of how to represent text as data, from a sparse representation via bag-of-words models, to a dense representation using word embeddings. We then discuss the use of deep learning models for text representation and downstream classification tasks. From here, we will discuss the foundation of the state-of-art machine learning models for text analysis: transformer models. Lastly, we will discuss several applications of Large Language Models in social science tasks.
+
+The course will consist of lectures and hands-on coding in class. The lecture will be conducted in English, but students are free to ask questions in Portuguese. Students will have time in the afternoon to practice the code seen in class, and we will suggest additional coding exercises. We assume students attending this class have taken, at a minimum, an introductory course in statistics and have basic knowledge of probability distributions, calculus, hypothesis testing, and linear models. The course will use a mix of R and Python, two computational languages students should be familiar with. That being said, students should be able to follow the course even if they are just starting with any of the two programming languages.
+
+## Instructors
+
+[Tiago Ventura](https://www.venturatiago.com/)
+
+-   Assistant Professor in Computational Social Science, Georgetown University
+-   Pronouns: He/Him
+-   Email: [tv186\@georgetown.edu](mailto:tv186@georgetown.edu)
+
+[Sebastian Vallejo](https://www.svallejovera.com/)
+
+-   Assistant Professor in the Department of Political Science at the University of Western Ontario
+-   Pronouns: He/Him
+-   Email: [sebastian.vallejo\@uwo.ca](mailto:sebastian.vallejo@uwo.ca)
+
+<!-- add zoom link for virtual office hours -->
+
+<!-- Download the [syllabus in pdf here]("./_syllabus.pdf") -->

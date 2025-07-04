@@ -1,0 +1,52 @@
+---
+title: "Advanced Text-As-Data - Winter School - Iesp UERJ"
+subtitle: "<span style = 'font-size: 140%;'> <br> Day 3: Transformers"
+author: "<span style = 'font-size: 120%;'> Professor: Sebastián Vallejo </span>"
+execute: 
+  echo: false
+  error: true
+  cache: true
+format:
+  revealjs: 
+    transition: slide
+    background-transition: fade
+    code-line-numbers: false
+    width: 1200
+    height: 800
+    center: false
+    slide-number: true
+    incremental: false
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    footer: "Text-as-Data"
+    theme: [simple, custom.scss]
+editor_options: 
+  chunk_output_type: console
+---
+
+# The Evolving Methods of NLP
+
+## Evolving Methods 
+
+In the last couple of days we have learned about the different goals of NLP: contextualize content, find categories in text... ultimately, measure some latent characteristic of a set of texts. 
+
+- BAG-OF-WORDS: Wordfish (Slapin and Proksch, 2008).
+- EMBEDDINGS: Party ideological placement, i.e., party-embeddings (Rheault and Cochrane, 2020).
+- TRANSFORMERS: Supervised models for text classification (Timoneda and Vallejo Vera, 2025a).
+
+---
+
+More recently, we've seen and increased focus on Generative Large Language Models (LLM):
+
+- APPLIED: latent dimensions, i.e., ideology (Kato and Cochrane, 2025; Wu et al., 2023); annotators (Timoneda and Vallejo Vera, 2025b)
+- LIMITATIONS: biases from party cues (Vallejo Vera and Driggers, 2025); bias from language (Walker and Timoneda, 2024).
+- META: effect of LLMs on respondents (coming soon); LLM adoption, e.g., in the classroom.
+
+---
+
+In the last couple of days we have learned about the different goals of NLP: contextualize content, find categories in text... ultimately, measure some latent characteristic of a set of texts. 
+
+- BAG-OF-WORDS: Wordfish (Slapin and Proksch, 2008).
+- EMBEDDINGS: Party ideological placement, i.e., party-embeddings (Rheault and Cochrane, 2020).
+- [TRANSFORMERS: Supervised models for text classification (Timoneda and Vallejo Vera, 2025a).]{.red}

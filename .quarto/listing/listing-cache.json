@@ -1,0 +1,10 @@
+{
+  "listingMap": {
+    "syllabus.qmd": [
+      "weeks/week-*.qmd"
+    ],
+    "schedule.qmd": [
+      "weeks/week-*.qmd"
+    ]
+  }
+}

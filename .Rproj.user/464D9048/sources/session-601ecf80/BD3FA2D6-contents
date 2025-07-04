@@ -1,0 +1,82 @@
+---
+title: "Schedule and Course Materials"
+subtitle: "Winter School - Iesp UERJ"
+---
+
+
+## Weekly Schedule & Readings
+
+### Class 1: Introduction & Deep Learning Models for Textual Representation
+
+- [Slides]()
+
+- [Code]()
+
+- **Theory Papers**:
+
+  - SLP: Chapters 7 and 8
+
+-   **Applied Papers**:
+
+    -   Rheault, Ludovic, and Christopher Cochrane. "Word embeddings for the analysis of ideological placement in parliamentary corpora." Political Analysis 28, no. 1 (2020): 112-133.
+
+
+### Class 2: Word as Vectors: Word Embeddings
+
+- [Slides]()
+
+- [Code]()
+
+- **Theory Papers**:
+
+   -   \[SLP\] Chapter 6, "Vector Semantics and Embeddings."
+
+   -   Meyer, David. How Exactly Does Word2Vec Work?
+
+   -   Spirling and Rodriguez, Word embeddings: What works, what doesn't, and how to tell the difference for applied research.
+
+- **Applied Papers**:
+
+    -   Rodman, E., 2020. A Timely Intervention: Tracking the Changing Meanings of Political Concepts with Word Vectors. Political Analysis, 28(1), pp.87-111.
+
+    -   Gennaro, Gloria, and Elliott Ash. "Emotion and reason in political language." The Economic Journal 132, no. 643 (2022): 1037-1059.
+
+    -   Austin C. Kozlowski, Austin C., Matt Taddy, and James A. Evans. 2019. "The Geometry of Culture: Analyzing the Meanings of Class through Word Embeddings." American Sociological Review 84, no. 5: 905--49. https://doi.org/10.1177/0003122419877135.
+
+    -   Garg, Nikhil, Londa Schiebinger, Dan Jurafsky and James Zou. 2018. "Word embeddings quantify 100 years of gender and ethnic stereotypes." Proceedings of the National Academy of Sciences 115(16):E3635--E3644.
+
+
+### Week 3: Transformes: Theory and Fine-tuning a Transformers-based model
+
+**Theory Papers**
+
+-   \[SLP\] - Chapter 10.
+
+-   Jay Alammar. 2018. "The Illustrated Transformer." https://jalammar.github.io/illustratedtransformer/
+
+-   Vaswani, A., et al. (2017). Attention is all you need. Advances in neural information processing systems, 30;
+
+-   Timoneda and Vallejo Vera (2025). BERT, RoBERTa or DeBERTa? Comparing Performance Across Transformer Models in Political Science Text. Journal of Politics.
+
+**Applied Papers**
+
+- Vallejo Vera et al. (2025). Semi-Supervised Classification of Overt and Covert Racism in Text. Working Paper.  
+
+
+### Week 4: Large Language Models: Social Science Applications
+
+-   **Applied Papers**
+
+    -   [Wu, Patrick Y., Joshua A. Tucker, Jonathan Nagler, and Solomon Messing. "Large language models can be used to estimate the ideologies of politicians in a zero-shot learning setting." arXiv preprint arXiv:2303.12057 (2023)](https://arxiv.org/abs/2303.12057).
+
+    -   [Rathje, Steve, Dan-Mircea Mirea, Ilia Sucholutsky, Raja Marjieh, Claire Robertson, and Jay J. Van Bavel. GPT is an effective tool for multilingual psychological text analysis. (2023)](https://osf.io/preprints/psyarxiv/sekf5).
+
+    -   [Davidson, Thomas: Start Generating: Harnessing Generative Artificial Intelligence for Sociological Research, PrePrint](https://osf.io/preprints/socarxiv/u9nft)
+
+    -   [Bisbee, James, Joshua Clinton, Cassy Dorff, Brenton Kenkel, and Jennifer Larson. 2023. "Synthetic Replacements for Human Survey Data? the Perils of Large Language Models." SocArXiv. May 4.](https://osf.io/preprints/socarxiv/5ecfa)
+    
+    - [Argyle, L.P., Busby, E.C., Fulda, N., Gubler, J.R., Rytting, C. and Wingate, D., 2023. Out of one, many: Using language models to simulate human samples. Political Analysis, 31(3), pp.337-351.](https://www.cambridge.org/core/journals/political-analysis/article/out-of-one-many-using-language-models-to-simulate-human-samples/035D7C8A55B237942FB6DBAD7CAA4E49)
+    
+    - Walker, C., & Timoneda, J. C. (2024). Identifying the sources of ideological bias in GPT models through linguistic variation in output. arXiv preprint arXiv:2409.06043.
+    
+    

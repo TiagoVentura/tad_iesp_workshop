@@ -1,0 +1,653 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "",
+    "text": "In recent years, the surge in the availability of textual data, ranging from the digitalization of archival documents, political speeches, social media posts, and online news articles, has led to a growing demand for statistical analysis using large corpora. Once dominated by sparse bag-of-words models, the field of Natural Language Processing (NLP) is now increasingly driven by dense vector representations, deep learning, and the rapid evolution of Large Language Models (LLMs). This course offers an introduction to this new generation of models, serving as hands-on approach to this new landscape of computational text analysis with a focus on political science research and applications.\nThe class will cover four broad topics. We start with an overview of how to represent text as data, from a sparse representation via bag-of-words models, to a dense representation using word embeddings. We then discuss the use of deep learning models for text representation and downstream classification tasks. From here, we will discuss the foundation of the state-of-art machine learning models for text analysis: transformer models. Lastly, we will discuss several applications of Large Language Models in social science tasks.\nThe course will consist of lectures and hands-on coding in class. The lecture will be conducted in English, but students are free to ask questions in Portuguese. Students will have time in the afternoon to practice the code seen in class, and we will suggest additional coding exercises. We assume students attending this class have taken, at a minimum, an introductory course in statistics and have basic knowledge of probability distributions, calculus, hypothesis testing, and linear models. The course will use a mix of R and Python, two computational languages students should be familiar with. That being said, students should be able to follow the course even if they are just starting with any of the two programming languages."
+  },
+  {
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "",
+    "text": "In recent years, the surge in the availability of textual data, ranging from the digitalization of archival documents, political speeches, social media posts, and online news articles, has led to a growing demand for statistical analysis using large corpora. Once dominated by sparse bag-of-words models, the field of Natural Language Processing (NLP) is now increasingly driven by dense vector representations, deep learning, and the rapid evolution of Large Language Models (LLMs). This course offers an introduction to this new generation of models, serving as hands-on approach to this new landscape of computational text analysis with a focus on political science research and applications.\nThe class will cover four broad topics. We start with an overview of how to represent text as data, from a sparse representation via bag-of-words models, to a dense representation using word embeddings. We then discuss the use of deep learning models for text representation and downstream classification tasks. From here, we will discuss the foundation of the state-of-art machine learning models for text analysis: transformer models. Lastly, we will discuss several applications of Large Language Models in social science tasks.\nThe course will consist of lectures and hands-on coding in class. The lecture will be conducted in English, but students are free to ask questions in Portuguese. Students will have time in the afternoon to practice the code seen in class, and we will suggest additional coding exercises. We assume students attending this class have taken, at a minimum, an introductory course in statistics and have basic knowledge of probability distributions, calculus, hypothesis testing, and linear models. The course will use a mix of R and Python, two computational languages students should be familiar with. That being said, students should be able to follow the course even if they are just starting with any of the two programming languages."
+  },
+  {
+    "objectID": "index.html#instructors",
+    "href": "index.html#instructors",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "Instructors",
+    "text": "Instructors\nTiago Ventura\n\nAssistant Professor in Computational Social Science, Georgetown University\nPronouns: He/Him\nEmail: tv186@georgetown.edu\n\nSebastian Vallejo\n\nAssistant Professor in the Department of Political Science at the University of Western Ontario\nPronouns: He/Him\nEmail: sebastian.vallejo@uwo.ca"
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "Week\n\n\nTopic\n\n\nDate\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "schedule.html#weekly-schedule",
+    "href": "schedule.html#weekly-schedule",
+    "title": "Schedule",
+    "section": "",
+    "text": "Week\n\n\nTopic\n\n\nDate\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "",
+    "text": "In recent years, the surge in the availability of textual data, ranging from the digitalization of archival documents, political speeches, social media posts, and online news articles, has led to a growing demand for statistical analysis using large corpora. Once dominated by sparse bag-of-words models, the field of Natural Language Processing (NLP) is now increasingly driven by dense vector representations, deep learning, and the rapid evolution of Large Language Models (LLMs). This course offers an introduction to this new generation of models, serving as hands-on approach to this new landscape of computational text analysis with a focus on political science research and applications.\nThe class will cover four broad topics. We start with an overview of how to represent text as data, from a sparse representation via bag-of-words models, to a dense representation using word embeddings. We then discuss the use of deep learning models for text representation and downstream classification tasks. From here, we will discuss the foundation of the state-of-art machine learning models for text analysis: transformer models. Lastly, we will discuss several applications of Large Language Models in social science tasks.\nThe course will consist of lectures and hands-on coding in class. The lecture will be conducted in English, but students are free to ask questions in Portuguese. Students will have time in the afternoon to practice the code seen in class, and we will suggest additional coding exercises. We assume students attending this class have taken, at a minimum, an introductory course in statistics and have basic knowledge of probability distributions, calculus, hypothesis testing, and linear models. The course will use a mix of R and Python, two computational languages students should be familiar with. That being said, students should be able to follow the course even if they are just starting with any of the two programming languages."
+  },
+  {
+    "objectID": "syllabus.html#course-description",
+    "href": "syllabus.html#course-description",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "",
+    "text": "In recent years, the surge in the availability of textual data, ranging from the digitalization of archival documents, political speeches, social media posts, and online news articles, has led to a growing demand for statistical analysis using large corpora. Once dominated by sparse bag-of-words models, the field of Natural Language Processing (NLP) is now increasingly driven by dense vector representations, deep learning, and the rapid evolution of Large Language Models (LLMs). This course offers an introduction to this new generation of models, serving as hands-on approach to this new landscape of computational text analysis with a focus on political science research and applications.\nThe class will cover four broad topics. We start with an overview of how to represent text as data, from a sparse representation via bag-of-words models, to a dense representation using word embeddings. We then discuss the use of deep learning models for text representation and downstream classification tasks. From here, we will discuss the foundation of the state-of-art machine learning models for text analysis: transformer models. Lastly, we will discuss several applications of Large Language Models in social science tasks.\nThe course will consist of lectures and hands-on coding in class. The lecture will be conducted in English, but students are free to ask questions in Portuguese. Students will have time in the afternoon to practice the code seen in class, and we will suggest additional coding exercises. We assume students attending this class have taken, at a minimum, an introductory course in statistics and have basic knowledge of probability distributions, calculus, hypothesis testing, and linear models. The course will use a mix of R and Python, two computational languages students should be familiar with. That being said, students should be able to follow the course even if they are just starting with any of the two programming languages."
+  },
+  {
+    "objectID": "syllabus.html#learning-goals",
+    "href": "syllabus.html#learning-goals",
+    "title": "Syllabus: PPOL 5203 - Data Science I: Foundations",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nAfter completing this course, the students will be able to:\n\nGeneral understanding of python’s object oriented programming syntax and data structures.\nCompetency using version control (Git/Github).\nLearn to manipulate and explore data with Pandas and other tools.\nGeneral understanding of analyzing algorithms and data structures.\nLearn to extract and process data from structured and unstructured sources.\nGet some intuition of modeling text data in Python.\nLearn the basics of machine learning as a modeling approach.\nLearn basics of using SQL to query databases."
+  },
+  {
+    "objectID": "syllabus.html#instructors-and-tas",
+    "href": "syllabus.html#instructors-and-tas",
+    "title": "Syllabus: PPOL 5203 - Data Science I: Foundations",
+    "section": "Instructors and TAs",
+    "text": "Instructors and TAs\n\nInstructor\n\nProfessor: Dr. Tiago Ventura\nPronouns: He/Him\nEmail: tv186@georgetown.edu\nOffice hours:\n\nTime: Every Tuesday, 4pm - 6pm\nLocation: 125E, Office Number 766"
+  },
+  {
+    "objectID": "syllabus.html#teaching-assistants",
+    "href": "syllabus.html#teaching-assistants",
+    "title": "Syllabus: PPOL 5203 - Data Science I: Foundations",
+    "section": "Teaching Assistants:",
+    "text": "Teaching Assistants:\n\nAastha Jha (DSPP Second-Year Student)\n\nEmail: aj935@georgetown.edu\nOffice Hours:\n\nEvery Wednesdays, from 1pm to 2pm.\n\nLocation:\n\n\nShirui Zhou (DSPP Alumni)\n\nEmail: sz614@georgetown.edu\nOffice Hours:\n\nEvery Monday, from 1pm to 2pm\nLocation:"
+  },
+  {
+    "objectID": "syllabus.html#our-classes",
+    "href": "syllabus.html#our-classes",
+    "title": "Syllabus: PPOL 5203 - Data Science I: Foundations",
+    "section": "Our classes",
+    "text": "Our classes\nClasses will take place at the scheduled class time/place and will involve a combination of lectures, coding walkthrough, breakout group sessions, and questions. We will start our classes with a lecture highlighting what I consider to be the broader substantive and programming concepts covered in the class. From that, we will switch to a mix of coding walk through and breakout group sessions.\nFor every lecture, you will have access to a notebook (.ipynb) covering the topics and code discussed in class. I will upload these materials (which I call lecture notes every day before the class starts). In addition, you will also have access (in at least a week in advance), of required readings (book chapters, articles, blog posts or coding tutorials) for every class. What you will take from this class will be tremendously improved if you work through all these materials.\nNote that this class is scheduled to meet weekly for 2.5 hours. I will do my best to make our meetings dynamic and enjoyable for all parts involved. We will take one or two breaks in each of our lecture."
+  },
+  {
+    "objectID": "syllabus.html#required-materials",
+    "href": "syllabus.html#required-materials",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "Required Materials",
+    "text": "Required Materials\nReadings: We will rely primarily on the following textbook for this course. The textbook is freely available online\n\nDaniel Jurafsky and James H. Martin. Speech and Language Processing, 3nd Edition. - [SLP]\n\nThe weekly articles are listed in the syllabus"
+  },
+  {
+    "objectID": "syllabus.html#course-infrastructure",
+    "href": "syllabus.html#course-infrastructure",
+    "title": "Syllabus: PPOL 5203 - Data Science I: Foundations",
+    "section": "Course Infrastructure",
+    "text": "Course Infrastructure\nClass Website: A class website https://tiagoventura.github.io/ppol5203 will be used throughout the course and should be checked on a regular basis for lecture materials and required readings.\nClass Slack Channel: The class also has a dedicated slack channel (ppol-564-fall-2024.slack.com). The channel serves as an open forum to discuss, collaborate, pose problems/questions, and offer solutions. Students are encouraged to pose any questions they have there as this will provide the professor and TA the means of answering the question so that all can see the response. If you’re unfamiliar with, please consult the following start-up tutorial (https://get.slack.help/hc/en-us/articles/218080037-Getting-started-for-new-members). Please follow the invite link to be added to the Slack channel.\nCanvas: A Canvas site (http://canvas.georgetown.edu) will be used throughout the course and should be checked on a regular basis for announcements. ll announcements for the assignments and classes will be posted on Canvas; they will not be distributed in class or by e-mail. Support for Canvas is available at (202) 687-4949\nNOTE: Students are encouraged to run lecture code on their own machines. If you do not have access to a laptop on which you can install python3, please contact the professor and/or TA for assistance. Only python3 will be used in this course."
+  },
+  {
+    "objectID": "syllabus.html#weekly-schedule",
+    "href": "syllabus.html#weekly-schedule",
+    "title": "Syllabus: PPOL 5203 - Data Science I: Foundations",
+    "section": "Weekly Schedule",
+    "text": "Weekly Schedule\n\n\n\n\n\n\nWeek\n\n\nTopic\n\n\nDate\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "syllabus.html#course-requirements",
+    "href": "syllabus.html#course-requirements",
+    "title": "Syllabus: PPOL 5203 - Data Science I: Foundations",
+    "section": "Course Requirements",
+    "text": "Course Requirements\n\n\n\nAssignment\nPercentage of Grade\n\n\n\n\nParticipation/Attendance\n5%\n\n\nCoding Discussion\n5%\n\n\nProblem sets\n50%\n\n\nFinal Project\n40%\n\n\n\nParticipation and Attendance (5%):\nData science is an cooperative endeavor, and it’s crucial to view your fellow classmates as valuable assets rather than rivals. Your performance in the following aspects will be considered when assessing this part of your grade:\n\nActive involvement during class sessions, fostering a dynamic learning environment.\nContributions made to your group’s ultimate project.\nAssisting classmates by addressing problem set queries through GitHub issues. Supporting your peers will enhance your evaluation in terms of teamwork and engagement\nAssisting classmates with slack questions, sharing interesting materials on slack, asking question, and anything that provides healthy contributtions to the course.\n\nCoding Discussion(5%)\nEvery class will involve some lecture time, and some coding time. The coding time will be divided between me showing you things, and you working on small problem sets. These problem sets are purposefully constructed to help you understand the concepts we go through in class. You participation and involvement in these group exercises will also be part of your grade.\nProblem Sets (50%)\nStudents will be assigned five problem sets over the course of the semesters. While you are encouraged to discuss the problem sets with your peers and/or consult online resources, the finished product must be your own work. The goal of the assignment is to reinforce the student’s comprehension of the materials covered in each section.\nThe problems sets will assess your ability to apply the concepts to data that is substantially messier, and problems that are substantially more difficult, than the ones in the coding discussion in class.\nI will distribute the assignment through a mix of canvas and github. The assignments can be in the form of a Jupyter Notebook (.ipynb). Students must submit completed assignments as a rendered .html file and the corresponding source code (.ipynb).\nThe assignments will be graded in accuracy and quality of the programming style. For instance, our grading team will be looking at:\n\n\nall code must run;\n\n\nsolutions should be readable\n\n\nCode should be thoroughly commented (the Professor/TA should be able to understand the codes purpose by reading the comment),\nCoding solutions should be broken up into individual code chunks in Jupyter/R Markdown notebooks, not clumped together into one large code chunk (See examples in class or reach out to the TA/Professor if this is unclear),\nEach student defined function must contain a doc string explaining what the function does, each input argument, and what the function returns;\n\n\nCommentary, responses, and/or solutions should all be written in Markdown and explain sufficiently the outpus.\n\n\nAll solutions must be completed in Python.\n\n\nThe follow schedule lays out when each assignment will be assigned.\n\n\n\nAssignment\nDate Assigned\nDate Due\n\n\n\n\nNo. 1\nWeek 2\nBefore EOD of Friday of Week 3\n\n\nNo. 2\nWeek 4\nBefore EOD of Friday of Week 5\n\n\nNo. 3\nWeek 6\nBefore EOD of Friday of Week 7\n\n\nNo. 4\nWeek 8\nBefore EOD of Friday of Week 10\n\n\nNo. 5\nWeek 10\nBefore EOD of Friday of Week 11\n\n\n\nFinal Project (40%): Data science is an applied field and the DSPP is particularly geared towards providing students the tools to make policy and substantive contributtions using data and recent computational developments. In this sense, it is fundamental that you understand how to conduct a complete analysis from collecting data, to cleaning and analyzing it, to presenting your findings. For this reason, a considerable part of your grade will come from a an independent data science project, applying concepts learned throughout the course.\nThe project is composed of three parts:\n\na 2 page project proposal: (which should be discussed and approved by me)\nan in-class presentation,\nA 10-page project report.\n\nDue dates and breakdowns for the project are as follows:\n\n\n\nRequirement\nDue\nLength\nPercentage\n\n\n\n\nProject Proposal\nNovember 15\n2 pages\n5%\n\n\nPresentation\nDecember 10\n10-15 minutes\n10%\n\n\nProject Report\nDecember 17\n10 pages\n25%\n\n\n\nImportant notes about the final project\n\nFor the project proposal, you need to schedule a 30min with me at least a week before the due date. For this meeting, I expect you to send me a draft of your ideas. We will do the group assignment and start scheduling meetings by week 4, I will share with you a calendar invite to organize our meetings.\nFor the presentation, You will have 10-15 minutes in our last class of the semester to present you project.\nTake the final project seriously. After you finish your Masters, in any path you take, you will need to show concrete examples of your portfolio. This is a good opportunity to start building it.\nYour groups will be randomly assigned.\n\nSubmission of the Final Project\nThe end product should be a github repository that contains:\n\nThe raw source data you used for the project. If the data is too large for GitHub, talk with me, and we will find a solution\nYour proposal\nA README for the repository that, for each file, describes in detail:\n\nInputs to the file: e.g., raw data; a file containing credentials needed to access an API\nWhat the file does: describe major transformations.\nOutput: if the file produces any outputs (e.g., a cleaned dataset; a figure or graph).\nA set of code files that transform that data into a form usable to answer the question you have posed in your descriptive research proposal.\nYour final 10 pages report (I will share a template later in the semester)\n\n\nOf course, no commits after the due date will be considered in the assessment."
+  },
+  {
+    "objectID": "syllabus.html#grading",
+    "href": "syllabus.html#grading",
+    "title": "Syllabus: PPOL 5203 - Data Science I: Foundations",
+    "section": "Grading",
+    "text": "Grading\nCourse grades will be determined according to the following scale:\n\n\n\nLetter\nRange\n\n\n\n\nA\n95% – 100%\n\n\nA-\n91% – 94%\n\n\nB+\n87% – 90%\n\n\nB\n84% – 86%\n\n\nB-\n80% – 83%\n\n\nC\n70% – 79%\n\n\nF\n&lt; 70%\n\n\n\nGrades may be curved if there are no students receiving A’s on the non-curved grading scale.\nLate problem sets will be penalized a letter grade per day."
+  },
+  {
+    "objectID": "syllabus.html#communication",
+    "href": "syllabus.html#communication",
+    "title": "Syllabus: PPOL 5203 - Data Science I: Foundations",
+    "section": "Communication",
+    "text": "Communication\n\nClass-relevant and/or coding-related questions, Slack is the preferred method of communication. Please use the general or the relevant channel for these questions.\nFor private questions concerning the class, email is the preferred method of communication. All email messages must originate from your Georgetown University email account(s). Please use a professional salutation, proper spelling and grammar, and patience in waiting for a response. The professor reserves the right to not respond to emails that are drafted inappropriately. Please email the professor and the TA directly rather than through the Canvas messaging system. Emails sent through CANVAS will be ignored.\nI will try my best to respond to all emails/slack questions within 24 hours of being sent during a weekday. I will not respond to emails/slack sent late Friday (after 5:00 pm) or during the weekend until Monday (9:00 am). Please plan accordingly if you have questions regarding current or upcoming assignments.\nOnly reach out to the professor or teaching assistant regarding a technical question, error, or issue after you made a good faith effort to debugging/isolate your problem prior to reaching out. Learning how to search for help online is a important skill for data scientists.\n\n\nChatGPT and others\nIn the last year, the internet was inundated with popularization of Large Language Models, particularly the easy use of ChatGPT. As a Data Scientist, LLMs will be part of your daily work. I see ChatGPT as Google on steroids, so I assume ChatGPT will be part of your daily work in this course, and it is part of my work as a researcher.\nThat being said, ChatGPT does not replace your training as a data scientist. If you are using ChatGPT instead of learning, I consider you are cheating in the course. And most importantly, you are wasting your time and resources. So that’s our policy for using LLMs models in class:\n\nDo not copy the responses from chatgpt – a lot of them are wrong or will just not run on your computer.\nUse chatgpt as a auxiliary source.\nIf your entire homework comes straight from chatgpt, I will consider it plagiarism.\n\nIf you use chatgpt, I ask you to mention on your code how chatgpt worked for you."
+  },
+  {
+    "objectID": "syllabus.html#electronic-devices",
+    "href": "syllabus.html#electronic-devices",
+    "title": "Syllabus: PPOL 5203 - Data Science I: Foundations",
+    "section": "Electronic Devices",
+    "text": "Electronic Devices\nWhen meeting in-person: the use of laptops, tablets, or other mobile devices is permitted only for class-related work. Audio and video recording is not allowed unless prior approval is given by the professor. Please mute all electronic devices during class."
+  },
+  {
+    "objectID": "syllabus.html#georgetown-policies",
+    "href": "syllabus.html#georgetown-policies",
+    "title": "Syllabus: PPOL 5203 - Data Science I: Foundations",
+    "section": "Georgetown Policies",
+    "text": "Georgetown Policies\n\nDisability\nIf you believe you have a disability, then you should contact the Academic Resource Center (arc@georgetown.edu) for further information. The Center is located in the Leavey Center, Suite 335 (202-687-8354). The Academic Resource Center is the campus office responsible for reviewing documentation provided by students with disabilities and for determining reasonable accommodations in accordance with the Americans with Disabilities Act (ASA) and University policies. For more information, go to http://academicsupport.georgetown.edu/disability/\n\n\nImportant Academic Policies and Academic Integrity\nMcCourt School students are expected to uphold the academic policies set forth by Georgetown University and the Graduate School of Arts and Sciences. Students should therefore familiarize themselves with all the rules, regulations, and procedures relevant to their pursuit of a Graduate School degree. The policies are located at: http://grad.georgetown.edu/academics/policies/\nApplied to this course, while I encourage collaboration on assignments and use of resources like StackOverflow, the problem sets will ask you to list who you worked on the problem set with and cite StackOverflow if it is the direct source of a code snippet.\n\n\nStatement on Sexual Misconduct\nGeorgetown University and its faculty are committed to supporting survivors and those impacted by sexual misconduct, which includes sexual assault, sexual harassment, relationship violence, and stalking. Georgetown requires faculty members, unless otherwise designated as confidential, to report all disclosures of sexual misconduct to the University Title IX Coordinator or a Deputy Title IX Coordinator. If you disclose an incident of sexual misconduct to a professor in or outside of the classroom (with the exception of disclosures in papers), that faculty member must report the incident to the Title IX Coordinator, or Deputy Title IX Coordinator. The coordinator will, in turn, reach out to the student to provide support, resources, and the option to meet. [Please note that the student is not required to meet with the Title IX coordinator.]. More information about reporting options and resources can be found on the Sexual Misconduct\nWebsite: https://sexualassault.georgetown.edu/resourcecenter\nIf you would prefer to speak to someone confidentially, Georgetown has a number of fully confidential professional resources that can provide support and assistance. These resources include: Health Education Services for Sexual Assault Response and Prevention: confidential email: sarp[at]georgetown.edu\nCounseling and Psychiatric Services (CAPS): 202.687.6985 or after hours, call (833) 960-3006 to reach Fonemed, a telehealth service; individuals may ask for the on-call CAPS clinician\nMore information about reporting options and resources can be found on the Sexual Misconduct Website.\n\n\nProvost’s Policy on Religious Observances\nGeorgetown University promotes respect for all religions. Any student who is unable to attend classes or to participate in any examination, presentation, or assignment on a given day because of the observance of a major religious holiday or related travel shall be excused and provided with the opportunity to make up, without unreasonable burden, any work that has been missed for this reason and shall not in any other way be penalized for the absence or rescheduled work. Students will remain responsible for all assigned work. Students should notify professors in writing at the beginning of the semester of religious observances that conflict with their classes. The Office of the Provost, in consultation with Campus Ministry and the Registrar, will publish, before classes begin for a given term, a list of major religious holidays likely to affect Georgetown students. The Provost and the Main Campus Executive Faculty encourage faculty to accommodate students whose bona fide religious observances in other ways impede normal participation in a course. Students who cannot be accommodated should discuss the matter with an advising dean."
+  },
+  {
+    "objectID": "syllabus.html#instructors",
+    "href": "syllabus.html#instructors",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "Instructors",
+    "text": "Instructors\nTiago Ventura\n\nAssistant Professor in Computational Social Science, Georgetown University\nPronouns: He/Him\nEmail: tv186@georgetown.edu\n\nSebastian Vallejo\n\nAssistant Professor in the Department of Political Science at the University of Western Ontario\nPronouns: He/Him\nEmail: sebastian.vallejo@uwo.ca"
+  },
+  {
+    "objectID": "syllabus.html#weekly-schedule-readings",
+    "href": "syllabus.html#weekly-schedule-readings",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "Weekly Schedule & Readings",
+    "text": "Weekly Schedule & Readings\n\nDay 1: Text Representation: Sparse & Dense Vectors. Deep Learning Models for Text Analysis\n\nReadings:\n\nSLP: Chapters 7\nLin, Gechun, and Christopher Lucas. “An Introduction to Neural Networks for the Social Sciences.” (2023)\n\n\n\n\nDay 2: Word Embeddings: Theory and Applications\n\nTheory Papers:\n\nSLP Chapter 6, Vector Semantics and Embeddings\nMeyer, David. How Exactly Does Word2Vec Work?\nSpirling and Rodriguez, Word embeddings: What works, what doesn’t, and how to tell the difference for applied research\n\nApplied Papers:\n\nAustin C. Kozlowski, Austin C., Matt Taddy, and James A. Evans. 2019. “The Geometry of Culture: Analyzing the Meanings of Class through Word Embeddings.” American Sociological Review 84, no. 5: 905–49. https://doi.org/10.1177/0003122419877135\nGarg, Nikhil, Londa Schiebinger, Dan Jurafsky and James Zou. 2018. “Word embeddings quantify 100 years of gender and ethnic stereotypes.” Proceedings of the National Academy of Sciences 115(16):E3635–E3644.\nRodman, E., 2020. A Timely Intervention: Tracking the Changing Meanings of Political Concepts with Word Vectors. Political Analysis, 28(1), pp.87-111\nRheault, Ludovic, and Christopher Cochrane. “Word embeddings for the analysis of ideological placement in parliamentary corpora.” Political Analysis 28, no. 1 (2020): 112-133.\nGennaro, Gloria, and Elliott Ash. “Emotion and reason in political language.” The Economic Journal 132, no. 643 (2022): 1037-1059.\n\n\n\n\nWeek 3: Transformes: Theory and Fine-tuning a Transformers-based model\nTheory Papers\n\nSLP: Chapter 10.\nJay Alammar. 2018. “The Illustrated Transformer.” https://jalammar.github.io/illustratedtransformer/\nVaswani, A., et al. (2017). Attention is all you need. Advances in neural information processing systems, 30;\nTimoneda and Vallejo Vera (2025). BERT, RoBERTa or DeBERTa? Comparing Performance Across Transformer Models in Political Science Text. Journal of Politics.\n\nApplied Papers\n\nVallejo Vera et al. (2025). Semi-Supervised Classification of Overt and Covert Racism in Text. Working Paper.\n\n\n\nWeek 4: Large Language Models: Social Science Applications\n\nApplied Papers\n\nWu, Patrick Y., Joshua A. Tucker, Jonathan Nagler, and Solomon Messing. “Large language models can be used to estimate the ideologies of politicians in a zero-shot learning setting.” arXiv preprint arXiv:2303.12057 (2023).\nRathje, Steve, Dan-Mircea Mirea, Ilia Sucholutsky, Raja Marjieh, Claire Robertson, and Jay J. Van Bavel. GPT is an effective tool for multilingual psychological text analysis. (2023).\nDavidson, Thomas: Start Generating: Harnessing Generative Artificial Intelligence for Sociological Research, PrePrint\nBisbee, James, Joshua Clinton, Cassy Dorff, Brenton Kenkel, and Jennifer Larson. 2023. “Synthetic Replacements for Human Survey Data? the Perils of Large Language Models.” SocArXiv. May 4.\nArgyle, L.P., Busby, E.C., Fulda, N., Gubler, J.R., Rytting, C. and Wingate, D., 2023. Out of one, many: Using language models to simulate human samples. Political Analysis, 31(3), pp.337-351.\nWalker, C., & Timoneda, J. C. (2024). Identifying the sources of ideological bias in GPT models through linguistic variation in output. arXiv preprint arXiv:2409.06043."
+  },
+  {
+    "objectID": "slides/day_1.html#logistics",
+    "href": "slides/day_1.html#logistics",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "",
+    "text": "All materials will be on this website:\nSyllabus is more dense than we can cover in a week. Take your time to work through it!\nOur time: Lectures in the Afternoon, and code/exercises for you to work through at your time.\nThis is an advanced class in text-as-data. It requires:\n\nsome background in programing\nsome notion of probability theory, particularly maximum likelihood estimation (LEGO III at IESP)\n\nYou have a TA: Felipe Lamarca. Use him for your questions!\nClasses in English, but feel free to ask questions in portuguese if you prefer!"
+  },
+  {
+    "objectID": "slides/day_1.html#rise-of-the-digital-information-age",
+    "href": "slides/day_1.html#rise-of-the-digital-information-age",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Rise of the digital information age",
+    "text": "Rise of the digital information age"
+  },
+  {
+    "objectID": "slides/day_1.html#official-documents-congressional-speeches-bills-press-releases-transcripts-from-all-over-the-world",
+    "href": "slides/day_1.html#official-documents-congressional-speeches-bills-press-releases-transcripts-from-all-over-the-world",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Official Documents: Congressional Speeches, Bills, Press Releases, Transcripts, from all over the world!!",
+    "text": "Official Documents: Congressional Speeches, Bills, Press Releases, Transcripts, from all over the world!!"
+  },
+  {
+    "objectID": "slides/day_1.html#social-media",
+    "href": "slides/day_1.html#social-media",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Social Media",
+    "text": "Social Media\n\n\nError in knitr::include_graphics(\"week1_figs/redes.png\"): Cannot find the file(s): \"week1_figs/redes.png\""
+  },
+  {
+    "objectID": "slides/day_1.html#the-internet-news-comments-blogs-etc",
+    "href": "slides/day_1.html#the-internet-news-comments-blogs-etc",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "The internet: News, Comments, Blogs, etc…",
+    "text": "The internet: News, Comments, Blogs, etc…"
+  },
+  {
+    "objectID": "slides/day_1.html#what-is-this-class-about",
+    "href": "slides/day_1.html#what-is-this-class-about",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "What is this class about?",
+    "text": "What is this class about?\n\nFor many years, social scientists uses text in their empirical analysis:\nClose reading of documents.\nQualitative Analysis of interviews\nContent Analysis\nDigital Revolution:\n\nProduction of text increased\nThe computational capacity to analyze them at scale as well.\nPowerful computational models became easily accessible.\n\nThis class covers methods (and many applications) of using Text as Data to answer social science problems and test social science theories\nBut… with an modern flavor.\n\nDeep Learning Revolution / Large Language Models / Representation Learning."
+  },
+  {
+    "objectID": "slides/day_1.html#vector-space-model",
+    "href": "slides/day_1.html#vector-space-model",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Vector Space Model",
+    "text": "Vector Space Model\nTo represent documents as numbers, we will use the vector space model representation:\n\nA document \\(D_i\\) is represented as a collection of features \\(W\\) (words, tokens, n-grams..)\nEach feature \\(w_i\\) can be place in a real line, then a document \\(D_i\\) is a point in a \\(W\\) dimensional space\n\n\nImagine the sentence below: “If that is a joke, I love it. If not, can’t wait to unpack that with you later.”\n\nSorted Vocabulary =(a, can’t, i, if, is, it, joke, later, love, not, that, to, unpack, wait, with, you”)\nFeature Representation = (1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1)\nFeatures will typically be the n-gram (mostly unigram) frequencies of the tokens in the document, or some function of those frequencies\n\n\n\nNow each document is now a vector (vector space model)\n\nstacking these vectors will give you our workhose representation for text: Document Feature Matrix"
+  },
+  {
+    "objectID": "slides/day_1.html#visualizing-vector-space-model",
+    "href": "slides/day_1.html#visualizing-vector-space-model",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Visualizing Vector Space Model",
+    "text": "Visualizing Vector Space Model\n\n\n\n\n\n\nDocuments\n\n\n\nDocument 1 = “yes yes yes no no no”\nDocument 2 = “yes yes yes yes yes yes”\n\n\n\n\nWarning: package 'ggplot' is not available for this version of R\n\nA version of this package for your version of R might be available elsewhere,\nsee the ideas at\nhttps://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages\n\n\nWarning: 'BiocManager' not available.  Could not check Bioconductor.\n\nPlease use `install.packages('BiocManager')` and then retry.\n\n\nWarning in p_install(package, character.only = TRUE, ...):\n\n\nWarning in library(package, lib.loc = lib.loc, character.only = TRUE,\nlogical.return = TRUE, : there is no package called 'ggplot'\n\n\nWarning in pacman::p_load(ggplot, tidyverse): Failed to install/load:\nggplot\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead."
+  },
+  {
+    "objectID": "slides/day_1.html#visualizing-vector-space-model-1",
+    "href": "slides/day_1.html#visualizing-vector-space-model-1",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Visualizing Vector Space Model",
+    "text": "Visualizing Vector Space Model\nIn the vector space, we can use geometry to build well-defined comparison measures between the documents"
+  },
+  {
+    "objectID": "slides/day_1.html#document-feature-matrix",
+    "href": "slides/day_1.html#document-feature-matrix",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "6. Document-Feature Matrix",
+    "text": "6. Document-Feature Matrix\n\n\n\n\n\n\n\n\n\n\n\nSource: Arthur Spirling TAD Class"
+  },
+  {
+    "objectID": "slides/day_1.html#vector-space-model-vs-representation-learning",
+    "href": "slides/day_1.html#vector-space-model-vs-representation-learning",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Vector Space Model vs Representation Learning",
+    "text": "Vector Space Model vs Representation Learning\nThis vector space representation is super useful, and has been used in many many many applications in computational linguistics and social science applications of text-as-data. Including:\n\nDescriptive statistics of documents (count words, text-similarity, complexity, etc..)\nSupervised Machine Learning Models for Text Classification (DFM becomes the input of the models)\nUnsupervised Machine Learning (Topic Models & Clustering)\n\nBut… Embedded in this model, there is the idea we represent words as a one-hot encoding.\n\n“cat”: [0,0, 0, 0, 0, 0, 1, 0, ….., V] , on a V dimensional vector\n“dog”: [0,0, 0, 0, 0, 0, 0, 1, …., V], on a V dimensional vector\n\nWhat these vectors look like?\n\nreally sparse\nthose vectors are orthogonal\nno natural notion of similarity"
+  },
+  {
+    "objectID": "slides/day_1.html#distributional-semantics",
+    "href": "slides/day_1.html#distributional-semantics",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Distributional Semantics",
+    "text": "Distributional Semantics\n\n“you shall know a word by the company it keeps.” J. R. Firth 1957\n\nDistributional semantics: words that are used in the same contexts tend to be similar in their meaning.\n\n\nHow can we use this insight to build a word representation?\n\nMove from sparse representation to dense representation\nRepresent words as vectors of numbers with high number of dimensions\nEach feature on this vectors embeds some information from the word (gender? noun? sentiment? stance?)\nLearn this representation from the unlabeled data."
+  },
+  {
+    "objectID": "slides/day_1.html#sparse-vs-dense-vectors",
+    "href": "slides/day_1.html#sparse-vs-dense-vectors",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Sparse vs Dense Vectors",
+    "text": "Sparse vs Dense Vectors\nOne-hot encoding / Sparse Representation:\n\ncat = \\(\\begin{bmatrix} 0,0, 0, 0, 0, 0, 1, 0, 0 \\end{bmatrix}\\)\ndog = \\(\\begin{bmatrix} 0,0, 0, 0, 0, 1, 0, 0, 0 \\end{bmatrix}\\)\n\nWord Embedding / Dense Representation:\n\ncat = \\(\\begin{bmatrix} 0.25, -0.75, 0.90, 0.12, -0.50, 0.33, 0.66, -0.88, 0.10, -0.45 \\end{bmatrix}\\)\ndog = \\(\\begin{bmatrix} 0.25, 1.75, 0.90, 0.12, -0.50, 0.33, 0.66, -0.88, 0.10, -0.45 \\end{bmatrix}\\)"
+  },
+  {
+    "objectID": "slides/day_1.html#with-colors-and-real-word-vectors",
+    "href": "slides/day_1.html#with-colors-and-real-word-vectors",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "With colors and real word vectors",
+    "text": "With colors and real word vectors\n\n\n\n\n\nSource: Illustrated Word2Vec"
+  },
+  {
+    "objectID": "slides/day_1.html#word-embeddings",
+    "href": "slides/day_1.html#word-embeddings",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Word Embeddings",
+    "text": "Word Embeddings\nEncoding similarity: vectors are not ortogonal anymore!\nAutomatic Generalization: learn about one word allow us to automatically learn about related words\nEncodes Meaning: by learning the context, I can learn what a word means.\nAs a consequence:\n\nWord Embeddings improves by ORDERS OF MAGNITUDE several Text-as-Data Tasks.\nAllows to deal with unseen words.\nForm the core idea of state-of-the-art models, such as LLMs."
+  },
+  {
+    "objectID": "slides/day_1.html#deep-learning-for-text-analysis",
+    "href": "slides/day_1.html#deep-learning-for-text-analysis",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Deep Learning for Text Analysis",
+    "text": "Deep Learning for Text Analysis"
+  },
+  {
+    "objectID": "slides/day_1.html#basics-of-machine-learning",
+    "href": "slides/day_1.html#basics-of-machine-learning",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Basics of Machine Learning",
+    "text": "Basics of Machine Learning\nDeep Learning is a subfield of machine learning based on using neural networks models to learn.\nAs in any other statistical model, the goal of machine learning is to use data to learn about some output.\n\\[ y = f(X) + \\epsilon\\]\n\nWhere:\n\\(y\\) is the outcome/dependent/response variable\n\\(X\\) is a matrix of predictors/features/independent variables\n\\(f()\\) is some fixed but unknown function mapping X to y. The “signal” in the data\n\\(\\epsilon\\) is some random error term. The “noise” in the data."
+  },
+  {
+    "objectID": "slides/day_1.html#linear-models-ols",
+    "href": "slides/day_1.html#linear-models-ols",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Linear models (OLS)",
+    "text": "Linear models (OLS)\nThe simplest model we can use is an linear model (the classic OLS regression)\n\\[ y = b_0 + WX + \\epsilon\\]\n\nWhere:\n\n\\(W\\) is a vector of dimension p,\n\\(X\\) is the feature vector of dimension p\n\\(b\\) is a bias term (intercept)"
+  },
+  {
+    "objectID": "slides/day_1.html#using-matrix-algebra",
+    "href": "slides/day_1.html#using-matrix-algebra",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Using Matrix Algebra",
+    "text": "Using Matrix Algebra\n\\[\\mathbf{W} = \\begin{bmatrix} w_1 & w_2 & \\dots & w_p\\end{bmatrix}\\]\n\\[\\mathbf{X} = \\begin{bmatrix} X_1 \\\\ X_2 \\\\ X_3 \\\\ \\vdots \\\\ X_p \\end{bmatrix}\\]\nWith matrix multiplication:\n\\[\\mathbf{W} \\mathbf{X} + b = w_1 X_1 + w_2 X_2 + \\dots + w_p X_p + b\\]"
+  },
+  {
+    "objectID": "slides/day_1.html#logistic-regression",
+    "href": "slides/day_1.html#logistic-regression",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Logistic Regression",
+    "text": "Logistic Regression\nIf we want to model some type of non-linearity, necessary for example when our outcome is binary, we can add a transformation function to make things non-linear:\n\\[ y = \\sigma (b_0 + WX + \\epsilon)\\]\nWhere:\n\\[ \\sigma(b_0 + WX + \\epsilon) = \\frac{1}{1 + \\exp(-b_0 + WX + \\epsilon)}\\]"
+  },
+  {
+    "objectID": "slides/day_1.html#seeing-this-as-a-neural-network-representation",
+    "href": "slides/day_1.html#seeing-this-as-a-neural-network-representation",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Seeing this as a neural network representation",
+    "text": "Seeing this as a neural network representation\nLet’s assume we have a simple model of voting. We want to predict if individual \\(i\\) will vote (\\(y=1\\)), and we will use four socio demographic factors to make this prediction.\nClassic statistical approach with logistic regression:\n\\[ \\hat{Y_i} = \\sigma(b_0 + WX + \\epsilon) \\] We use MLE (Maximum Likelihood estimation) to find the parameters \\(W\\) and \\(b_0\\)"
+  },
+  {
+    "objectID": "slides/day_1.html#neural-network-graphical-representation",
+    "href": "slides/day_1.html#neural-network-graphical-representation",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Neural Network Graphical Representation",
+    "text": "Neural Network Graphical Representation\n\n\n\n\n\n\n\nSource: https://carpentries-incubator.github.io/ml4bio-workshop/05-logit-ann/index.html"
+  },
+  {
+    "objectID": "slides/day_1.html#neural-networks",
+    "href": "slides/day_1.html#neural-networks",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Neural Networks",
+    "text": "Neural Networks\nA Neural Network is equivalent to stacking multiple logistic regressions vertically and repeat this process multiple times across many layers.\nAs a Matrix, instead of:\n\\[\\mathbf{W}_{previous} = \\begin{bmatrix} w_1 & w_2 & \\dots & w_p\\end{bmatrix}\\]\nWe use this set of parameters:\n\\[\n\\mathbf{W} = \\begin{bmatrix} w_{11} & w_{12} & w_{13} & \\dots & w_{1p} \\\\\n                               w_{21} & w_{22} & w_{23} & \\dots & w_{2p} \\\\\n                               w_{31} & w_{32} & w_{33} & \\dots & w_{3p} \\\\\n                               \\vdots & \\vdots & \\vdots & \\vdots & \\vdots \\\\\n                               w_{k1} & w_{k2} & w_{k3} & \\dots & w_{kp}\n                \\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "slides/day_1.html#section",
+    "href": "slides/day_1.html#section",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "",
+    "text": "Then, every line becomes a different logistic regression\n\\[\\mathbf{WX} = \\begin{bmatrix}  \\sigma(w_{11} X_1 + w_{12} X_2 + \\dots + w_{1p}X_p) \\\\ \\sigma(w_{21} X_1 + w_{22} X_2 + \\dots + w_{2p}X_p) \\\\ \\sigma(w_{31} X_1 + w_{32} X_2 + \\dots + w_{3p}X_p )\\\\ \\vdots \\\\ \\sigma(w_{k1} X_1 + w_{k2} X_2 + \\dots + w_{kp}X_p) \\end{bmatrix}\\] We then combine all of those with another set of parameters:\n\\[\n\\begin{align*}\n    \\mathbf{HA} &= h1 \\cdot \\sigma(w_{11} X_1 + w_{12} X_2 + \\dots + w_{1p}X_p)\\\\\n                &+ h_2\\cdot \\sigma(w_{21} X_1 + w_{22} X_2 + \\dots + w_{2p}X_p)\\\\\n                &+ h_3 \\cdot \\sigma (w_{31} X_1 + w_{32} X_2 + \\dots + w_{3p}X_p)\\\\\n                &+ \\dots + h_k + \\sigma(w_{k1} X_1 + w_{k2} X_2 + \\dots + w_{kp}X_p)\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides/day_1.html#feed-forward-on-a-deep-neural-network",
+    "href": "slides/day_1.html#feed-forward-on-a-deep-neural-network",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Feed Forward on a Deep Neural Network",
+    "text": "Feed Forward on a Deep Neural Network"
+  },
+  {
+    "objectID": "slides/day_1.html#key-components",
+    "href": "slides/day_1.html#key-components",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Key Components",
+    "text": "Key Components\n\nInput: p features (the original data) of an observation are linearly transformed into k1 features using a weight matrix of size k1×p\nEmbedding Matrices: Paremeters you multiply your data by.\nNeurons: Number of dimensions on your embedding matrices\nHidden Layer: the transformation that consists of the linear transformation and an activation function\nOutput Layer: the transformation that consists of the linear transformation and then (usually) a sigmoid (or some other activation function) to produce the final output predictions"
+  },
+  {
+    "objectID": "slides/day_1.html#section-1",
+    "href": "slides/day_1.html#section-1",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "",
+    "text": "Neural Networks have two dynamics: feedforward and backpropagation.\n\nFeed forward: it is a combination of matrix multiplication + activation functions, up to the point you get an outcome.\nBackpropagation: it is where the magic happens. And I will not cover in this detail here.\n\nBack\n\n\n\n\nText-as-Data"
+  },
+  {
+    "objectID": "slides/day_1.html#logistic-regression-as-a-neural-network",
+    "href": "slides/day_1.html#logistic-regression-as-a-neural-network",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Logistic Regression as a Neural Network",
+    "text": "Logistic Regression as a Neural Network\nLet’s assume we have a simple model of voting. We want to predict if individual \\(i\\) will vote (\\(y=1\\)), and we will use four socio demographic factors to make this prediction.\nClassic statistical approach with logistic regression:\n\\[ \\hat{P(Y_i=1|X)} = \\sigma(b_0 + WX + \\epsilon) \\] We use MLE (Maximum Likelihood estimation) to find the parameters \\(W\\) and \\(b_0\\). We assume:\n\\[ Y_i \\sim \\text{Bernoulli}(\\pi_i) \\]\nThe likelihood function for \\(n\\) independent observations is:\n\\[L(W, b_0) = \\prod_{i=1}^{n} \\pi_i^{y_i} (1 - \\pi_i)^{1 - y_i}.\\]"
+  },
+  {
+    "objectID": "slides/day_1.html#lets-take-a-step-back",
+    "href": "slides/day_1.html#lets-take-a-step-back",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Let’s take a step back!",
+    "text": "Let’s take a step back!\nWeights matrices are just parameters… the \\(\\beta_s\\) of our regression models.\n\nThere are MANY of them!! Neural Networks are a black box!\nBut… they also serve as way to project features (words) in a dense dimensional space.\nRemember:\n\nOne-hot encoding / Sparse Representation:\n\ncat = \\(\\begin{bmatrix} 0,0, 0, 0, 0, 0, 1, 0, 0 \\end{bmatrix}\\)\ndog = \\(\\begin{bmatrix} 0,0, 0, 0, 0, 1, 0, 0, 0 \\end{bmatrix}\\)\n\nWord Embedding / Dense Representation:\n\ncat = \\(\\begin{bmatrix} 0.25, -0.75, 0.90, 0.12, -0.50, 0.33, 0.66, -0.88, 0.10, -0.45 \\end{bmatrix}\\)\ndog = \\(\\begin{bmatrix} 0.25, 1.75, 0.90, 0.12, -0.50, 0.33, 0.66, -0.88, 0.10, -0.45 \\end{bmatrix}\\)"
+  },
+  {
+    "objectID": "slides/day_1.html#deep-neural-network-for-textual-data",
+    "href": "slides/day_1.html#deep-neural-network-for-textual-data",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Deep Neural Network for Textual Data",
+    "text": "Deep Neural Network for Textual Data"
+  },
+  {
+    "objectID": "slides/day_1.html#estimation-gradient-descent",
+    "href": "slides/day_1.html#estimation-gradient-descent",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Estimation: Gradient Descent",
+    "text": "Estimation: Gradient Descent\nLinear Regression\n\\[\\text{RSS} = \\sum_{i=1}^{n} (y_i - \\widehat{y}_i)^2 \\]\nLogistic Regression\n\\[L(\\beta) = -\\sum_{i=1}^{n} \\left( y_i \\log(\\widehat{y}_i) + (1-y_i)\\log(1 - \\widehat{y}_i) \\right)\\]\nFully-Connected Neural Network (Classification, Binary)\n\\[L(\\mathbf{W}) = -\\frac{1}{n}\\sum_{i=1}^{n} \\left( y_i \\log(\\widehat{y}_i) + (1-y_i)\\log(1 - \\widehat{y}_i) \\right)\\]\nThis is called a binary cross entropy loss function"
+  },
+  {
+    "objectID": "slides/day_1.html#section-2",
+    "href": "slides/day_1.html#section-2",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "",
+    "text": "Error in knitr::include_graphics(\"./figs/nlp_nn.png\"): Cannot find the file(s): \"./figs/nlp_nn.png\""
+  },
+  {
+    "objectID": "slides/day_1.html#updating-parameters",
+    "href": "slides/day_1.html#updating-parameters",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Updating parameters",
+    "text": "Updating parameters\n\nDefine a loss function\nGradient Descent Algorithm:\n\nInitialize weights randomly\nFeed Forward: Matrix Multiplication + Activation function\nGet the loss for this iteration\nCompute gradient (partial derivatives): \\(\\frac{\\partial J(\\mathbf{W})}{\\partial \\mathbf{W}}\\)\nUpdate weights: \\(W_{new}: W_{old} -\\eta \\cdot \\frac{\\partial J(\\mathbf{W})}{\\partial \\mathbf{W}}\\)\nLoop until convergence:"
+  },
+  {
+    "objectID": "syllabus_most_updated.html",
+    "href": "syllabus_most_updated.html",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "",
+    "text": "In recent years, the surge in the availability of textual data, ranging from the digitalization of archival documents, political speeches, social media posts, and online news articles, has led to a growing demand for statistical analysis using large corpora. Once dominated by sparse bag-of-words models, the field of Natural Language Processing (NLP) is now increasingly driven by dense vector representations, deep learning, and the rapid evolution of Large Language Models (LLMs). This course offers an introduction to this new generation of models, serving as hands-on approach to this new landscape of computational text analysis with a focus on political science research and applications.\nThe class will cover four broad topics. We start with an overview of how to represent text as data, from a sparse representation via bag-of-words models, to a dense representation using word embeddings. We then discuss the use of deep learning models for text representation and downstream classification tasks. From here, we will discuss the foundation of the state-of-art machine learning models for text analysis: transformer models. Lastly, we will discuss several applications of Large Language Models in social science tasks.\nThe course will consist of lectures and hands-on coding in class. The lecture will be conducted in English, but students are free to ask questions in Portuguese. Students will have time in the afternoon to practice the code seen in class, and we will suggest additional coding exercises. We assume students attending this class have taken, at a minimum, an introductory course in statistics and have basic knowledge of probability distributions, calculus, hypothesis testing, and linear models. The course will use a mix of R and Python, two computational languages students should be familiar with. That being said, students should be able to follow the course even if they are just starting with any of the two programming languages."
+  },
+  {
+    "objectID": "syllabus_most_updated.html#course-description",
+    "href": "syllabus_most_updated.html#course-description",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "",
+    "text": "In recent years, the surge in the availability of textual data, ranging from the digitalization of archival documents, political speeches, social media posts, and online news articles, has led to a growing demand for statistical analysis using large corpora. Once dominated by sparse bag-of-words models, the field of Natural Language Processing (NLP) is now increasingly driven by dense vector representations, deep learning, and the rapid evolution of Large Language Models (LLMs). This course offers an introduction to this new generation of models, serving as hands-on approach to this new landscape of computational text analysis with a focus on political science research and applications.\nThe class will cover four broad topics. We start with an overview of how to represent text as data, from a sparse representation via bag-of-words models, to a dense representation using word embeddings. We then discuss the use of deep learning models for text representation and downstream classification tasks. From here, we will discuss the foundation of the state-of-art machine learning models for text analysis: transformer models. Lastly, we will discuss several applications of Large Language Models in social science tasks.\nThe course will consist of lectures and hands-on coding in class. The lecture will be conducted in English, but students are free to ask questions in Portuguese. Students will have time in the afternoon to practice the code seen in class, and we will suggest additional coding exercises. We assume students attending this class have taken, at a minimum, an introductory course in statistics and have basic knowledge of probability distributions, calculus, hypothesis testing, and linear models. The course will use a mix of R and Python, two computational languages students should be familiar with. That being said, students should be able to follow the course even if they are just starting with any of the two programming languages."
+  },
+  {
+    "objectID": "syllabus_most_updated.html#instructors",
+    "href": "syllabus_most_updated.html#instructors",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "Instructors",
+    "text": "Instructors\nTiago Ventura\n\nAssistant Professor in Computational Social Science, Georgetown University\nPronouns: He/Him\nEmail: tv186@georgetown.edu\n\nSebastian Vallejo\n\nAssistant Professor in the Department of Political Science at the University of Western Ontario\nPronouns: He/Him\nEmail: sebastian.vallejo@uwo.ca"
+  },
+  {
+    "objectID": "syllabus_most_updated.html#required-materials",
+    "href": "syllabus_most_updated.html#required-materials",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "Required Materials",
+    "text": "Required Materials\nReadings: We will rely primarily on the following textbook for this course. The textbook is freely available online\n\nDaniel Jurafsky and James H. Martin. Speech and Language Processing, 3nd Edition. - [SLP]\n\nThe weekly articles are listed in the syllabus"
+  },
+  {
+    "objectID": "syllabus_most_updated.html#weekly-schedule-readings",
+    "href": "syllabus_most_updated.html#weekly-schedule-readings",
+    "title": "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models",
+    "section": "Weekly Schedule & Readings",
+    "text": "Weekly Schedule & Readings\n\nDay 1: Text Representation: Sparse & Dense Vectors. Deep Learning Models for Text Analysis\n\nReadings:\n\nSLP: Chapters 7\nLin, Gechun, and Christopher Lucas. “An Introduction to Neural Networks for the Social Sciences.” (2023)\n\n\n\n\nDay 2: Word Embeddings: Theory and Applications\n\nTheory Papers:\n\nSLP Chapter 6, Vector Semantics and Embeddings\nMeyer, David. How Exactly Does Word2Vec Work?\nSpirling and Rodriguez, Word embeddings: What works, what doesn’t, and how to tell the difference for applied research\n\nApplied Papers:\n\nAustin C. Kozlowski, Austin C., Matt Taddy, and James A. Evans. 2019. “The Geometry of Culture: Analyzing the Meanings of Class through Word Embeddings.” American Sociological Review 84, no. 5: 905–49. https://doi.org/10.1177/0003122419877135\nGarg, Nikhil, Londa Schiebinger, Dan Jurafsky and James Zou. 2018. “Word embeddings quantify 100 years of gender and ethnic stereotypes.” Proceedings of the National Academy of Sciences 115(16):E3635–E3644.\nRodman, E., 2020. A Timely Intervention: Tracking the Changing Meanings of Political Concepts with Word Vectors. Political Analysis, 28(1), pp.87-111\nRheault, Ludovic, and Christopher Cochrane. “Word embeddings for the analysis of ideological placement in parliamentary corpora.” Political Analysis 28, no. 1 (2020): 112-133.\nGennaro, Gloria, and Elliott Ash. “Emotion and reason in political language.” The Economic Journal 132, no. 643 (2022): 1037-1059.\n\n\n\n\nDay 3: Transformes: Theory and Fine-tuning a Transformers-based model\n\nTheory Papers\n\n[SLP] - Chapter 10.\nJay Alammar. 2018. “The Illustrated Transformer.”\nVaswani, A., et al. (2017). Attention is all you need. Advances in neural information processing systems, 30.\nTimoneda and Vallejo Vera (2025). BERT, RoBERTa or DeBERTa? Comparing Performance Across Transformer Models in Political Science Text. Journal of Politics.\n\nApplied Papers\n\nVallejo Vera et al. (2025). Semi-Supervised Classification of Overt and Covert Racism in Text. Working Paper.\n\n\n\n\nDay 4: Large Language Models: Social Science Applications\n\nApplied Papers\n\nWu, Patrick Y., Joshua A. Tucker, Jonathan Nagler, and Solomon Messing. “Large language models can be used to estimate the ideologies of politicians in a zero-shot learning setting.” arXiv preprint arXiv:2303.12057 (2023).\nRathje, Steve, Dan-Mircea Mirea, Ilia Sucholutsky, Raja Marjieh, Claire Robertson, and Jay J. Van Bavel. GPT is an effective tool for multilingual psychological text analysis. (2023).\nDavidson, Thomas: Start Generating: Harnessing Generative Artificial Intelligence for Sociological Research, PrePrint\nBisbee, James, Joshua Clinton, Cassy Dorff, Brenton Kenkel, and Jennifer Larson. 2023. “Synthetic Replacements for Human Survey Data? the Perils of Large Language Models.” SocArXiv. May 4.\nArgyle, L.P., Busby, E.C., Fulda, N., Gubler, J.R., Rytting, C. and Wingate, D., 2023. Out of one, many: Using language models to simulate human samples. Political Analysis, 31(3), pp.337-351.\nWalker, C., & Timoneda, J. C. (2024). Identifying the sources of ideological bias in GPT models through linguistic variation in output. arXiv preprint arXiv:2409.06043.\nTimoneda, Joan C., and Sebastián Vallejo Vera. “Memory Is All You Need: Testing How Model Memory Affects LLM Performance in Annotation Tasks.” arXiv preprint arXiv:2503.04874 (2025)."
+  },
+  {
+    "objectID": "materials.html",
+    "href": "materials.html",
+    "title": "Schedule and Course Materials",
+    "section": "",
+    "text": "Here you can find all materials (readings, slides, code, datasets, assignments) for the class."
+  },
+  {
+    "objectID": "materials.html#day-1---introduction-neural-networks",
+    "href": "materials.html#day-1---introduction-neural-networks",
+    "title": "Schedule and Course Materials",
+    "section": "Day 1 - Introduction & Neural Networks",
+    "text": "Day 1 - Introduction & Neural Networks\n\nSlides\nCode:\n\nNeural Networks by hand.\nIntroduction to Pytorch.\n\nReadings:\n\nSLP: Chapters 7\nLin, Gechun, and Christopher Lucas. “An Introduction to Neural Networks for the Social Sciences.” (2023)\nOne hour youtube video from MIT Intro to Deep Learning: https://www.youtube.com/watch?v=alfdI7S6wCY&list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI&index=1"
+  },
+  {
+    "objectID": "materials.html#day-2---word-embeddings",
+    "href": "materials.html#day-2---word-embeddings",
+    "title": "Schedule and Course Materials",
+    "section": "Day 2 - Word Embeddings",
+    "text": "Day 2 - Word Embeddings\n\nSlides\nReadings:\nTheory Papers:\n\nSLP Chapter 6, Vector Semantics and Embeddings\nMeyer, David. How Exactly Does Word2Vec Work?\nSpirling and Rodriguez, Word embeddings: What works, what doesn’t, and how to tell the difference for applied research\n\nApplied Papers:\n\nAustin C. Kozlowski, Austin C., Matt Taddy, and James A. Evans. 2019. “The Geometry of Culture: Analyzing the Meanings of Class through Word Embeddings.” American Sociological Review 84, no. 5: 905–49. https://doi.org/10.1177/0003122419877135\nGarg, Nikhil, Londa Schiebinger, Dan Jurafsky and James Zou. 2018. “Word embeddings quantify 100 years of gender and ethnic stereotypes.” Proceedings of the National Academy of Sciences 115(16):E3635–E3644.\nRodman, E., 2020. A Timely Intervention: Tracking the Changing Meanings of Political Concepts with Word Vectors. Political Analysis, 28(1), pp.87-111\nRheault, Ludovic, and Christopher Cochrane. “Word embeddings for the analysis of ideological placement in parliamentary corpora.” Political Analysis 28, no. 1 (2020): 112-133.\nGennaro, Gloria, and Elliott Ash. “Emotion and reason in political language.” The Economic Journal 132, no. 643 (2022): 1037-1059."
+  },
+  {
+    "objectID": "materials.html#day-3---transformers",
+    "href": "materials.html#day-3---transformers",
+    "title": "Schedule and Course Materials",
+    "section": "Day 3 - Transformers",
+    "text": "Day 3 - Transformers"
+  },
+  {
+    "objectID": "materials.html#day-4---large-language-models",
+    "href": "materials.html#day-4---large-language-models",
+    "title": "Schedule and Course Materials",
+    "section": "Day 4 - Large Language Models",
+    "text": "Day 4 - Large Language Models"
+  },
+  {
+    "objectID": "slides/day_1.html",
+    "href": "slides/day_1.html",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "",
+    "text": "All materials will be on this website:\nSyllabus is more dense than we can cover in a week. Take your time to work through it!\nOur time: Lectures in the Afternoon, and code/exercises for you to work through at your time.\nThis is an advanced class in text-as-data. It requires:\n\nsome background in programing\nsome notion of probability theory, particularly maximum likelihood estimation (LEGO III at IESP)\n\nYou have a TA: Felipe Lamarca. Use him for your questions!\nClasses in English, but feel free to ask questions in portuguese if you prefer!"
+  },
+  {
+    "objectID": "slides/day_2.html",
+    "href": "slides/day_2.html",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "",
+    "text": "Thank you so much for responding to the survey! Here are the most important feedback I receive:\n\nmore structured walk throughs of the code\nIf you could a few resources we can look at for mathematical depth for class topic. Really enjoyed the in-depth discussion on LDA\nI hope we can have a few discussion questions along with weekly readings\nIncluding discussion of papers that are from non-polisci applications? For example, econ, sociology, psychology, etc.?\n\nStop Doing:\n\nlong alone time with code\nSometimes we spend a bit too long on the recap part"
+  },
+  {
+    "objectID": "slides/day_2.html#survey-responses",
+    "href": "slides/day_2.html#survey-responses",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Survey Responses",
+    "text": "Survey Responses\nThank you so much for responding to the survey! Here are the most important feedback I receive:\n\nmore structured walk throughs of the code\nIf you could a few resources we can look at for mathematical depth for class topic. Really enjoyed the in-depth discussion on LDA\nI hope we can have a few discussion questions along with weekly readings\nIncluding discussion of papers that are from non-polisci applications? For example, econ, sociology, psychology, etc.?\n\nStop Doing:\n\nlong alone time with code\nSometimes we spend a bit too long on the recap part"
+  },
+  {
+    "objectID": "slides/day_2.html#plans-for-today",
+    "href": "slides/day_2.html#plans-for-today",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Plans for Today:",
+    "text": "Plans for Today:\n\nLive coding from last class on topic models\nWord Embeddings\n\nSemantics, Distributional Hypothesis, From Sparse to Dense Vectors\nWord2Vec Algorithm\n\nMathematical Model\nEstimate with Neural Networks\n\n\nNext week:\n\nStart with coding to work with wordembeddings\n\nEstimate from co-occurence matrices\nWorking with pre-trained models\n\nDiscuss applications to social science"
+  },
+  {
+    "objectID": "slides/day_2.html#vector-space-model",
+    "href": "slides/day_2.html#vector-space-model",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Vector Space Model",
+    "text": "Vector Space Model\nIn the vector space model, we learned:\n\nA document \\(D_i\\) is represented as a collection of features \\(W\\) (words, tokens, n-grams..)\nEach feature \\(w_i\\) can be place in a real line, then a document \\(D_i\\) is a point in a \\(W\\) dimensional space.\n\nEmbedded in this model, there is the idea we represent words as a one-hot encoding.\n\n“cat”: [0,0, 0, 0, 0, 0, 1, 0, ….., V] , on a V dimensional vector\n“dog”: [0,0, 0, 0, 0, 0, 0, 1, …., V], on a V dimensional vector\n\nWhat these vectors look like?\n\nreally sparse\nvectors are orthogonal\nno natural notion of similarity"
+  },
+  {
+    "objectID": "slides/day_2.html#distributional-semantics",
+    "href": "slides/day_2.html#distributional-semantics",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Distributional Semantics",
+    "text": "Distributional Semantics\n\n“you shall know a word by the company it keeps.” J. R. Firth 1957\n\nDistributional semantics: words that are used in the same contexts tend to be similar in their meaning.\n\n\nHow can we use this insight to build a word representation?\n\nMove from sparse representation to dense representation\nRepresent words as vectors of numbers with high number of dimensions\nEach feature on this vectors embeds some information from the word (gender? noun? sentiment? stance?)\nLearn this representation from the unlabeled data."
+  },
+  {
+    "objectID": "slides/day_2.html#sparse-vs-dense-vectors",
+    "href": "slides/day_2.html#sparse-vs-dense-vectors",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Sparse vs Dense Vectors",
+    "text": "Sparse vs Dense Vectors\nOne-hot encoding / Sparse Representation:\n\ncat = \\(\\begin{bmatrix} 0,0, 0, 0, 0, 0, 1, 0, 0 \\end{bmatrix}\\)\ndog = \\(\\begin{bmatrix} 0,0, 0, 0, 0, 1, 0, 0, 0 \\end{bmatrix}\\)\n\nWord Embedding / Dense Representation:\n\ncat = \\(\\begin{bmatrix} 0.25, -0.75, 0.90, 0.12, -0.50, 0.33, 0.66, -0.88, 0.10, -0.45 \\end{bmatrix}\\)\ndog = \\(\\begin{bmatrix} 0.25, 1.75, 0.90, 0.12, -0.50, 0.33, 0.66, -0.88, 0.10, -0.45 \\end{bmatrix}\\)"
+  },
+  {
+    "objectID": "slides/day_2.html#with-colors-and-real-word-vectors",
+    "href": "slides/day_2.html#with-colors-and-real-word-vectors",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "With colors and real word vectors",
+    "text": "With colors and real word vectors\n\nSource: Illustrated Word2Vec"
+  },
+  {
+    "objectID": "slides/day_2.html#why-word-embeddings",
+    "href": "slides/day_2.html#why-word-embeddings",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Why Word Embeddings?",
+    "text": "Why Word Embeddings?\nEncoding similarity: vectors are not ortogonal anymore!\nAutomatic Generalization: learn about one word allow us to automatically learn about related words\nEncodes Meaning: by learning the context, I can learn what a word means.\nAs a consequence:\n\nWord Embeddings improves several NLP/Text-as-Data Tasks.\nAllows to deal with unseen words.\nForm the core idea of state-of-the-art models, such as LLMs."
+  },
+  {
+    "objectID": "slides/day_2.html#estimating-word-embeddings",
+    "href": "slides/day_2.html#estimating-word-embeddings",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Estimating Word Embeddings",
+    "text": "Estimating Word Embeddings\nApproches:\n\n\nCount-based methods: look at how often words co-occur with neighbors.\n\nuse this matrix, and some some factorization to retrieve vectors for the words\nGloVE\nfast, not computationally intensive, but not the best representation\nwe will see code doing this next week\n\n\n\n\n\nPredictive Methods: rely on the idea of self-supervision\n\nuse unlabeled data and use words to predict sequence\nthe famous word2vec.\n\nSkipgram: predicts context words\nContinuous Bag of Words: predict center word"
+  },
+  {
+    "objectID": "slides/day_2.html#word2vec-a-framework-for-learning-word-vectors-mikolov-et-al.-2013",
+    "href": "slides/day_2.html#word2vec-a-framework-for-learning-word-vectors-mikolov-et-al.-2013",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Word2Vec: a framework for learning word vectors (Mikolov et al. 2013)",
+    "text": "Word2Vec: a framework for learning word vectors (Mikolov et al. 2013)\nCore Idea:\n\n\nWe have a large corpus (“body”) of text: a long list of words\nEvery word in a fixed vocabulary is represented by a vector\nGo through each position t in the text, which has a center word \\(c\\) and context (“outside”) words \\(t\\)\nUse the similarity of the word vectors for \\(c\\) and \\(t\\) to calculate the probability of o given c (or vice versa)\nKeep adjusting the word vectors to maximize this probability\n\nNeural Network + Gradient Descent"
+  },
+  {
+    "objectID": "slides/day_2.html#skigram-example-self-supervision",
+    "href": "slides/day_2.html#skigram-example-self-supervision",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Skigram Example: Self-Supervision",
+    "text": "Skigram Example: Self-Supervision\n\nSource: CS224N"
+  },
+  {
+    "objectID": "slides/day_2.html#skigram-example-self-supervision-1",
+    "href": "slides/day_2.html#skigram-example-self-supervision-1",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Skigram Example: Self-Supervision",
+    "text": "Skigram Example: Self-Supervision\n\nSource: CS224N"
+  },
+  {
+    "objectID": "slides/day_2.html#encoding-similarity",
+    "href": "slides/day_2.html#encoding-similarity",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Encoding Similarity",
+    "text": "Encoding Similarity\nTo estimate the model, we first need to formalize the probability function we want to estimate.\n\nThis is similar to a logistic regression\n\n\n\nIn logistic regression: probability of a event occur given data X and parameters \\(\\beta\\).:\n\n$ P(y=1| X, ) = X * \\(\\beta\\) $\n\\(X*\\beta\\) is not a proper probability function, so we make it to proper probability by using a logit transformation.\n\\(P(y=1|X, \\beta ) = \\frac{exp(XB)}{1 + exp(XB)}\\)\nThrow this transformation inside of a bernouilli distribution, get the likelihood function, and find the parameters using MLE."
+  },
+  {
+    "objectID": "slides/day_2.html#pametrizing-pw_tw_t-1",
+    "href": "slides/day_2.html#pametrizing-pw_tw_t-1",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Pametrizing \\(P(w_t|w_{t-1})\\)",
+    "text": "Pametrizing \\(P(w_t|w_{t-1})\\)\n\n\\(P(w_t|w_{t-1})\\) must be condition on how similar these words are.\n\nExactly the same intuition behind placing documents in the vector space model.\nNow words are vectors!\n\\(P(w_t|w_{t-1}) = u_c \\cdot u_t\\)\n\n\\(u_c \\cdot u_t\\)\ndot product between vectors\nmeasures similarity using vector projection\n\\(u_c\\): center vector\n\\(u_t\\): target vectors\n\n\n\\(u_c \\cdot u_t\\) is also not a proper probability distribution: Logit on them!\n\n\\[P(w_t|w_{t-1}) = \\frac{exp(u_c \\cdot u_t)}{{\\sum_{w}^V exp(u_c*u_w)}}\\]"
+  },
+  {
+    "objectID": "slides/day_2.html#softmax-transformation",
+    "href": "slides/day_2.html#softmax-transformation",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Softmax Transformation",
+    "text": "Softmax Transformation\n\\[P(w_t|w_{t-1}) = \\frac{exp(u_c \\cdot u_t)}{{\\sum_{w}^V exp(u_c*u_w)}}\\]\n\nDot product compares similarity between vectors\nnumerator: center vs target vectors\nexponentiation makes everything positive\nDenominator: normalize over entire vocabulary to give probability distribution\nWhat is the meaning of softmax?\n\nmax: assign high values to be 1\nsoft: still assigns some probability to smaller values\ngeneralization of the logit ~ multinomial logistic function."
+  },
+  {
+    "objectID": "slides/day_2.html#word2vec-objective-function",
+    "href": "slides/day_2.html#word2vec-objective-function",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Word2Vec: Objective Function",
+    "text": "Word2Vec: Objective Function\n\nFor each position \\(t\\), predict context words within a window of fixed size \\(m\\), given center word \\(w\\).\nLikelihood Function\n\\[ L(\\theta) = \\prod_{t=1}^{T} \\prod_{\\substack{-m&lt;= j&lt;=m \\\\ j \\neq 0}}^{m} P(w_{t+j} | w_t; \\theta) \\]\n\nAssuming independence, this means you multiplying the probability of every target for every center word in your dictionary.\nThis likelihood function will change if you do skipgram with negative sampling (See SLP chapter 6)\n\n\n\nObjective Function: Negative log likelihood\n\\[J(\\theta) = - \\frac{1}{T}log(L(\\theta))\\]\n\nbetter to take the gradient with sums\nthe average increases the numerical stability of the gradient."
+  },
+  {
+    "objectID": "slides/day_2.html#neural-networks-brief-overview",
+    "href": "slides/day_2.html#neural-networks-brief-overview",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Neural Networks: Brief overview",
+    "text": "Neural Networks: Brief overview"
+  },
+  {
+    "objectID": "slides/day_2.html#skipgram-architecture",
+    "href": "slides/day_2.html#skipgram-architecture",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Skipgram Architecture",
+    "text": "Skipgram Architecture"
+  },
+  {
+    "objectID": "slides/day_2.html#check-your-matrices",
+    "href": "slides/day_2.html#check-your-matrices",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Check your matrices",
+    "text": "Check your matrices\n\n\n\n\n\n\n\n\n\n\n\n\n  \nPractice with a vocabulary of size 5, a embedding with 3 dimensions, and the task is to predict the next word.\n\nStep 1: v_1^5 * W_5^3\nStep 2: w_1^3 * C_3^5\nStep 3: Softmax entire vector"
+  },
+  {
+    "objectID": "slides/day_2.html#word-embeddings-matrices",
+    "href": "slides/day_2.html#word-embeddings-matrices",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Word Embeddings Matrices",
+    "text": "Word Embeddings Matrices"
+  },
+  {
+    "objectID": "slides/day_2.html#applications",
+    "href": "slides/day_2.html#applications",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Applications:",
+    "text": "Applications:\nOnce we’ve optimized, we can extract the word specific vectors from W as embedding vectors. These real valued vectors can be used for analogies and related tasks\n\nWe will see several applications next week. Most important:\n\nAlternative to bag-of-words feature representation in supervised learning tasks\nSupport for other automated text analysis tasks: expand dictionaries\nUnderstanding word meaning: variation over time, bias, variation by groups\nas a scaling method (in two weeks)"
+  },
+  {
+    "objectID": "slides/day_2.html#training-embeddings",
+    "href": "slides/day_2.html#training-embeddings",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Training Embeddings",
+    "text": "Training Embeddings\nEmbeddings need quite a lot of text to train: e.g. want to disambiguate meanings from contexts. You can download pre-trained, or get the code and train locally\n\nWord2Vec is trained on the Google News dataset (∼ 100B words, 2013)\nGloVe are trained on different things: Wikipedia (2014) + Gigaword (6B words), Common Crawl, Twitter. And uses a co-occurence matrix instead of Neural Networks\nfastext from facebook"
+  },
+  {
+    "objectID": "slides/day_2.html#decisions-on-embeddings-rodriguez-and-spirling-2022",
+    "href": "slides/day_2.html#decisions-on-embeddings-rodriguez-and-spirling-2022",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Decisions on embeddings, Rodriguez and Spirling, 2022",
+    "text": "Decisions on embeddings, Rodriguez and Spirling, 2022\nWhen using/training embeddings, we face four key decisions:\n\nWindow size\nNumber of dimensions for the embedding matrix\nPre-trained versus locally fit variants\nWhich algorithm to use?"
+  },
+  {
+    "objectID": "slides/day_2.html#findings",
+    "href": "slides/day_2.html#findings",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Findings",
+    "text": "Findings\n\n\npopular, easily available pretrained embeddings perform at a level close to—or surpassing—both human coders andmore complicated locally fit models.\nGloVe pretrained word embeddings achieve on average—for the set of political queries—80% of human performance and are generally preferred to locally trained embeddings\nLarger window size and embeddings are often preferred."
+  },
+  {
+    "objectID": "slides/day_3.html#evolving-methods",
+    "href": "slides/day_3.html#evolving-methods",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Evolving Methods",
+    "text": "Evolving Methods\nIn the last couple of days we have learned about the different goals of NLP: contextualize content, find categories in text… ultimately, measure some latent characteristic of a set of texts.\n\nBAG-OF-WORDS: Wordfish (Slapin and Proksch, 2008).\nEMBEDDINGS: Party ideological placement, i.e., party-embeddings (Rheault and Cochrane, 2020).\nTRANSFORMERS: Supervised models for text classification (Timoneda and Vallejo Vera, 2025a)."
+  },
+  {
+    "objectID": "slides/day_3.html#evolving-methods-i",
+    "href": "slides/day_3.html#evolving-methods-i",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Evolving Methods I",
+    "text": "Evolving Methods I\nIn the last couple of days we have learned about the different goals of NLP: contextualize content, find categories in text… ultimately, measure some latent characteristic of a set of texts.\n\nBAG-OF-WORDS: Wordfish (Slapin and Proksch, 2008).\nEMBEDDINGS: Party ideological placement, i.e., party-embeddings (Rheault and Cochrane, 2020).\nTRANSFORMERS: Supervised models for text classification (Timoneda and Vallejo Vera, 2025a)."
+  },
+  {
+    "objectID": "slides/day_3.html#evolving-methods-ii",
+    "href": "slides/day_3.html#evolving-methods-ii",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Evolving Methods II",
+    "text": "Evolving Methods II\nMore recently, we’ve seen and increased focus on Generative Large Language Models (LLM):\n\nAPPLIED: latent dimensions, i.e., ideology (Kato and Cochrane, 2025; Wu et al., 2023); annotators (Timoneda and Vallejo Vera, 2025b)\nLIMITATIONS: biases from party cues (Vallejo Vera and Driggers, 2025); bias from language (Walker and Timoneda, 2024).\nMETA: effect of LLMs on respondents (coming soon); LLM adoption, e.g., in the classroom."
+  }
+]

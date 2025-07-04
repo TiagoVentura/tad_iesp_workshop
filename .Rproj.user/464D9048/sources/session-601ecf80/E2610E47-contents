@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: docs
+  
+
+website:
+  title: "Workshop: Advanced Text-As-Data "
+  sidebar:
+    background: light
+    logo: "images/logo.png"
+    pinned: true
+    align: center
+    tools:
+      - icon: github
+        href: https://github.com/TiagoVentura/tad_iesp
+        text: GitHub
+    style: docked
+    contents:
+      - href: index.qmd
+        text: Home
+      - href: syllabus.qmd
+        text: Syllabus
+      - href: schedule.qmd
+        text: Schedule and Course Materials
+
+format:
+  html:
+    theme: cosmo
+    css: styles.scss
+    toc: true
+
+editor: visual
