@@ -431,28 +431,28 @@
     "href": "materials.html#day-1---introduction-neural-networks",
     "title": "Schedule and Course Materials",
     "section": "Day 1 - Introduction & Neural Networks",
-    "text": "Day 1 - Introduction & Neural Networks\n\nSlides\nCode:\n\nLogistic Regression as Neural Networks:  notebook \nIntroduction to Pytorch\n\nReadings:\n\nSLP: Chapters 7\nLin, Gechun, and Christopher Lucas. “An Introduction to Neural Networks for the Social Sciences.” (2023)\nOne hour youtube video from MIT Intro to Deep Learning: https://www.youtube.com/watch?v=alfdI7S6wCY&list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI&index=1"
+    "text": "Day 1 - Introduction & Neural Networks\n\nSlides\nCode:\n\nLogistic Regression as Neural Networks:  notebook \nIntroduction to Pytorch"
   },
   {
     "objectID": "materials.html#day-2---word-embeddings",
     "href": "materials.html#day-2---word-embeddings",
     "title": "Schedule and Course Materials",
     "section": "Day 2 - Word Embeddings",
-    "text": "Day 2 - Word Embeddings\n\nSlides\nCode:\nReadings:\nTheory Papers:\n\nSLP Chapter 6, Vector Semantics and Embeddings\nMeyer, David. How Exactly Does Word2Vec Work?\nSpirling and Rodriguez, Word embeddings: What works, what doesn’t, and how to tell the difference for applied research\n\nApplied Papers:\n\nAustin C. Kozlowski, Austin C., Matt Taddy, and James A. Evans. 2019. “The Geometry of Culture: Analyzing the Meanings of Class through Word Embeddings.” American Sociological Review 84, no. 5: 905–49. https://doi.org/10.1177/0003122419877135\nGarg, Nikhil, Londa Schiebinger, Dan Jurafsky and James Zou. 2018. “Word embeddings quantify 100 years of gender and ethnic stereotypes.” Proceedings of the National Academy of Sciences 115(16):E3635–E3644.\nRodman, E., 2020. A Timely Intervention: Tracking the Changing Meanings of Political Concepts with Word Vectors. Political Analysis, 28(1), pp.87-111\nRheault, Ludovic, and Christopher Cochrane. “Word embeddings for the analysis of ideological placement in parliamentary corpora.” Political Analysis 28, no. 1 (2020): 112-133.\nGennaro, Gloria, and Elliott Ash. “Emotion and reason in political language.” The Economic Journal 132, no. 643 (2022): 1037-1059."
+    "text": "Day 2 - Word Embeddings\n\nSlides\nCode:"
   },
   {
     "objectID": "materials.html#day-3---transformers",
     "href": "materials.html#day-3---transformers",
     "title": "Schedule and Course Materials",
     "section": "Day 3 - Transformers",
-    "text": "Day 3 - Transformers"
+    "text": "Day 3 - Transformers\n\nSlides\nCode:"
   },
   {
     "objectID": "materials.html#day-4---large-language-models",
     "href": "materials.html#day-4---large-language-models",
     "title": "Schedule and Course Materials",
     "section": "Day 4 - Large Language Models",
-    "text": "Day 4 - Large Language Models"
+    "text": "Day 4 - Large Language Models\n\nSlides\nCode:"
   },
   {
     "objectID": "slides/day_1.html",
@@ -480,7 +480,7 @@
     "href": "slides/day_2.html#plans-for-today",
     "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
     "section": "Plans for Today:",
-    "text": "Plans for Today:\n\nLive coding from last class on topic models\nWord Embeddings\n\nSemantics, Distributional Hypothesis, From Sparse to Dense Vectors\nWord2Vec Algorithm\n\nMathematical Model\nEstimate with Neural Networks\n\n\nNext week:\n\nStart with coding to work with wordembeddings\n\nEstimate from co-occurence matrices\nWorking with pre-trained models\n\nDiscuss applications to social science"
+    "text": "Plans for Today:\n\nWord Embeddings\n\nSemantics, Distributional Hypothesis, Moving from Sparse to Dense Vectors\nWord2Vec Algorithm\n\nMathematical Model\nEstimate with Neural Networks\nEstimate using co-occurance matrices\n\n\nPractice\n\nWork through:\n\nEstimating Word Embeddings\nWorking with pre-trained models\n\n\nDiscuss Word Embeddings Applications"
   },
   {
     "objectID": "slides/day_2.html#vector-space-model",
@@ -522,7 +522,7 @@
     "href": "slides/day_2.html#estimating-word-embeddings",
     "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
     "section": "Estimating Word Embeddings",
-    "text": "Estimating Word Embeddings\nApproches:\n\n\nCount-based methods: look at how often words co-occur with neighbors.\n\nuse this matrix, and some some factorization to retrieve vectors for the words\nGloVE\nfast, not computationally intensive, but not the best representation\nwe will see code doing this next week\n\n\n\n\n\nPredictive Methods: rely on the idea of self-supervision\n\nuse unlabeled data and use words to predict sequence\nthe famous word2vec.\n\nSkipgram: predicts context words\nContinuous Bag of Words: predict center word"
+    "text": "Estimating Word Embeddings\nApproches:\n\n\nCount-based methods: look at how often words co-occur with neighbors.\n\nuse this matrix, and some some factorization to retrieve vectors for the words\nThis approach is called “GloVE” algorithm\nfast, not computationally intensive, but not the best representation\nwe will see code doing this next week\n\n\n\n\n\nNeural Networks: rely on the idea of self-supervision\n\nuse unlabeled data and use words to predict sequence\nthe famous word2vec algorithm\n\nSkipgram: predicts context words\nContinuous Bag of Words: predict center word"
   },
   {
     "objectID": "slides/day_2.html#word2vec-a-framework-for-learning-word-vectors-mikolov-et-al.-2013",
@@ -550,7 +550,7 @@
     "href": "slides/day_2.html#encoding-similarity",
     "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
     "section": "Encoding Similarity",
-    "text": "Encoding Similarity\nTo estimate the model, we first need to formalize the probability function we want to estimate.\n\nThis is similar to a logistic regression\n\n\n\nIn logistic regression: probability of a event occur given data X and parameters \\(\\beta\\).:\n\n$ P(y=1| X, ) = X * \\(\\beta\\) $\n\\(X*\\beta\\) is not a proper probability function, so we make it to proper probability by using a logit transformation.\n\\(P(y=1|X, \\beta ) = \\frac{exp(XB)}{1 + exp(XB)}\\)\nThrow this transformation inside of a bernouilli distribution, get the likelihood function, and find the parameters using MLE."
+    "text": "Encoding Similarity\nTo estimate the model, we first need to formalize the probability function we want to estimate.\n\n\nThis is similar to a logistic regression\n\n\n\nIn logistic regression: probability of a event occur given data X and parameters \\(\\beta\\).:\n\n$ P(y=1| X, ) = X * \\(\\beta\\) $\n\\(X*\\beta\\) is not a proper probability function, so we make it to proper probability by using a logit transformation.\n\\(P(y=1|X, \\beta ) = \\frac{exp(XB)}{1 + exp(XB)}\\)\nThrow this transformation inside of a bernouilli distribution, get the likelihood function, and find the parameters using MLE."
   },
   {
     "objectID": "slides/day_2.html#pametrizing-pw_tw_t-1",
@@ -571,7 +571,7 @@
     "href": "slides/day_2.html#word2vec-objective-function",
     "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
     "section": "Word2Vec: Objective Function",
-    "text": "Word2Vec: Objective Function\n\nFor each position \\(t\\), predict context words within a window of fixed size \\(m\\), given center word \\(w\\).\nLikelihood Function\n\\[ L(\\theta) = \\prod_{t=1}^{T} \\prod_{\\substack{-m&lt;= j&lt;=m \\\\ j \\neq 0}}^{m} P(w_{t+j} | w_t; \\theta) \\]\n\nAssuming independence, this means you multiplying the probability of every target for every center word in your dictionary.\nThis likelihood function will change if you do skipgram with negative sampling (See SLP chapter 6)\n\n\n\nObjective Function: Negative log likelihood\n\\[J(\\theta) = - \\frac{1}{T}log(L(\\theta))\\]\n\nbetter to take the gradient with sums\nthe average increases the numerical stability of the gradient."
+    "text": "Word2Vec: Objective Function\n\nFor each position \\(t\\), predict context words within a window of fixed size \\(m\\), given center word \\(w\\).\nLikelihood Function\n\\[ L(\\theta) = \\prod_{t=1}^{T} \\prod_{\\substack{-m&lt;= j&lt;=m \\\\ j \\neq 0}}^{m} P(w_{t+j} | w_t; \\theta) \\]\n\nAssuming independence, this means you multiplying the probability of every target for every center word in your dictionary.\nThis likelihood function will change if you do skipgram with negative sampling (See SLP chapter 6)\n\n\n\n\nObjective Function: Negative log likelihood\n\\[J(\\theta) = - \\frac{1}{T}log(L(\\theta))\\]\n\nbetter to take the gradient with sums\nthe average increases the numerical stability of the gradient."
   },
   {
     "objectID": "slides/day_2.html#neural-networks-brief-overview",
@@ -592,7 +592,7 @@
     "href": "slides/day_2.html#check-your-matrices",
     "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
     "section": "Check your matrices",
-    "text": "Check your matrices\n\n\n\n\n\n\n\n\n\n\n\n\n  \nPractice with a vocabulary of size 5, a embedding with 3 dimensions, and the task is to predict the next word.\n\nStep 1: v_1^5 * W_5^3\nStep 2: w_1^3 * C_3^5\nStep 3: Softmax entire vector"
+    "text": "Check your matrices\n\n\n\n\n\n\n\n\n  \nPractice with a vocabulary of size 5, a embedding with 3 dimensions, and the task is to predict the next word.\n\nStep 1: v_1^5 * W_5^3\nStep 2: w_1^3 * C_3^5\nStep 3: Softmax entire vector"
   },
   {
     "objectID": "slides/day_2.html#word-embeddings-matrices",
@@ -606,7 +606,7 @@
     "href": "slides/day_2.html#applications",
     "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
     "section": "Applications:",
-    "text": "Applications:\nOnce we’ve optimized, we can extract the word specific vectors from W as embedding vectors. These real valued vectors can be used for analogies and related tasks\n\nWe will see several applications next week. Most important:\n\nAlternative to bag-of-words feature representation in supervised learning tasks\nSupport for other automated text analysis tasks: expand dictionaries\nUnderstanding word meaning: variation over time, bias, variation by groups\nas a scaling method (in two weeks)"
+    "text": "Applications:\nOnce we’ve optimized, we can extract the word specific vectors from W as embedding vectors. These real valued vectors can be used for analogies and related tasks\n\nWe will see several applications next week. Most important:\n\nAlternative to bag-of-words feature representation in supervised learning tasks\nSupport for other automated text analysis tasks: expand dictionaries\nUnderstanding word meaning: variation over time, bias, variation by groups\nas a scaling method"
   },
   {
     "objectID": "slides/day_2.html#training-embeddings",
@@ -656,5 +656,82 @@
     "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
     "section": "What are Transformers?",
     "text": "What are Transformers?\n\nTransformers are a machine-learning architecture used in language-based models.\nWe can think of Transformers as the engines that drive machine-learning models and improve (significantly) their performance.\nTransformers are the architecture behind BERT, RoBERTa, DeBERTa, etc."
+  },
+  {
+    "objectID": "slides/day_2.html#vector-space-model-from-yesterday",
+    "href": "slides/day_2.html#vector-space-model-from-yesterday",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Vector Space Model: From yesterday",
+    "text": "Vector Space Model: From yesterday\nIn the vector space model, we learned:\n\nA document \\(D_i\\) is represented as a collection of features \\(W\\) (words, tokens, n-grams..)\nEach feature \\(w_i\\) can be place in a real line, then a document \\(D_i\\) is a point in a \\(W\\) dimensional space.\n\nEmbedded in this model, there is the idea we represent words as a one-hot encoding.\n\n“cat”: [0,0, 0, 0, 0, 0, 1, 0, ….., V] , on a V dimensional vector\n“dog”: [0,0, 0, 0, 0, 0, 0, 1, …., V], on a V dimensional vector\n\nWhat these vectors look like?\n\nreally sparse\nvectors are orthogonal\nno natural notion of similarity"
+  },
+  {
+    "objectID": "slides/day_2.html#neural-networks",
+    "href": "slides/day_2.html#neural-networks",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Neural Networks",
+    "text": "Neural Networks"
+  },
+  {
+    "objectID": "slides/day_2.html#applications-1",
+    "href": "slides/day_2.html#applications-1",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Applications",
+    "text": "Applications\nLet’s discuss now several applications of embeddings on social science papers. These paper show:\n\nHow to use embeddings to track semantic changes over time\nHow to use embeddings to measure emotion in political language.\nHow to use embeddings to measure gender and ethnic stereotypes\nAnd a favorite of political scientists, how to use embeddings to measure ideology."
+  },
+  {
+    "objectID": "slides/day_2.html#capturing-cultural-dimensions-with-embeddings",
+    "href": "slides/day_2.html#capturing-cultural-dimensions-with-embeddings",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Capturing cultural dimensions with embeddings",
+    "text": "Capturing cultural dimensions with embeddings\n\nAustin C. Kozlowski, Austin C., Matt Taddy, and James A. Evans. 2019. “The Geometry of Culture: Analyzing the Meanings of Class through Word Embeddings.” American Sociological Review 84, no. 5: 905–49. https://doi.org/10.1177/0003122419877135.\n\n\nWord Embeddings can be use to capture cultural dimensions\nDimensions of word embedding vector space models closely correspond to meaningful “cultural dimensions,” such as rich-poor, moral-immoral, and masculine-feminine.\na word vector’s position on these dimensions reflects the word’s respective cultural associations"
+  },
+  {
+    "objectID": "slides/day_2.html#method",
+    "href": "slides/day_2.html#method",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Method",
+    "text": "Method"
+  },
+  {
+    "objectID": "slides/day_2.html#results",
+    "href": "slides/day_2.html#results",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Results",
+    "text": "Results"
+  },
+  {
+    "objectID": "slides/day_2.html#ideological-scaling",
+    "href": "slides/day_2.html#ideological-scaling",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Ideological Scaling",
+    "text": "Ideological Scaling\n\nRheault, Ludovic, and Christopher Cochrane. “Word embeddings for the analysis of ideological placement in parliamentary corpora.” Political Analysis 28, no. 1 (2020): 112-133.\n\n\nCan word vectors be used to produce scaling estimates of ideological placement on political text?\n\nYes, and word vectors are even better\n\nIt captures semantics\nNo need of training data (self-supervision)"
+  },
+  {
+    "objectID": "slides/day_2.html#method-1",
+    "href": "slides/day_2.html#method-1",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Method",
+    "text": "Method"
+  },
+  {
+    "objectID": "slides/day_2.html#results-1",
+    "href": "slides/day_2.html#results-1",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Results",
+    "text": "Results"
+  },
+  {
+    "objectID": "slides/day_2.html#measuring-emotion",
+    "href": "slides/day_2.html#measuring-emotion",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Measuring Emotion",
+    "text": "Measuring Emotion\n\nGennaro, Gloria, and Elliott Ash. “Emotion and reason in political language.” The Economic Journal 132, no. 643 (2022): 1037-1059."
+  },
+  {
+    "objectID": "slides/day_2.html#method-2",
+    "href": "slides/day_2.html#method-2",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "Method",
+    "text": "Method\n\nBuilding seed lists: They start with small seed lists of words clearly associated with “emotion” and “reason”\nExpanding dictionaries with word embeddings: Instead of just using these short lists, they expand them automatically using word embeddings.\nEmotionality Score:\n\n\\[\nY_i = \\frac{\\text{sim}(\\vec{d}_i, \\vec{A}) + b}{\\text{sim}(\\vec{d}_i, \\vec{C}) + b}\n\\] # Coding\n\n\nText-as-Data"
   }
 ]

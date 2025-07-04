@@ -1,6 +1,6 @@
 ---
 title: "Advanced Text-As-Data - Winter School - Iesp UERJ"
-subtitle: "<span style = 'font-size: 140%;'> <br> Day 2: Word Embeddings"
+subtitle: "<span style = 'font-size: 140%;'> <br> Day 2: Word Embeddings: Theory and Practice"
 author: "<span style = 'font-size: 120%;'> Professor: Tiago Ventura </span>"
 execute: 
   echo: false
@@ -25,52 +25,33 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Survey Responses
-
-Thank you so much for responding to the survey! Here are the most important feedback I receive:
-
--   [more structured walk throughs of the code]{.midgray}
-
--   [If you could a few resources we can look at for mathematical depth for class topic. Really enjoyed the in-depth discussion on LDA]{.midgray}
-
--   [I hope we can have a few discussion questions along with weekly readings]{.midgray}
-
--   [Including discussion of papers that are from non-polisci applications? For example, econ, sociology, psychology, etc.?]{.midgray}
-
-**Stop Doing:**
-
--   [long alone time with code]{.midgray}
-
--   [Sometimes we spend a bit too long on the recap part]{.midgray}
-
 ## Plans for Today:
-
--   Live coding from last class on topic models
 
 -   Word Embeddings
 
-    -   Semantics, Distributional Hypothesis, From Sparse to Dense Vectors
+    -   Semantics, Distributional Hypothesis, Moving from Sparse to Dense Vectors
 
     -   Word2Vec Algorithm
 
         -   Mathematical Model
 
         -   Estimate with Neural Networks
+        
+        -   Estimate using co-occurance matrices
 
--   Next week:
+-   Practice
 
-    -   Start with coding to work with wordembeddings
-
-        -   Estimate from co-occurence matrices
+    -   Work through: 
+    
+        -   Estimating Word Embeddings
+    
         -   Working with pre-trained models
 
-    -   Discuss applications to social science
-
-# `r fontawesome::fa("laptop-code")` Coding!
+-   Discuss Word Embeddings Applications
 
 # Word Embeddings
 
-## Vector Space Model
+## Vector Space Model: From yesterday
 
 In the vector space model, we learned:
 
@@ -127,7 +108,7 @@ Embedded in this model, there is the idea we represent [words]{.red} as a [one-h
 
 ## With colors and real word vectors
 
-```{r echo=FALSE, out.width = "70%"}
+```{r echo=FALSE, out.width = "100%"}
 knitr::include_graphics("./week7_figs/embed_color.png") 
 ```
 
@@ -156,15 +137,15 @@ Source: [Illustrated Word2Vec](https://jalammar.github.io/illustrated-word2vec/)
 ::: fragment
 -   [Count-based methods]{.red}: look at how often words co-occur with neighbors.
     -   use this matrix, and some some factorization to retrieve vectors for the words
-    -   GloVE
+    -   This approach is called "GloVE" algorithm
     -   fast, not computationally intensive, but not the best representation
     -   we will see code doing this next week
 :::
 
 ::: fragment
--   [Predictive Methods:]{.red} rely on the idea of **self-supervision**
+-   [Neural Networks:]{.red} rely on the idea of **self-supervision**
     -   use unlabeled data and use words to predict sequence
-    -   the famous word2vec.
+    -   the famous word2vec algorithm
         -   Skipgram: predicts context words
         -   Continuous Bag of Words: predict center word
 :::
@@ -174,6 +155,7 @@ Source: [Illustrated Word2Vec](https://jalammar.github.io/illustrated-word2vec/)
 ### Core Idea:
 
 ::: incremental
+
 -   We have a large corpus ("body") of text: a long list of words
 
 -   Every word in a fixed vocabulary is represented by a vector
@@ -279,9 +261,10 @@ $$J(\theta) = - \frac{1}{T}log(L(\theta))$$
 -   better to take the gradient with sums
 
 -   the average increases the numerical stability of the gradient.
+
 :::
 
-## Neural Networks: Brief overview
+## Neural Networks
 
 ```{r echo=FALSE, out.width = "70%"}
 knitr::include_graphics("./week7_figs/nn.png") 
@@ -293,12 +276,20 @@ knitr::include_graphics("./week7_figs/nn.png")
 knitr::include_graphics("./week7_figs/sg_arc.png") 
 ```
 
+
+##
+
+```{r echo=FALSE, out.width = "100%"}
+knitr::include_graphics("./week7_figs/rustic.png") 
+```
+
+
 ## Check your matrices
 
 ::: columns
 ::: {.column width="70%"}
 ```{r echo=FALSE, out.width = "100%"}
-knitr::include_graphics("./week7_figs/rustic.png") 
+knitr::include_graphics("./week7_figs/skipgram_matrices.png") 
 ```
 :::
 
@@ -321,6 +312,16 @@ Practice with a vocabulary of size 5, a embedding with 3 dimensions, and the tas
 knitr::include_graphics("./week7_figs/matrices.png") 
 ```
 
+## Training Embeddings
+
+Embeddings need quite a lot of text to train: e.g. want to disambiguate meanings from contexts. You can download [pre-trained]{.red}, or get the code and [train locally]{.red}
+
+-   [Word2Vec]{.red} is trained on the Google News dataset (∼ 100B words, 2013)
+
+-   [GloVe]{.red} are trained on different things: Wikipedia (2014) + Gigaword (6B words), Common Crawl, Twitter. And uses a co-occurence matrix instead of Neural Networks
+
+-   [fastext]{.red} from facebook
+
 ## Applications:
 
 Once we've optimized, we can extract the word specific vectors from W as embedding vectors. These real valued vectors can be used for analogies and related tasks
@@ -337,40 +338,98 @@ We will see several applications next week. Most important:
 
 -   Understanding word meaning: variation over time, bias, variation by groups
 
--   as a scaling method (in two weeks)
+-   as a scaling method 
 
-## Training Embeddings
 
-Embeddings need quite a lot of text to train: e.g. want to disambiguate meanings from contexts. You can download [pre-trained]{.red}, or get the code and [train locally]{.red}
+## Applications
 
--   [Word2Vec]{.red} is trained on the Google News dataset (∼ 100B words, 2013)
+Let's discuss now several applications of embeddings on social science papers. These paper show:
 
--   [GloVe]{.red} are trained on different things: Wikipedia (2014) + Gigaword (6B words), Common Crawl, Twitter. And uses a co-occurence matrix instead of Neural Networks
+-   How to use embeddings to track semantic changes over time
 
--   [fastext]{.red} from facebook
+-   How to use embeddings to measure emotion in political language.
 
-## Decisions on embeddings, Rodriguez and Spirling, 2022
+-   How to use embeddings to measure gender and ethnic stereotypes
 
-When using/training embeddings, we face four key decisions:
+-   And a favorite of political scientists, how to use embeddings to measure ideology.
 
--   Window size
 
--   Number of dimensions for the embedding matrix
+## Capturing cultural dimensions with embeddings
 
--   Pre-trained versus locally fit variants
+> Austin C. Kozlowski, Austin C., Matt Taddy, and James A. Evans. 2019. "The Geometry of Culture: Analyzing the Meanings of Class through Word Embeddings." American Sociological Review 84, no. 5: 905--49. https://doi.org/10.1177/0003122419877135.
 
--   Which algorithm to use?
+-   Word Embeddings can be use to capture cultural dimensions
 
-## Findings
+-   Dimensions of word embedding vector space models closely correspond to meaningful "cultural dimensions," such as rich-poor, moral-immoral, and masculine-feminine.
+
+-   a word vector's position on these dimensions reflects the word's respective cultural associations
+
+
+## Method
 
 ```{r echo=FALSE, out.width = "100%", fig.align="center"}
-knitr::include_graphics("./week7_figs/rodriguez.png") 
+knitr::include_graphics("cultural_vector.jpg") 
 ```
 
--   popular, easily available pretrained embeddings perform at a level close to---or surpassing---both human coders andmore complicated locally fit models.
+## Results
 
--   GloVe pretrained word embeddings achieve on average---for the set of political queries---80% of human performance and are generally preferred to locally trained embeddings
+```{r echo=FALSE, out.width = "100%", fig.align="center"}
+knitr::include_graphics("./week9_figs/culture_1.png") 
+```
 
--   Larger window size and embeddings are often preferred.
 
-# More next week!
+## Ideological Scaling
+
+> Rheault, Ludovic, and Christopher Cochrane. "Word embeddings for the analysis of ideological placement in parliamentary corpora." Political Analysis 28, no. 1 (2020): 112-133.
+
+-   Can word vectors be used to produce scaling estimates of ideological placement on political text?
+
+    -   Yes, and word vectors are even better
+
+        -   It captures semantics
+
+        -   No need of training data (self-supervision)
+
+## Method
+
+```{r echo=FALSE, out.width = "100%"}
+knitr::include_graphics("./week9_figs/scaling_00.png") 
+```
+
+
+## Results
+
+::: columns
+::: {.column width="50%"}
+```{r echo=FALSE, out.width = "100%"}
+knitr::include_graphics("./week9_figs/scaling_01.png") 
+```
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE, out.width = "100%"}
+knitr::include_graphics("./week9_figs/scaling_02.png") 
+```
+:::
+:::
+
+## Measuring Emotion
+
+> Gennaro, Gloria, and Elliott Ash. "Emotion and reason in political language." The Economic Journal 132, no. 643 (2022): 1037-1059.
+
+```{r echo=FALSE, out.width = "90%"}
+knitr::include_graphics("./week9_figs/emotion.png") 
+```
+
+## Method
+
+- Building seed lists: They start with small seed lists of words clearly associated with “emotion” and “reason”
+
+- Expanding dictionaries with word embeddings: Instead of just using these short lists, they expand them automatically using word embeddings. 
+
+- Emotionality Score: 
+
+$$
+Y_i = \frac{\text{sim}(\vec{d}_i, \vec{A}) + b}{\text{sim}(\vec{d}_i, \vec{C}) + b}
+$$
+# Coding
