@@ -7,7 +7,7 @@ website:
   title: "Workshop: Advanced Text-As-Data "
   sidebar:
     background: light
-    logo: "images/logo.png"
+    logo: "logo.png"
     pinned: true
     align: center
     tools:
@@ -20,7 +20,7 @@ website:
         text: Home
       - href: syllabus.qmd
         text: Syllabus
-      - href: schedule.qmd
+      - href: materials.qmd
         text: Schedule and Course Materials
 
 format:

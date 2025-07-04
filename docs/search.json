@@ -634,7 +634,7 @@
     "href": "slides/day_3.html#evolving-methods",
     "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
     "section": "Evolving Methods",
-    "text": "Evolving Methods\nIn the last couple of days we have learned about the different goals of NLP: contextualize content, find categories in text… ultimately, measure some latent characteristic of a set of texts.\n\nBAG-OF-WORDS: Wordfish (Slapin and Proksch, 2008).\nEMBEDDINGS: Party ideological placement, i.e., party-embeddings (Rheault and Cochrane, 2020).\nTRANSFORMERS: Supervised models for text classification (Timoneda and Vallejo Vera, 2025a).\n\nMore recently, we’ve seen and increased focus on Generative Large Language Models (LLM):\n\nAPPLIED: latent dimensions, i.e., ideology (Kato and Cochrane, 2025; Wu et al., 2023); annotators (Timoneda and Vallejo Vera, 2025b)\nLIMITATIONS: biases from party cues (Vallejo Vera and Driggers, 2025); bias from language (Walker and Timoneda, 2024).\nMETA: effect of LLMs on respondents (coming soon); LLM adoption, e.g., in the classroom."
+    "text": "Evolving Methods\nIn the last couple of days we have learned about the different goals of NLP: contextualize content, find categories in text… ultimately, measure some latent characteristic of a set of texts.\n\nBAG-OF-WORDS: Wordfish (Slapin and Proksch, 2008).\nEMBEDDINGS: Party ideological placement, i.e., party-embeddings (Rheault and Cochrane, 2020).\nTRANSFORMERS: Supervised models for text classification (Timoneda and Vallejo Vera, 2025a)."
   },
   {
     "objectID": "slides/day_3.html#evolving-methods-i",
@@ -649,5 +649,12 @@
     "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
     "section": "Evolving Methods II",
     "text": "Evolving Methods II\nMore recently, we’ve seen and increased focus on Generative Large Language Models (LLM):\n\nAPPLIED: latent dimensions, i.e., ideology (Kato and Cochrane, 2025; Wu et al., 2023); annotators (Timoneda and Vallejo Vera, 2025b)\nLIMITATIONS: biases from party cues (Vallejo Vera and Driggers, 2025); bias from language (Walker and Timoneda, 2024).\nMETA: effect of LLMs on respondents (coming soon); LLM adoption, e.g., in the classroom."
+  },
+  {
+    "objectID": "slides/day_3.html#what-are-transformers",
+    "href": "slides/day_3.html#what-are-transformers",
+    "title": "Advanced Text-As-Data - Winter School - Iesp UERJ",
+    "section": "What are Transformers?",
+    "text": "What are Transformers?\n\nTransformers are a machine-learning architecture used in language-based models.\nWe can think of Transformers as the engines that drive machine-learning models and improve (significantly) their performance.\nTransformers are the architecture behind BERT, RoBERTa, DeBERTa, etc."
   }
 ]

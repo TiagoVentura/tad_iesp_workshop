@@ -1,14 +1,14 @@
 {
-    "id": "E07902C8",
-    "path": "~/Dropbox/courses/ppol_6801/tad_iesp/tad_iesp_class_website/index.qmd",
-    "project_path": "index.qmd",
+    "id": "A94F7D02",
+    "path": "~/Dropbox/courses/ppol_6801/tad_iesp/tad_iesp_class_website/about.qmd",
+    "project_path": "about.qmd",
     "type": "quarto_markdown",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1751594420988.0,
+    "created": 1751594861955.0,
     "source_on_save": false,
-    "relative_order": 7,
+    "relative_order": 9,
     "properties": {
         "rmdVisualMode": "true",
         "rmdVisualWrapConfigured": "true",
@@ -16,16 +16,14 @@
         "Source": "Source",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "rmdVisualModeLocation": "255:0",
-        "cursorPosition": "6,0",
-        "scrollLine": "0"
+        "rmdVisualModeLocation": "2:0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1751594892,
+    "lastKnownWriteTime": 1749228102,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1751594892391,
+    "last_content_update": 1749228102,
     "read_only": false,
     "read_only_alternatives": []
 }

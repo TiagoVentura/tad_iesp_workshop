@@ -50,3 +50,20 @@ In the last couple of days we have learned about the different goals of NLP: con
 - BAG-OF-WORDS: Wordfish (Slapin and Proksch, 2008).
 - EMBEDDINGS: Party ideological placement, i.e., party-embeddings (Rheault and Cochrane, 2020).
 - [TRANSFORMERS: Supervised models for text classification (Timoneda and Vallejo Vera, 2025a).]{.red}
+
+# Transformers
+
+## What are Transformers?
+
+- Transformers are a machine-learning [architecture]{.red} used in language-based models.
+- We can think of Transformers as the engines that drive machine-learning models and improve (significantly) their performance. 
+
+- Transformers are the architecture behind BERT, RoBERTa, DeBERTa, etc. 
+
+---
+
+Have I been exposed to this architecture before?
+
+```{r echo=FALSE, out.width = "70%"}
+knitr::include_graphics("./figs_day3/fig1_BERT.png") 
+```

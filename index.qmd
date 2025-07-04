@@ -1,6 +1,7 @@
 ---
 title: "Advanced Text-As-Data: Word Embeddings, Deep Learning, and Large Language Models"
 subtitle: "Winter School - Iesp UERJ"
+author: "Tiago Ventura and Sebastian Vallejo"
 ---
 
 ## Course Description
@@ -24,7 +25,3 @@ The course will consist of lectures and hands-on coding in class. The lecture wi
 -   Assistant Professor in the Department of Political Science at the University of Western Ontario
 -   Pronouns: He/Him
 -   Email: [sebastian.vallejo\@uwo.ca](mailto:sebastian.vallejo@uwo.ca)
-
-<!-- add zoom link for virtual office hours -->
-
-<!-- Download the [syllabus in pdf here]("./_syllabus.pdf") -->
