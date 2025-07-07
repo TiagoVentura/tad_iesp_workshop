@@ -1,5 +1,5 @@
 ---
-title: "Advanced Text-As-Data - Winter School - Iesp UERJ"
+title: "Advanced Text-As-Data <br> Winter School - Iesp UERJ"
 subtitle: "<span style = 'font-size: 140%;'> <br> Day 1: Word Representation & Introduction to Neural Networks"
 author: "<span style = 'font-size: 120%;'> Professor: Tiago Ventura </span>"
 execute: 
