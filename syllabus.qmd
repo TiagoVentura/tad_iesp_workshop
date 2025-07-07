@@ -5,7 +5,6 @@ author: "Tiago Ventura and Sebastian Vallejo Vera"
 format: html
 ---
 
-
 ## Course Description
 
 In recent years, the surge in the availability of textual data, ranging from the digitalization of archival documents, political speeches, social media posts, and online news articles, has led to a growing demand for statistical analysis using large corpora. Once dominated by sparse bag-of-words models, the field of Natural Language Processing (NLP) is now increasingly driven by dense vector representations, deep learning, and the rapid evolution of Large Language Models (LLMs). This course offers an introduction to this new generation of models, serving as hands-on approach to this new landscape of computational text analysis with a focus on political science research and applications.

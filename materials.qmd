@@ -11,7 +11,7 @@ Here you can find all materials (readings, slides, code, datasets, assignments) 
 
 -   **Code**:
 
-    -   Neural Networks From Scratch: <a href="/code/day_1_logistic_nn.ipynb" download> notebook </a>, 
+    -   Neural Networks From Scratch: <a href="/code/day_1_logistic_neural_network.ipynb" download> notebook </a>, 
     <a href="https://www.dropbox.com/scl/fo/3wtj4su098g25xa2632a4/AGoGUCrokkyGRivhuXFBi88?rlkey=027zv067pdkh5nswkvfii0135&dl=0" download> data </a>
     
 
