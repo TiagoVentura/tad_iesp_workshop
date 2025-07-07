@@ -75,7 +75,7 @@ The course will consist of lectures and hands-on coding in class. The lecture wi
 
 -   **Theory Papers**
 
-    -   \[SLP\] - Chapter 10.
+    -   \[SLP\] - Chapter 9.
 
     -   Jay Alammar. 2018. ["The Illustrated Transformer."](https://jalammar.github.io/illustratedtransformer/)
 
@@ -89,6 +89,11 @@ The course will consist of lectures and hands-on coding in class. The lecture wi
 
 ### Day 4: Large Language Models: Social Science Applications
 
+
+-   **Theory Papers**
+
+    -   \[SLP\] - Chapter 10.
+    
 -   **Applied Papers**
 
     -   [Wu, Patrick Y., Joshua A. Tucker, Jonathan Nagler, and Solomon Messing. "Large language models can be used to estimate the ideologies of politicians in a zero-shot learning setting." arXiv preprint arXiv:2303.12057 (2023)](https://arxiv.org/abs/2303.12057).

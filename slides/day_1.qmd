@@ -11,8 +11,8 @@ format:
     transition: slide
     background-transition: fade
     code-line-numbers: false
-    width: 1200
-    height: 800
+    width: 1400
+    height: 900
     center: false
     slide-number: true
     incremental: true
@@ -29,47 +29,34 @@ editor_options:
 
 ## Logistics
 
-- All materials will be on this website: 
+- All materials will be here: https://tiagoventura.github.io/tad_iesp_workshop/ 
 
 - Syllabus is more dense than we can cover in a week. Take your time to work through it!
 
-- Our time: Lectures in the Afternoon, and code/exercises for you to work through at your time. 
+- Our time: Lectures in the afternoon, and code/exercises for you to work through at your time. 
 
 - This is an advanced class in text-as-data. It requires:
 
-  - some background in programing
+  - some background in programming, mainly Python
   
   - some notion of probability theory, particularly maximum likelihood estimation (LEGO III at IESP)
   
 - You have a TA: Felipe Lamarca. Use him for your questions!
 
-- Classes in English, but feel free to ask questions in portuguese if you prefer!
+- The classes are English, but feel free to ask questions in Portuguese if you prefer!
+
+## Our rules for a sucessful online workshop
+
+- We ask you to: 
+
+  - Keep you cameras open
+  
+  - Ask questions throughout, feel free to interrupt us. 
+  
+  - That's it!
+
 
 # Motivation
-
-## Rise of the digital information age
-
-```{r fig.align="center"}
-knitr::include_graphics("figs/digital.jpeg") 
-```
-
-## Official Documents: Congressional Speeches, Bills, Press Releases, Transcripts, from all over the world!!
-
-```{r  echo=FALSE, out.width = "70%", fig.align="center"}
-knitr::include_graphics("https://www.brookings.edu/wp-content/uploads/2018/11/RTS10VM4.jpg") 
-```
-
-## Social Media
-
-```{r  echo=FALSE, out.width = "80%", fig.align="center"}
-knitr::include_graphics("week1_figs/redes.png") 
-```
-
-## The internet: News, Comments, Blogs, etc...
-
-```{r  echo=FALSE, out.width = "80%", fig.align="center"}
-knitr::include_graphics("https://miro.medium.com/v2/resize:fit:1400/1*t2u_0FHoQSpBK8i7j1NOBg.png") 
-```
 
 ## What is this class about?
 
@@ -81,16 +68,53 @@ knitr::include_graphics("https://miro.medium.com/v2/resize:fit:1400/1*t2u_0FHoQS
    
 -   Digital Revolution:
 
-    -   Production of text increased
-    -   The computational capacity to analyze them at scale as well.
-    -   Powerful computational models became easily accessible. 
--   This class covers methods (and many applications) of using Text as Data to [answer social science problems]{.red} and [test social science theories]{.red}
+    -   Production of textual information increased with the internet.
+    
+    -  The capacity to store, access and share this large volume of data also increased.
+    
+    - At the same time, the cost of accessing large computing power reduced... think about your laptops...
+    
+    - And even powerful computational models (that do not fit in your laptop) became easily accessible. 
+
+-   This class covers methods (and many applications) of using textual data and advanced computational linguistics model to [answer social science problems]{.red}
 
 - But... with an modern flavor. 
    
    - Deep Learning Revolution / Large Language Models / Representation Learning. 
 
-# Text Representation: From Sparse to Dense Vector
+## Workshop Topics: 
+
+We will cover four topics: 
+
+- Day 1: Motivation, Text Representation, and Introduction to Deep Learning
+
+- Day 2: Word embeddings
+
+- Day 3: Trasformer models
+
+- Day 4: Large Language Models.
+
+## Today
+
+Today, we will cover: 
+
+- Text Representation. 
+
+- Representation Learning & Distributional Semantics
+
+- Introduction to Deep Learning
+
+- Coding Practice: 
+
+  - Neural Networks from Scratch. 
+
+# Text Representation: From Sparse to Dense Vectors
+
+##  From Text to Numbers
+
+```{r echo=FALSE, out.width = "100%", fig.align="center"}
+knitr::include_graphics("figs/text_representation.png") 
+```
 
 ## Vector Space Model
 
@@ -186,9 +210,44 @@ annotate(geom="label", x=5, y=1, label="Distance",
   theme_minimal()
 ```
 
-## 6. Document-Feature Matrix
+## Euclidean Distance
 
-```{r echo=FALSE, out.width = "80%", fig.align="center"}
+The *ordinary*, *straight line* distance between two points in space. Using document vectors $y_a$ and $y_b$ with $j$ dimensions
+
+::: {.callout-note icon="false"}
+## Euclidean Distance
+
+$$
+||y_a - y_b|| = \sqrt{\sum^{j}(y_{aj} - y_{bj})^2}
+$$
+:::
+
+
+## Cosine Similarity
+
+Euclidean distance rewards [magnitude]{.red}, rather than [direction]{.red}
+
+$$
+\text{cosine similarity}(\mathbf{y_a}, \mathbf{y_b}) = \frac{\mathbf{y_a} \cdot \mathbf{y_b}}{\|\mathbf{y_a}\| \|\mathbf{y_b}\|}
+$$
+
+[Unpacking the formula]{.red}:
+
+-   $\mathbf{y_a} \cdot \mathbf{y_b}$ \~ dot product between vectors
+
+    -   projecting common magnitudes
+    -   measure of similarity (see textbook)
+    -   $\sum_j{y_{aj}*y_{bj}}$
+
+-   $||\mathbf{y_a}||$ \~ vector magnitude, length \~ $\sqrt{\sum{y_{aj}^2}}$
+
+-   normalizes similarity by documents' length \~ independent of document length be because it deals only with the [angle of the vectors]{.red}
+
+-   cosine similarity captures some notion of relative *direction* (e.g. style or topics in the document)
+
+##  Workhorse Representation: Document-Feature Matrix
+
+```{r echo=FALSE, out.width = "100%", fig.align="center"}
 knitr::include_graphics("figs/DTM.png") 
 ```
 
@@ -198,7 +257,7 @@ Source: [Arthur Spirling TAD Class](https://github.com/ArthurSpirling/text-as-da
 
 ## Vector Space Model vs Representation Learning
 
-This vector space representation is super useful, and has been used in many many many applications in computational linguistics and social science applications of text-as-data. Including:
+The vector space model is super useful, and has been used in many many many applications in computational linguistics and social science applications of text-as-data. Including:
 
 - Descriptive statistics of documents (count words, text-similarity, complexity, etc..)
 
@@ -206,11 +265,16 @@ This vector space representation is super useful, and has been used in many many
 
 - Unsupervised Machine Learning (Topic Models & Clustering)
 
+
+::: fragment
+
 **But**... Embedded in this model, there is the idea we represent [words]{.red} as a [one-hot encoding]{.red}.
 
 -   "cat": \[0,0, 0, 0, 0, 0, 1, 0, ....., V\] , on a V dimensional vector
 -   "dog": \[0,0, 0, 0, 0, 0, 0, 1, ...., V\], on a V dimensional vector
+:::
 
+::: fragment
 **What these vectors look like?**
 
 -   really sparse
@@ -218,8 +282,9 @@ This vector space representation is super useful, and has been used in many many
 -   those vectors are orthogonal
 
 -   no natural notion of similarity
+:::
 
-# How can we embed some notion of meaning in the way we represent words?
+# How can we embed some notion of similarity in the way we represent words?
 
 ## Distributional Semantics
 
@@ -241,6 +306,8 @@ This vector space representation is super useful, and has been used in many many
 
 ## Sparse vs Dense Vectors
 
+:::noincremental 
+
 **One-hot encoding / Sparse Representation:**
 
 -   cat = $\begin{bmatrix} 0,0, 0, 0, 0, 0, 1, 0, 0 \end{bmatrix}$
@@ -252,6 +319,7 @@ This vector space representation is super useful, and has been used in many many
 -   cat = $\begin{bmatrix} 0.25, -0.75, 0.90, 0.12, -0.50, 0.33, 0.66, -0.88, 0.10, -0.45 \end{bmatrix}$
 
 -   dog = $\begin{bmatrix} 0.25, 1.75, 0.90, 0.12, -0.50, 0.33, 0.66, -0.88, 0.10, -0.45 \end{bmatrix}$
+:::
 
 ## With colors and real word vectors
 
@@ -264,19 +332,19 @@ Source: [Illustrated Word2Vec](https://jalammar.github.io/illustrated-word2vec/)
 
 ## Word Embeddings
 
-**Encoding similarity:** vectors are not ortogonal anymore!
+- **Encoding similarity:** vectors are not ortogonal anymore!
 
-**Automatic Generalization:** learn about one word allow us to automatically learn about related words
+- **Automatic Generalization:** learn about one word allow us to automatically learn about related words
 
-**Encodes Meaning:** by learning the context, I can learn what a word means.
+- **Encodes Meaning:** by learning the context, I can learn what a word means.
 
-**As a consequence:**
+- **As a consequence:**
 
--   Word Embeddings improves by ORDERS OF MAGNITUDE several Text-as-Data Tasks.
+   -   Word Embeddings improves by ORDERS OF MAGNITUDE several Text-as-Data Tasks.
 
--   Allows to deal with unseen words.
+   -   Allows to deal with unseen words.
 
--   Form the core idea of state-of-the-art models, such as LLMs.
+   -   Form the core idea of state-of-the-art models, such as LLMs.
 
 ## Deep Learning for Text Analysis
 
@@ -338,13 +406,15 @@ Where:
 
 $$ \sigma(b_0 + WX + \epsilon) = \frac{1}{1 + \exp(-b_0 + WX + \epsilon)}$$
 
+## 
+
 ```{r echo=FALSE, out.width = "100%"}
 knitr::include_graphics("./figs/sigmoid.png") 
 ```
 
 ## Logistic Regression as a Neural Network
 
-Let's assume we have a simple model of voting. We want to predict if individual $i$ will vote ($y=1$), and we will use four socio demographic factors to make this prediction. 
+Assume we have a simple model of voting. We want to predict if individual $i$ will vote ($y=1$), and we will use four socio demographic factors to make this prediction. 
 
 Classic statistical approach with logistic regression: 
 
@@ -368,9 +438,9 @@ knitr::include_graphics("./figs/nn.png")
 Source: https://carpentries-incubator.github.io/ml4bio-workshop/05-logit-ann/index.html
 :::
 
-## Neural Networks
+## Deep Neural Networks
 
-A **Neural Network** is equivalent to stacking multiple logistic regressions vertically and repeat this process multiple times across many layers.
+A **Deep Neural Network** is equivalent to stacking multiple logistic regressions vertically and repeat this process multiple times across many layers.
 
 As a Matrix, instead of: 
 
@@ -432,9 +502,9 @@ knitr::include_graphics("./figs/feed_forward.png")
 
 Weights matrices are just parameters... the $\beta_s$ of our regression models. 
 
-- There are MANY of them!! Neural Networks are a black box!
+- There are too MANY of them!! Neural Networks are a black box!
 
-- But... they also serve as way to project features (words) in a dense dimensional space.
+- But... they also serve as way to project covariates (or words!) in a dense dimensional space.
 
 - Remember: 
 
@@ -458,22 +528,23 @@ knitr::include_graphics("./figs/nlp_nn.png")
 ```
 
 
-## Estimation: Gradient Descent
+## Estimation: How do get good parameters?
 
-**Linear Regression**
+To estimate the parameters, we will use a algorithm called Gradient Descent. As in any other estimation, we start definition 
+
+**Linear Regression: MSE**
 
 $$\text{RSS} = \sum_{i=1}^{n} (y_i - \widehat{y}_i)^2 $$
 
 
-**Logistic Regression**
+**Logistic Regression: Negative Log Likelihood of a Bernouli distribution**
 
 $$L(\beta) = -\sum_{i=1}^{n} \left( y_i \log(\widehat{y}_i) + (1-y_i)\log(1 - \widehat{y}_i) \right)$$
 
-**Fully-Connected Neural Network (Classification, Binary)**
+**Fully-Connected Neural Network (Classification, Binary): bBinary Cross Entropy**
 
 $$L(\mathbf{W}) = -\frac{1}{n}\sum_{i=1}^{n} \left( y_i \log(\widehat{y}_i) + (1-y_i)\log(1 - \widehat{y}_i) \right)$$
 
-This is called a binary cross entropy loss function
 
 ##
 

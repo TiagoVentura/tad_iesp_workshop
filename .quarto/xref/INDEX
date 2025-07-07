@@ -25,5 +25,11 @@
   },
   "slides/day_3.qmd": {
     "day_3.html": "c3a4e9f5"
+  },
+  "code/day2_word_vectors.ipynb": {
+    "day2_word_vectors.html": "cd754549"
+  },
+  "code/day_1_logistic_as_neural_network.ipynb": {
+    "day_1_logistic_as_neural_network.html": "9059b10c"
   }
 }
