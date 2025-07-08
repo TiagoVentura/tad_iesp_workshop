@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">1 - Packages</h2>
 <p>First, let’s run the cell below to import all the packages that you will need during this assignment. - <a href="www.numpy.org">numpy</a> is the fundamental package for scientific computing with Python. - <a href="http://www.h5py.org">h5py</a> is a common package to interact with a dataset that is stored on an H5 file. - <a href="http://matplotlib.org">matplotlib</a> is a famous library to plot graphs in Python. - <a href="http://www.pythonware.com/products/pil/">PIL</a> and <a href="https://www.scipy.org/">scipy</a> are used here to test your model with your own picture at the end.</p>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure to have these libraries installed. you can use pip install &lt;library&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -234,41 +234,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Problem Statement</strong>: You are given a dataset (“data.h5”) containing: - a training set of m_train images labeled as cat (y=1) or non-cat (y=0) - a test set of m_test images labeled as cat or non-cat - each image is of shape (num_px, num_px, 3) where 3 is for the 3 channels (RGB). Thus, each image is square (height = num_px) and (width = num_px).</p>
 <p>You will build a simple image-recognition algorithm that can correctly classify pictures as cat or non-cat.</p>
 <p>Let’s get more familiar with the dataset. Load the data by running the following code.</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading the data (cat/non-cat)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes <span class="op">=</span> load_dataset()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We added “_orig” at the end of image datasets (train and test) because we are going to preprocess them. After preprocessing, we will end up with train_set_x and test_set_x (the labels train_set_y and test_set_y don’t need any preprocessing).</p>
 <p>Each line of your train_set_x_orig and test_set_x_orig is an array representing an image. You can visualize an example by running the following code. Feel free also to change the <code>index</code> value and re-run to see other images.</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of a picture</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> <span class="dv">25</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(train_set_x_orig[index])</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"y = "</span> <span class="op">+</span> <span class="bu">str</span>(train_set_y[:, index]) <span class="op">+</span> <span class="st">", it's a '"</span> <span class="op">+</span> classes[np.squeeze(train_set_y[:, index])].decode(<span class="st">"utf-8"</span>) <span class="op">+</span>  <span class="st">"' picture."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>train_set_x_orig[index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>array([[[15, 15,  5],
+        [17, 17,  6],
+        [17, 17,  7],
+        ...,
+        [ 1,  1,  0],
+        [ 1,  1,  1],
+        [ 1,  1,  1]],
+
+       [[16, 16,  5],
+        [18, 17,  6],
+        [19, 18,  9],
+        ...,
+        [ 1,  1,  0],
+        [ 1,  1,  1],
+        [ 1,  1,  1]],
+
+       [[16, 16,  6],
+        [18, 17,  8],
+        [21, 19,  9],
+        ...,
+        [ 1,  1,  1],
+        [ 1,  1,  0],
+        [ 2,  2,  1]],
+
+       ...,
+
+       [[16, 21, 18],
+        [22, 27, 24],
+        [29, 35, 33],
+        ...,
+        [ 0,  1,  0],
+        [ 0,  0,  0],
+        [ 0,  0,  0]],
+
+       [[16, 20, 16],
+        [22, 29, 25],
+        [29, 35, 32],
+        ...,
+        [ 1,  3,  1],
+        [ 0,  1,  0],
+        [ 0,  0,  0]],
+
+       [[14, 19, 14],
+        [21, 29, 25],
+        [31, 37, 33],
+        ...,
+        [ 2,  4,  2],
+        [ 1,  2,  1],
+        [ 0,  0,  0]]], dtype=uint8)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of a picture</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(train_set_x_orig[index])</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"y = "</span> <span class="op">+</span> <span class="bu">str</span>(train_set_y[:, index]) <span class="op">+</span> <span class="st">", it's a '"</span> <span class="op">+</span> classes[np.squeeze(train_set_y[:, index])].decode(<span class="st">"utf-8"</span>) <span class="op">+</span>  <span class="st">"' picture."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>y = [1], it's a 'cat' picture.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="day_1_logistic_as_neural_network_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
+<p><img src="day_1_logistic_as_neural_network_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Many software bugs in deep learning come from having matrix/vector dimensions that don’t fit. If you can keep your matrix/vector dimensions straight you will go a long way toward eliminating many bugs.</p>
 <p><strong>Exercise:</strong> Find the values for: - m_train (number of training examples) - m_test (number of test examples) - num_px (= height = width of a training image) Remember that <code>train_set_x_orig</code> is a numpy-array of shape (m_train, num_px, num_px, 3). For instance, you can access <code>m_train</code> by writing <code>train_set_x_orig.shape[0]</code>.</p>
-<div class="cell" data-scrolled="true" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">### START CODE HERE </span><span class="al">###</span><span class="co"> (≈ 3 lines of code)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>m_train <span class="op">=</span> train_set_x_orig.shape[<span class="dv">0</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>m_test <span class="op">=</span> test_set_x_orig.shape[<span class="dv">0</span>]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>num_px <span class="op">=</span> train_set_x_orig.shape[<span class="dv">1</span>]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> CODE HERE </span><span class="al">###</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Number of training examples: m_train = "</span> <span class="op">+</span> <span class="bu">str</span>(m_train))</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Number of testing examples: m_test = "</span> <span class="op">+</span> <span class="bu">str</span>(m_test))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Height/Width of each image: num_px = "</span> <span class="op">+</span> <span class="bu">str</span>(num_px))</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Each image is of size: ("</span> <span class="op">+</span> <span class="bu">str</span>(num_px) <span class="op">+</span> <span class="st">", "</span> <span class="op">+</span> <span class="bu">str</span>(num_px) <span class="op">+</span> <span class="st">", 3)"</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"train_set_x shape: "</span> <span class="op">+</span> <span class="bu">str</span>(train_set_x_orig.shape))</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"train_set_y shape: "</span> <span class="op">+</span> <span class="bu">str</span>(train_set_y.shape))</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"test_set_x shape: "</span> <span class="op">+</span> <span class="bu">str</span>(test_set_x_orig.shape))</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"test_set_y shape: "</span> <span class="op">+</span> <span class="bu">str</span>(test_set_y.shape))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-scrolled="true" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">### START CODE HERE </span><span class="al">###</span><span class="co"> (≈ 3 lines of code)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>m_train <span class="op">=</span> train_set_x_orig.shape[<span class="dv">0</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>m_test <span class="op">=</span> test_set_x_orig.shape[<span class="dv">0</span>]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>num_px <span class="op">=</span> train_set_x_orig.shape[<span class="dv">1</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">### </span><span class="re">END</span><span class="co"> CODE HERE </span><span class="al">###</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Number of training examples: m_train = "</span> <span class="op">+</span> <span class="bu">str</span>(m_train))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Number of testing examples: m_test = "</span> <span class="op">+</span> <span class="bu">str</span>(m_test))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Height/Width of each image: num_px = "</span> <span class="op">+</span> <span class="bu">str</span>(num_px))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Each image is of size: ("</span> <span class="op">+</span> <span class="bu">str</span>(num_px) <span class="op">+</span> <span class="st">", "</span> <span class="op">+</span> <span class="bu">str</span>(num_px) <span class="op">+</span> <span class="st">", 3)"</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"train_set_x shape: "</span> <span class="op">+</span> <span class="bu">str</span>(train_set_x_orig.shape))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"train_set_y shape: "</span> <span class="op">+</span> <span class="bu">str</span>(train_set_y.shape))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"test_set_x shape: "</span> <span class="op">+</span> <span class="bu">str</span>(test_set_x_orig.shape))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"test_set_y shape: "</span> <span class="op">+</span> <span class="bu">str</span>(test_set_y.shape))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Number of training examples: m_train = 209
 Number of testing examples: m_test = 50
@@ -312,17 +366,17 @@ test_set_y shape: (1, 50)</code></pre>
 <p>For convenience, you should now reshape images of shape (num_px, num_px, 3) in a numpy-array of shape (num_px <span class="math inline">\(*\)</span> num_px <span class="math inline">\(*\)</span> 3, 1). After this, our training (and test) dataset is a numpy-array where each column represents a flattened image. There should be m_train (respectively m_test) columns.</p>
 <p><strong>Exercise:</strong> Reshape the training and test data sets so that images of size (num_px, num_px, 3) are flattened into single vectors of shape (num_px <span class="math inline">\(*\)</span> num_px <span class="math inline">\(*\)</span> 3, 1).</p>
 <p>A trick when you want to flatten a matrix X of shape (a,b,c,d) to a matrix X_flatten of shape (b<span class="math inline">\(*\)</span>c<span class="math inline">\(*\)</span>d, a) is to use:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X_flatten <span class="op">=</span> X.reshape(X.shape[<span class="dv">0</span>], <span class="op">-</span><span class="dv">1</span>).T      <span class="co"># X.T is the transpose of X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the training and test examples</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>train_set_x_flatten <span class="op">=</span> train_set_x_orig.reshape(train_set_x_orig.shape[<span class="dv">0</span>], <span class="op">-</span><span class="dv">1</span>).T</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>test_set_x_flatten <span class="op">=</span> test_set_x_orig.reshape(test_set_x_orig.shape[<span class="dv">0</span>], <span class="op">-</span><span class="dv">1</span>).T</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"train_set_x_flatten shape: "</span> <span class="op">+</span> <span class="bu">str</span>(train_set_x_flatten.shape))</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"train_set_y shape: "</span> <span class="op">+</span> <span class="bu">str</span>(train_set_y.shape))</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"test_set_x_flatten shape: "</span> <span class="op">+</span> <span class="bu">str</span>(test_set_x_flatten.shape))</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"test_set_y shape: "</span> <span class="op">+</span> <span class="bu">str</span>(test_set_y.shape))</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"sanity check after reshaping: "</span> <span class="op">+</span> <span class="bu">str</span>(train_set_x_flatten[<span class="dv">0</span>:<span class="dv">5</span>,<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X_flatten <span class="op">=</span> X.reshape(X.shape[<span class="dv">0</span>], <span class="op">-</span><span class="dv">1</span>).T      <span class="co"># X.T is the transpose of X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the training and test examples</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>train_set_x_flatten <span class="op">=</span> train_set_x_orig.reshape(train_set_x_orig.shape[<span class="dv">0</span>], <span class="op">-</span><span class="dv">1</span>).T</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>test_set_x_flatten <span class="op">=</span> test_set_x_orig.reshape(test_set_x_orig.shape[<span class="dv">0</span>], <span class="op">-</span><span class="dv">1</span>).T</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"train_set_x_flatten shape: "</span> <span class="op">+</span> <span class="bu">str</span>(train_set_x_flatten.shape))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"train_set_y shape: "</span> <span class="op">+</span> <span class="bu">str</span>(train_set_y.shape))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"test_set_x_flatten shape: "</span> <span class="op">+</span> <span class="bu">str</span>(test_set_x_flatten.shape))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"test_set_y shape: "</span> <span class="op">+</span> <span class="bu">str</span>(test_set_y.shape))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"sanity check after reshaping: "</span> <span class="op">+</span> <span class="bu">str</span>(train_set_x_flatten[<span class="dv">0</span>:<span class="dv">5</span>,<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>train_set_x_flatten shape: (12288, 209)
 train_set_y shape: (1, 209)
@@ -335,9 +389,9 @@ sanity check after reshaping: [17 31 56 22 33]</code></pre>
 <p>One common preprocessing step in machine learning is to center and standardize your dataset, meaning that you substract the mean of the whole numpy array from each example, and then divide each example by the standard deviation of the whole numpy array. But for picture datasets, it is simpler and more convenient and works almost as well to just divide every row of the dataset by 255 (the maximum value of a pixel channel).</p>
 <!-- During the training of your model, you're going to multiply weights and add biases to some initial inputs in order to observe neuron activations. Then you backpropogate with the gradients to train the model. But, it is extremely important for each feature to have a similar range such that our gradients don't explode. You will see that more in detail later in the lectures. !-->
 <p>Let’s standardize our dataset.</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>train_set_x <span class="op">=</span> train_set_x_flatten<span class="op">/</span><span class="fl">255.</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>test_set_x <span class="op">=</span> test_set_x_flatten<span class="op">/</span><span class="fl">255.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>train_set_x <span class="op">=</span> train_set_x_flatten<span class="op">/</span><span class="fl">255.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>test_set_x <span class="op">=</span> test_set_x_flatten<span class="op">/</span><span class="fl">255.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="general-architecture-of-the-learning-algorithm" class="level2">
@@ -361,27 +415,27 @@ sanity check after reshaping: [17 31 56 22 33]</code></pre>
 <section id="helper-functions" class="level3">
 <h3 class="anchored" data-anchor-id="helper-functions">4.1 - Helper functions</h3>
 <p>As you’ve seen in the figure above, you need to compute <span class="math inline">\(sigmoid( w^T x + b) = \frac{1}{1 + e^{-(w^T x + b)}}\)</span> to make predictions.</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GRADED FUNCTION: sigmoid</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute the sigmoid of z</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Arguments:</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">    z -- A scalar or numpy array of any size.</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Return:</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">    s -- sigmoid(z)</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Sigmoid function</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>z))) <span class="co">## z=(wt + a)</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GRADED FUNCTION: sigmoid</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute the sigmoid of z</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Arguments:</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">    z -- A scalar or numpy array of any size.</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Return:</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">    s -- sigmoid(z)</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Sigmoid function</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>z))) <span class="co">## z=(wt + a)</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-scrolled="true" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"sigmoid([0, 2]) = "</span> <span class="op">+</span> <span class="bu">str</span>(sigmoid(np.array([<span class="dv">0</span>,<span class="dv">2</span>]))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-scrolled="true" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"sigmoid([0, 2]) = "</span> <span class="op">+</span> <span class="bu">str</span>(sigmoid(np.array([<span class="dv">0</span>,<span class="dv">2</span>]))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>sigmoid([0, 2]) = [0.5        0.88079708]</code></pre>
 </div>
@@ -390,35 +444,35 @@ sanity check after reshaping: [17 31 56 22 33]</code></pre>
 <section id="initializing-parameters" class="level3">
 <h3 class="anchored" data-anchor-id="initializing-parameters">4.2 - Initializing parameters</h3>
 <p>Next step is to initialize w as a vector of zeros. If you don’t know what numpy function to use, look up np.zeros() in the Numpy library’s documentation.</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#initialize_with_zeros</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_with_zeros(dim):</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">    This function creates a vector of zeros of shape (dim, 1) for w and initializes b to 0.</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Argument:</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">    dim -- size of the w vector we want (or number of parameters in this case)</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">    w -- initialized vector of shape (dim, 1)</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">    b -- initialized scalar (corresponds to the bias)</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># initialize parameter</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> np.zeros(shape<span class="op">=</span>(dim, <span class="dv">1</span>))</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span>(w.shape <span class="op">==</span> (dim, <span class="dv">1</span>))</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span>(<span class="bu">isinstance</span>(b, <span class="bu">float</span>) <span class="kw">or</span> <span class="bu">isinstance</span>(b, <span class="bu">int</span>))</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w, b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#initialize_with_zeros</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_with_zeros(dim):</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">    This function creates a vector of zeros of shape (dim, 1) for w and initializes b to 0.</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Argument:</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">    dim -- size of the w vector we want (or number of parameters in this case)</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">    w -- initialized vector of shape (dim, 1)</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">    b -- initialized scalar (corresponds to the bias)</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># initialize parameter</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> np.zeros(shape<span class="op">=</span>(dim, <span class="dv">1</span>))</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span>(w.shape <span class="op">==</span> (dim, <span class="dv">1</span>))</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span>(<span class="bu">isinstance</span>(b, <span class="bu">float</span>) <span class="kw">or</span> <span class="bu">isinstance</span>(b, <span class="bu">int</span>))</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w, b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dim <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>w, b <span class="op">=</span> initialize_with_zeros(dim)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"w = "</span> <span class="op">+</span> <span class="bu">str</span>(w))</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"b = "</span> <span class="op">+</span> <span class="bu">str</span>(b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dim <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>w, b <span class="op">=</span> initialize_with_zeros(dim)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"w = "</span> <span class="op">+</span> <span class="bu">str</span>(w))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"b = "</span> <span class="op">+</span> <span class="bu">str</span>(b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>w = [[0.]
  [0.]]
@@ -435,58 +489,58 @@ b = 0</code></pre>
 <p>Backward Propagation:</p>
 <p>Here are the two formulas you will be using for the derivatives:</p>
 <p><span class="math display">\[ \frac{\partial J}{\partial w} = \frac{1}{m}X(A-Y)^T\tag{7}\]</span> <span class="math display">\[ \frac{\partial J}{\partial b} = \frac{1}{m} \sum_{i=1}^m (a^{(i)}-y^{(i)})\tag{8}\]</span></p>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GRADED FUNCTION: propagate</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> propagate(w, b, X, Y):</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Implement the cost function and its gradient for the propagation explained above</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Arguments:</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">    w -- weights, a numpy array of size (num_px * num_px * 3, 1)</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">    b -- bias, a scalar</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">    X -- data of size (num_px * num_px * 3, number of examples)</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Y -- true "label" vector (containing 0 if non-cat, 1 if cat) of size (1, number of examples)</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">    # w=vector(dim=number of variables)</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">    # X= matrix(variables,observations)</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Return:</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">    cost -- negative log-likelihood cost for logistic regression</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">    dw -- gradient of the loss with respect to w, thus same shape as w</span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">    db -- gradient of the loss with respect to b, thus same shape as b</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">    Tips:</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co">    - Write your code step by step for the propagation. np.log(), np.dot()</span></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> X.shape[<span class="dv">1</span>] <span class="co"># numer of observations</span></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># FORWARD PROPAGATION (FROM X TO COST)</span></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> sigmoid(np.dot(w.T, X) <span class="op">+</span> b)  <span class="co"># compute activation</span></span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    cost <span class="op">=</span> (<span class="op">-</span> <span class="dv">1</span> <span class="op">/</span> m) <span class="op">*</span> np.<span class="bu">sum</span>(Y <span class="op">*</span> np.log(A) <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> Y) <span class="op">*</span> (np.log(<span class="dv">1</span> <span class="op">-</span> A)))  <span class="co"># compute cost</span></span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># BACKWARD PROPAGATION (TO FIND GRAD)</span></span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> m) <span class="op">*</span> np.dot(X, (A <span class="op">-</span> Y).T) <span class="co"># dim=number of variables</span></span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    db <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> m) <span class="op">*</span> np.<span class="bu">sum</span>(A <span class="op">-</span> Y)</span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span>(dw.shape <span class="op">==</span> w.shape)</span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span>(db.dtype <span class="op">==</span> <span class="bu">float</span>)</span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    cost <span class="op">=</span> np.squeeze(cost)</span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span>(cost.shape <span class="op">==</span> ())</span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>    grads <span class="op">=</span> {<span class="st">"dw"</span>: dw,</span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>             <span class="st">"db"</span>: db}</span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grads, cost</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GRADED FUNCTION: propagate</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> propagate(w, b, X, Y):</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Implement the cost function and its gradient for the propagation explained above</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Arguments:</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">    w -- weights, a numpy array of size (num_px * num_px * 3, 1)</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">    b -- bias, a scalar</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">    X -- data of size (num_px * num_px * 3, number of examples)</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Y -- true "label" vector (containing 0 if non-cat, 1 if cat) of size (1, number of examples)</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">    # w=vector(dim=number of variables)</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">    # X= matrix(variables,observations)</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Return:</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">    cost -- negative log-likelihood cost for logistic regression</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">    dw -- gradient of the loss with respect to w, thus same shape as w</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">    db -- gradient of the loss with respect to b, thus same shape as b</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co">    Tips:</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co">    - Write your code step by step for the propagation. np.log(), np.dot()</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> X.shape[<span class="dv">1</span>] <span class="co"># numer of observations</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># FORWARD PROPAGATION (FROM X TO COST)</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> sigmoid(np.dot(w.T, X) <span class="op">+</span> b)  <span class="co"># compute activation</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    cost <span class="op">=</span> (<span class="op">-</span> <span class="dv">1</span> <span class="op">/</span> m) <span class="op">*</span> np.<span class="bu">sum</span>(Y <span class="op">*</span> np.log(A) <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> Y) <span class="op">*</span> (np.log(<span class="dv">1</span> <span class="op">-</span> A)))  <span class="co"># compute cost</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># BACKWARD PROPAGATION (TO FIND GRAD)</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> m) <span class="op">*</span> np.dot(X, (A <span class="op">-</span> Y).T) <span class="co"># dim=number of variables</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    db <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> m) <span class="op">*</span> np.<span class="bu">sum</span>(A <span class="op">-</span> Y)</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span>(dw.shape <span class="op">==</span> w.shape)</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span>(db.dtype <span class="op">==</span> <span class="bu">float</span>)</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>    cost <span class="op">=</span> np.squeeze(cost)</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span>(cost.shape <span class="op">==</span> ())</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>    grads <span class="op">=</span> {<span class="st">"dw"</span>: dw,</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>             <span class="st">"db"</span>: db}</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grads, cost</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">## let's see if the function works</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>w, b, X, Y <span class="op">=</span> np.array([[<span class="fl">1.</span>],[<span class="fl">2.</span>]]), <span class="fl">2.</span>, np.array([[<span class="fl">1.</span>,<span class="fl">2.</span>,<span class="op">-</span><span class="fl">1.</span>],[<span class="fl">3.</span>,<span class="fl">4.</span>,<span class="op">-</span><span class="fl">3.2</span>]]), np.array([[<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>]])</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>grads, cost <span class="op">=</span> propagate(w, b, X, Y)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"dw = "</span> <span class="op">+</span> <span class="bu">str</span>(grads[<span class="st">"dw"</span>]))</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"db = "</span> <span class="op">+</span> <span class="bu">str</span>(grads[<span class="st">"db"</span>]))</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"cost = "</span> <span class="op">+</span> <span class="bu">str</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">## let's see if the function works</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>w, b, X, Y <span class="op">=</span> np.array([[<span class="fl">1.</span>],[<span class="fl">2.</span>]]), <span class="fl">2.</span>, np.array([[<span class="fl">1.</span>,<span class="fl">2.</span>,<span class="op">-</span><span class="fl">1.</span>],[<span class="fl">3.</span>,<span class="fl">4.</span>,<span class="op">-</span><span class="fl">3.2</span>]]), np.array([[<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>]])</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>grads, cost <span class="op">=</span> propagate(w, b, X, Y)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"dw = "</span> <span class="op">+</span> <span class="bu">str</span>(grads[<span class="st">"dw"</span>]))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"db = "</span> <span class="op">+</span> <span class="bu">str</span>(grads[<span class="st">"db"</span>]))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"cost = "</span> <span class="op">+</span> <span class="bu">str</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>dw = [[0.99845601]
  [2.39507239]]
@@ -503,72 +557,72 @@ cost = 5.801545319394553</code></pre>
 <li>Now, you want to update the parameters using gradient descent.</li>
 </ul>
 <p>Let’s write an optimization function. The goal is to learn <span class="math inline">\(w\)</span> and <span class="math inline">\(b\)</span> by minimizing the cost function <span class="math inline">\(J\)</span>. For a parameter <span class="math inline">\(\theta\)</span>, the update rule is $ = - d$, where <span class="math inline">\(\alpha\)</span> is the learning rate.</p>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GRADED FUNCTION: optimize</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> optimize(w, b, X, Y, num_iterations, learning_rate, print_cost <span class="op">=</span> <span class="va">False</span>):</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">    This function optimizes w and b by running a gradient descent algorithm</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Arguments:</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">    w -- weights, a numpy array of size (num_px * num_px * 3, 1)</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">    b -- bias, a scalar</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">    X -- data of shape (num_px * num_px * 3, number of examples)</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Y -- true "label" vector (containing 0 if non-cat, 1 if cat), of shape (1, number of examples)</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">    num_iterations -- number of iterations of the optimization loop</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">    learning_rate -- learning rate of the gradient descent update rule</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">    print_cost -- True to print the loss every 100 steps</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co">    params -- dictionary containing the weights w and bias b</span></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co">    grads -- dictionary containing the gradients of the weights and bias with respect to the cost function</span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co">    costs -- list of all the costs computed during the optimization, this will be used to plot the learning curve.</span></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co">    Tips:</span></span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="co">    You basically need to write down two steps and iterate through them:</span></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="co">        1) Calculate the cost and the gradient for the current parameters. Use propagate().</span></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="co">        2) Update the parameters using gradient descent rule for w and b.</span></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    costs <span class="op">=</span> []</span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_iterations):</span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Cost and gradient calculation (≈ 1-4 lines of code)</span></span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>        grads, cost <span class="op">=</span> propagate(w, b, X, Y)</span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Retrieve derivatives from grads</span></span>
-<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>        dw <span class="op">=</span> grads[<span class="st">"dw"</span>]</span>
-<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>        db <span class="op">=</span> grads[<span class="st">"db"</span>]</span>
-<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update rule (≈ 2 lines of code)</span></span>
-<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>        w <span class="op">=</span> w <span class="op">-</span> learning_rate<span class="op">*</span>dw</span>
-<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> b <span class="op">-</span> learning_rate<span class="op">*</span>db</span>
-<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Record the costs</span></span>
-<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>            costs.append(cost)</span>
-<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Print the cost every 100 training iterations</span></span>
-<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> print_cost <span class="kw">and</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span> (<span class="st">"Cost after iteration </span><span class="sc">%i</span><span class="st">: </span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span>(i, cost))</span>
-<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> {<span class="st">"w"</span>: w,</span>
-<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a>              <span class="st">"b"</span>: b}</span>
-<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>    grads <span class="op">=</span> {<span class="st">"dw"</span>: dw,</span>
-<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>             <span class="st">"db"</span>: db}</span>
-<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> params, grads, costs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GRADED FUNCTION: optimize</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> optimize(w, b, X, Y, num_iterations, learning_rate, print_cost <span class="op">=</span> <span class="va">False</span>):</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">    This function optimizes w and b by running a gradient descent algorithm</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Arguments:</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">    w -- weights, a numpy array of size (num_px * num_px * 3, 1)</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">    b -- bias, a scalar</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">    X -- data of shape (num_px * num_px * 3, number of examples)</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Y -- true "label" vector (containing 0 if non-cat, 1 if cat), of shape (1, number of examples)</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">    num_iterations -- number of iterations of the optimization loop</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">    learning_rate -- learning rate of the gradient descent update rule</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">    print_cost -- True to print the loss every 100 steps</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">    params -- dictionary containing the weights w and bias b</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">    grads -- dictionary containing the gradients of the weights and bias with respect to the cost function</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co">    costs -- list of all the costs computed during the optimization, this will be used to plot the learning curve.</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co">    Tips:</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">    You basically need to write down two steps and iterate through them:</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co">        1) Calculate the cost and the gradient for the current parameters. Use propagate().</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="co">        2) Update the parameters using gradient descent rule for w and b.</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>    costs <span class="op">=</span> []</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_iterations):</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Cost and gradient calculation (≈ 1-4 lines of code)</span></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>        grads, cost <span class="op">=</span> propagate(w, b, X, Y)</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Retrieve derivatives from grads</span></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>        dw <span class="op">=</span> grads[<span class="st">"dw"</span>]</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>        db <span class="op">=</span> grads[<span class="st">"db"</span>]</span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update rule (≈ 2 lines of code)</span></span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>        w <span class="op">=</span> w <span class="op">-</span> learning_rate<span class="op">*</span>dw</span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> b <span class="op">-</span> learning_rate<span class="op">*</span>db</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Record the costs</span></span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>            costs.append(cost)</span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Print the cost every 100 training iterations</span></span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> print_cost <span class="kw">and</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span> (<span class="st">"Cost after iteration </span><span class="sc">%i</span><span class="st">: </span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span>(i, cost))</span>
+<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> {<span class="st">"w"</span>: w,</span>
+<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a>              <span class="st">"b"</span>: b}</span>
+<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a>    grads <span class="op">=</span> {<span class="st">"dw"</span>: dw,</span>
+<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a>             <span class="st">"db"</span>: db}</span>
+<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> params, grads, costs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>params, grads, costs <span class="op">=</span> optimize(w, b, X, Y, num_iterations<span class="op">=</span> <span class="dv">1000</span>, learning_rate <span class="op">=</span> <span class="fl">0.009</span>, print_cost <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"w = "</span> <span class="op">+</span> <span class="bu">str</span>(params[<span class="st">"w"</span>]))</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"b = "</span> <span class="op">+</span> <span class="bu">str</span>(params[<span class="st">"b"</span>]))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"dw = "</span> <span class="op">+</span> <span class="bu">str</span>(grads[<span class="st">"dw"</span>]))</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"db = "</span> <span class="op">+</span> <span class="bu">str</span>(grads[<span class="st">"db"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>params, grads, costs <span class="op">=</span> optimize(w, b, X, Y, num_iterations<span class="op">=</span> <span class="dv">1000</span>, learning_rate <span class="op">=</span> <span class="fl">0.009</span>, print_cost <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"w = "</span> <span class="op">+</span> <span class="bu">str</span>(params[<span class="st">"w"</span>]))</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"b = "</span> <span class="op">+</span> <span class="bu">str</span>(params[<span class="st">"b"</span>]))</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"dw = "</span> <span class="op">+</span> <span class="bu">str</span>(grads[<span class="st">"dw"</span>]))</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"db = "</span> <span class="op">+</span> <span class="bu">str</span>(grads[<span class="st">"db"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Cost after iteration 0: 5.801545
 Cost after iteration 100: 1.055933
@@ -596,43 +650,43 @@ db = -0.04847508604218077</code></pre>
 <li><p>Calculate <span class="math inline">\(\hat{Y} = A = \sigma(w^T X + b)\)</span></p></li>
 <li><p>Convert the entries of a into 0 (if activation &lt;= 0.5) or 1 (if activation &gt; 0.5), stores the predictions in a vector <code>Y_prediction</code>. If you wish, you can use an <code>if</code>/<code>else</code> statement in a <code>for</code> loop (though there is also a way to vectorize this).</p></li>
 </ol>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GRADED FUNCTION: predict</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(w, b, X):</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Predict whether the label is 0 or 1 using learned logistic regression parameters (w, b)</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Arguments:</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">    w -- weights, a numpy array of size (num_px * num_px * 3, 1)</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">    b -- bias, a scalar</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">    X -- data of size (num_px * num_px * 3, number of examples)</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">    Y_prediction -- a numpy array (vector) containing all predictions (0/1) for the examples in X</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> X.shape[<span class="dv">1</span>]</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    Y_prediction <span class="op">=</span> np.zeros((<span class="dv">1</span>,m))</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> w.reshape(X.shape[<span class="dv">0</span>], <span class="dv">1</span>)</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute vector "A" predicting the probabilities of a cat being present in the picture</span></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> sigmoid(np.dot(w.T, X) <span class="op">+</span> b)</span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(A.shape[<span class="dv">1</span>]):</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Convert probabilities A[0,i] to actual predictions p[0,i]</span></span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>        Y_prediction[<span class="dv">0</span>, i] <span class="op">=</span> <span class="dv">1</span> <span class="cf">if</span> A[<span class="dv">0</span>, i] <span class="op">&gt;</span> <span class="fl">0.5</span> <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span>(Y_prediction.shape <span class="op">==</span> (<span class="dv">1</span>, m))</span>
-<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Y_prediction</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GRADED FUNCTION: predict</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(w, b, X):</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Predict whether the label is 0 or 1 using learned logistic regression parameters (w, b)</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Arguments:</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">    w -- weights, a numpy array of size (num_px * num_px * 3, 1)</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">    b -- bias, a scalar</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">    X -- data of size (num_px * num_px * 3, number of examples)</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">    Y_prediction -- a numpy array (vector) containing all predictions (0/1) for the examples in X</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> X.shape[<span class="dv">1</span>]</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    Y_prediction <span class="op">=</span> np.zeros((<span class="dv">1</span>,m))</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> w.reshape(X.shape[<span class="dv">0</span>], <span class="dv">1</span>)</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute vector "A" predicting the probabilities of a cat being present in the picture</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> sigmoid(np.dot(w.T, X) <span class="op">+</span> b)</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(A.shape[<span class="dv">1</span>]):</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Convert probabilities A[0,i] to actual predictions p[0,i]</span></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>        Y_prediction[<span class="dv">0</span>, i] <span class="op">=</span> <span class="dv">1</span> <span class="cf">if</span> A[<span class="dv">0</span>, i] <span class="op">&gt;</span> <span class="fl">0.5</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span>(Y_prediction.shape <span class="op">==</span> (<span class="dv">1</span>, m))</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Y_prediction</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.array([[<span class="fl">0.1124579</span>],[<span class="fl">0.23106775</span>]])</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="op">-</span><span class="fl">0.3</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="fl">1.</span>,<span class="op">-</span><span class="fl">1.1</span>,<span class="op">-</span><span class="fl">3.2</span>],[<span class="fl">1.2</span>,<span class="fl">2.</span>,<span class="fl">0.1</span>]])</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"predictions = "</span> <span class="op">+</span> <span class="bu">str</span>(predict(w, b, X)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.array([[<span class="fl">0.1124579</span>],[<span class="fl">0.23106775</span>]])</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="op">-</span><span class="fl">0.3</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="fl">1.</span>,<span class="op">-</span><span class="fl">1.1</span>,<span class="op">-</span><span class="fl">3.2</span>],[<span class="fl">1.2</span>,<span class="fl">2.</span>,<span class="fl">0.1</span>]])</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"predictions = "</span> <span class="op">+</span> <span class="bu">str</span>(predict(w, b, X)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>predictions = [[1. 1. 0.]]</code></pre>
 </div>
@@ -659,61 +713,61 @@ db = -0.04847508604218077</code></pre>
 <pre><code>- Y_prediction_test for your predictions on the test set
 - Y_prediction_train for your predictions on the train set
 - w, costs, grads for the outputs of optimize()</code></pre>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> model(X_train, Y_train, X_test, Y_test, num_iterations <span class="op">=</span> <span class="dv">2000</span>, learning_rate <span class="op">=</span> <span class="fl">0.5</span>, print_cost <span class="op">=</span> <span class="va">False</span>):</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Builds the logistic regression model by calling the function you've implemented previously</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Arguments:</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">    X_train -- training set represented by a numpy array of shape (num_px * num_px * 3, m_train)</span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Y_train -- training labels represented by a numpy array (vector) of shape (1, m_train)</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">    X_test -- test set represented by a numpy array of shape (num_px * num_px * 3, m_test)</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Y_test -- test labels represented by a numpy array (vector) of shape (1, m_test)</span></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co">    num_iterations -- hyperparameter representing the number of iterations to optimize the parameters</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">    learning_rate -- hyperparameter representing the learning rate used in the update rule of optimize()</span></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">    print_cost -- Set to true to print the cost every 100 iterations</span></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="co">    d -- dictionary containing information about the model.</span></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># initialize parameters with zeros (≈ 1 line of code)</span></span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>    w, b <span class="op">=</span> initialize_with_zeros(X_train.shape[<span class="dv">0</span>])</span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Gradient descent (≈ 1 line of code)</span></span>
-<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>    parameters, grads, costs <span class="op">=</span> optimize(w, b, X_train, Y_train, num_iterations, learning_rate, print_cost)</span>
-<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Retrieve parameters w and b from dictionary "parameters"</span></span>
-<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> parameters[<span class="st">"w"</span>]</span>
-<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> parameters[<span class="st">"b"</span>]</span>
-<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Predict test/train set examples (≈ 2 lines of code)</span></span>
-<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>    Y_prediction_test <span class="op">=</span> predict(w, b, X_test)</span>
-<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>    Y_prediction_train <span class="op">=</span> predict(w, b, X_train)</span>
-<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print train/test Errors</span></span>
-<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"train accuracy: </span><span class="sc">{}</span><span class="st"> %"</span>.<span class="bu">format</span>(<span class="dv">100</span> <span class="op">-</span> np.mean(np.<span class="bu">abs</span>(Y_prediction_train <span class="op">-</span> Y_train)) <span class="op">*</span> <span class="dv">100</span>))</span>
-<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"test accuracy: </span><span class="sc">{}</span><span class="st"> %"</span>.<span class="bu">format</span>(<span class="dv">100</span> <span class="op">-</span> np.mean(np.<span class="bu">abs</span>(Y_prediction_test <span class="op">-</span> Y_test)) <span class="op">*</span> <span class="dv">100</span>))</span>
-<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> {<span class="st">"costs"</span>: costs,</span>
-<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Y_prediction_test"</span>: Y_prediction_test, </span>
-<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Y_prediction_train"</span> : Y_prediction_train, </span>
-<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a>         <span class="st">"w"</span> : w, </span>
-<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a>         <span class="st">"b"</span> : b,</span>
-<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a>         <span class="st">"learning_rate"</span> : learning_rate,</span>
-<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>         <span class="st">"num_iterations"</span>: num_iterations}</span>
-<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> model(X_train, Y_train, X_test, Y_test, num_iterations <span class="op">=</span> <span class="dv">2000</span>, learning_rate <span class="op">=</span> <span class="fl">0.5</span>, print_cost <span class="op">=</span> <span class="va">False</span>):</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Builds the logistic regression model by calling the function you've implemented previously</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Arguments:</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co">    X_train -- training set represented by a numpy array of shape (num_px * num_px * 3, m_train)</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Y_train -- training labels represented by a numpy array (vector) of shape (1, m_train)</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co">    X_test -- test set represented by a numpy array of shape (num_px * num_px * 3, m_test)</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Y_test -- test labels represented by a numpy array (vector) of shape (1, m_test)</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co">    num_iterations -- hyperparameter representing the number of iterations to optimize the parameters</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co">    learning_rate -- hyperparameter representing the learning rate used in the update rule of optimize()</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co">    print_cost -- Set to true to print the cost every 100 iterations</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co">    d -- dictionary containing information about the model.</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># initialize parameters with zeros (≈ 1 line of code)</span></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    w, b <span class="op">=</span> initialize_with_zeros(X_train.shape[<span class="dv">0</span>])</span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Gradient descent (≈ 1 line of code)</span></span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>    parameters, grads, costs <span class="op">=</span> optimize(w, b, X_train, Y_train, num_iterations, learning_rate, print_cost)</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Retrieve parameters w and b from dictionary "parameters"</span></span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> parameters[<span class="st">"w"</span>]</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> parameters[<span class="st">"b"</span>]</span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Predict test/train set examples (≈ 2 lines of code)</span></span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>    Y_prediction_test <span class="op">=</span> predict(w, b, X_test)</span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>    Y_prediction_train <span class="op">=</span> predict(w, b, X_train)</span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print train/test Errors</span></span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"train accuracy: </span><span class="sc">{}</span><span class="st"> %"</span>.<span class="bu">format</span>(<span class="dv">100</span> <span class="op">-</span> np.mean(np.<span class="bu">abs</span>(Y_prediction_train <span class="op">-</span> Y_train)) <span class="op">*</span> <span class="dv">100</span>))</span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"test accuracy: </span><span class="sc">{}</span><span class="st"> %"</span>.<span class="bu">format</span>(<span class="dv">100</span> <span class="op">-</span> np.mean(np.<span class="bu">abs</span>(Y_prediction_test <span class="op">-</span> Y_test)) <span class="op">*</span> <span class="dv">100</span>))</span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> {<span class="st">"costs"</span>: costs,</span>
+<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Y_prediction_test"</span>: Y_prediction_test, </span>
+<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Y_prediction_train"</span> : Y_prediction_train, </span>
+<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a>         <span class="st">"w"</span> : w, </span>
+<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a>         <span class="st">"b"</span> : b,</span>
+<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a>         <span class="st">"learning_rate"</span> : learning_rate,</span>
+<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a>         <span class="st">"num_iterations"</span>: num_iterations}</span>
+<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="train-your-model-with-real-data" class="level3">
 <h3 class="anchored" data-anchor-id="train-your-model-with-real-data">Train your model with real data</h3>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> model(train_set_x, train_set_y, test_set_x, test_set_y,</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>          num_iterations <span class="op">=</span> <span class="dv">2000</span>, learning_rate <span class="op">=</span> <span class="fl">0.005</span>, </span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>          print_cost <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> model(train_set_x, train_set_y, test_set_x, test_set_y,</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>          num_iterations <span class="op">=</span> <span class="dv">20000</span>, learning_rate <span class="op">=</span> <span class="fl">0.005</span>, </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>          print_cost <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Cost after iteration 0: 0.693147
 Cost after iteration 100: 0.584508
@@ -735,23 +789,215 @@ Cost after iteration 1600: 0.159305
 Cost after iteration 1700: 0.152667
 Cost after iteration 1800: 0.146542
 Cost after iteration 1900: 0.140872
-train accuracy: 99.04306220095694 %
-test accuracy: 70.0 %</code></pre>
+Cost after iteration 2000: 0.135608
+Cost after iteration 2100: 0.130708
+Cost after iteration 2200: 0.126137
+Cost after iteration 2300: 0.121861
+Cost after iteration 2400: 0.117855
+Cost after iteration 2500: 0.114093
+Cost after iteration 2600: 0.110554
+Cost after iteration 2700: 0.107219
+Cost after iteration 2800: 0.104072
+Cost after iteration 2900: 0.101097
+Cost after iteration 3000: 0.098280
+Cost after iteration 3100: 0.095610
+Cost after iteration 3200: 0.093075
+Cost after iteration 3300: 0.090667
+Cost after iteration 3400: 0.088374
+Cost after iteration 3500: 0.086190
+Cost after iteration 3600: 0.084108
+Cost after iteration 3700: 0.082119
+Cost after iteration 3800: 0.080219
+Cost after iteration 3900: 0.078402
+Cost after iteration 4000: 0.076662
+Cost after iteration 4100: 0.074994
+Cost after iteration 4200: 0.073395
+Cost after iteration 4300: 0.071860
+Cost after iteration 4400: 0.070385
+Cost after iteration 4500: 0.068968
+Cost after iteration 4600: 0.067604
+Cost after iteration 4700: 0.066291
+Cost after iteration 4800: 0.065027
+Cost after iteration 4900: 0.063807
+Cost after iteration 5000: 0.062631
+Cost after iteration 5100: 0.061496
+Cost after iteration 5200: 0.060400
+Cost after iteration 5300: 0.059341
+Cost after iteration 5400: 0.058317
+Cost after iteration 5500: 0.057327
+Cost after iteration 5600: 0.056368
+Cost after iteration 5700: 0.055440
+Cost after iteration 5800: 0.054541
+Cost after iteration 5900: 0.053669
+Cost after iteration 6000: 0.052824
+Cost after iteration 6100: 0.052005
+Cost after iteration 6200: 0.051209
+Cost after iteration 6300: 0.050436
+Cost after iteration 6400: 0.049686
+Cost after iteration 6500: 0.048957
+Cost after iteration 6600: 0.048248
+Cost after iteration 6700: 0.047559
+Cost after iteration 6800: 0.046888
+Cost after iteration 6900: 0.046236
+Cost after iteration 7000: 0.045601
+Cost after iteration 7100: 0.044982
+Cost after iteration 7200: 0.044380
+Cost after iteration 7300: 0.043793
+Cost after iteration 7400: 0.043220
+Cost after iteration 7500: 0.042662
+Cost after iteration 7600: 0.042118
+Cost after iteration 7700: 0.041587
+Cost after iteration 7800: 0.041069
+Cost after iteration 7900: 0.040563
+Cost after iteration 8000: 0.040069
+Cost after iteration 8100: 0.039587
+Cost after iteration 8200: 0.039116
+Cost after iteration 8300: 0.038655
+Cost after iteration 8400: 0.038205
+Cost after iteration 8500: 0.037765
+Cost after iteration 8600: 0.037335
+Cost after iteration 8700: 0.036914
+Cost after iteration 8800: 0.036502
+Cost after iteration 8900: 0.036099
+Cost after iteration 9000: 0.035704
+Cost after iteration 9100: 0.035318
+Cost after iteration 9200: 0.034940
+Cost after iteration 9300: 0.034570
+Cost after iteration 9400: 0.034207
+Cost after iteration 9500: 0.033851
+Cost after iteration 9600: 0.033503
+Cost after iteration 9700: 0.033161
+Cost after iteration 9800: 0.032826
+Cost after iteration 9900: 0.032498
+Cost after iteration 10000: 0.032176
+Cost after iteration 10100: 0.031860
+Cost after iteration 10200: 0.031550
+Cost after iteration 10300: 0.031246
+Cost after iteration 10400: 0.030948
+Cost after iteration 10500: 0.030655
+Cost after iteration 10600: 0.030367
+Cost after iteration 10700: 0.030085
+Cost after iteration 10800: 0.029808
+Cost after iteration 10900: 0.029535
+Cost after iteration 11000: 0.029268
+Cost after iteration 11100: 0.029005
+Cost after iteration 11200: 0.028747
+Cost after iteration 11300: 0.028493
+Cost after iteration 11400: 0.028243
+Cost after iteration 11500: 0.027998
+Cost after iteration 11600: 0.027757
+Cost after iteration 11700: 0.027520
+Cost after iteration 11800: 0.027287
+Cost after iteration 11900: 0.027057
+Cost after iteration 12000: 0.026831
+Cost after iteration 12100: 0.026609
+Cost after iteration 12200: 0.026391
+Cost after iteration 12300: 0.026176
+Cost after iteration 12400: 0.025964
+Cost after iteration 12500: 0.025756
+Cost after iteration 12600: 0.025551
+Cost after iteration 12700: 0.025349
+Cost after iteration 12800: 0.025150
+Cost after iteration 12900: 0.024955
+Cost after iteration 13000: 0.024762
+Cost after iteration 13100: 0.024572
+Cost after iteration 13200: 0.024385
+Cost after iteration 13300: 0.024200
+Cost after iteration 13400: 0.024019
+Cost after iteration 13500: 0.023840
+Cost after iteration 13600: 0.023664
+Cost after iteration 13700: 0.023490
+Cost after iteration 13800: 0.023318
+Cost after iteration 13900: 0.023149
+Cost after iteration 14000: 0.022983
+Cost after iteration 14100: 0.022819
+Cost after iteration 14200: 0.022657
+Cost after iteration 14300: 0.022497
+Cost after iteration 14400: 0.022339
+Cost after iteration 14500: 0.022184
+Cost after iteration 14600: 0.022031
+Cost after iteration 14700: 0.021880
+Cost after iteration 14800: 0.021730
+Cost after iteration 14900: 0.021583
+Cost after iteration 15000: 0.021438
+Cost after iteration 15100: 0.021295
+Cost after iteration 15200: 0.021153
+Cost after iteration 15300: 0.021014
+Cost after iteration 15400: 0.020876
+Cost after iteration 15500: 0.020740
+Cost after iteration 15600: 0.020605
+Cost after iteration 15700: 0.020473
+Cost after iteration 15800: 0.020342
+Cost after iteration 15900: 0.020212
+Cost after iteration 16000: 0.020084
+Cost after iteration 16100: 0.019958
+Cost after iteration 16200: 0.019834
+Cost after iteration 16300: 0.019711
+Cost after iteration 16400: 0.019589
+Cost after iteration 16500: 0.019469
+Cost after iteration 16600: 0.019350
+Cost after iteration 16700: 0.019233
+Cost after iteration 16800: 0.019117
+Cost after iteration 16900: 0.019002
+Cost after iteration 17000: 0.018889
+Cost after iteration 17100: 0.018777
+Cost after iteration 17200: 0.018667
+Cost after iteration 17300: 0.018557
+Cost after iteration 17400: 0.018449
+Cost after iteration 17500: 0.018342
+Cost after iteration 17600: 0.018237
+Cost after iteration 17700: 0.018132
+Cost after iteration 17800: 0.018029
+Cost after iteration 17900: 0.017927
+Cost after iteration 18000: 0.017826
+Cost after iteration 18100: 0.017726
+Cost after iteration 18200: 0.017627
+Cost after iteration 18300: 0.017530
+Cost after iteration 18400: 0.017433
+Cost after iteration 18500: 0.017337
+Cost after iteration 18600: 0.017243
+Cost after iteration 18700: 0.017149
+Cost after iteration 18800: 0.017057
+Cost after iteration 18900: 0.016965
+Cost after iteration 19000: 0.016874
+Cost after iteration 19100: 0.016785
+Cost after iteration 19200: 0.016696
+Cost after iteration 19300: 0.016608
+Cost after iteration 19400: 0.016521
+Cost after iteration 19500: 0.016435
+Cost after iteration 19600: 0.016350
+Cost after iteration 19700: 0.016266
+Cost after iteration 19800: 0.016182
+Cost after iteration 19900: 0.016100
+train accuracy: 100.0 %
+test accuracy: 72.0 %</code></pre>
 </div>
 </div>
 <p><strong>Comment</strong>: Training accuracy is close to 100%. This is a good sanity check: your model is working and has high enough capacity to fit the training data. Test accuracy is 68%. It is actually not bad for this simple model, given the small dataset we used and that logistic regression is a linear classifier. But no worries, you’ll build an even better classifier next week!</p>
 <p>Also, you see that the model is clearly overfitting the training data. Later in this specialization you will learn how to reduce overfitting, for example by using regularization. Using the code below (and changing the <code>index</code> variable) you can look at predictions on pictures of the test set.</p>
 <p>Let’s also plot the cost function and the gradients.</p>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot learning curve (with costs)</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>costs <span class="op">=</span> np.squeeze(d[<span class="st">'costs'</span>])</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>plt.plot(costs)</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'cost'</span>)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'iterations (per hundreds)'</span>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Learning rate ="</span> <span class="op">+</span> <span class="bu">str</span>(d[<span class="st">"learning_rate"</span>]))</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot learning curve (with costs)</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>costs <span class="op">=</span> np.squeeze(d[<span class="st">'costs'</span>])</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>plt.plot(costs)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'cost'</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'iterations (per hundreds)'</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Learning rate ="</span> <span class="op">+</span> <span class="bu">str</span>(d[<span class="st">"learning_rate"</span>]))</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="day_1_logistic_as_neural_network_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+<p><img src="day_1_logistic_as_neural_network_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>d[<span class="st">"w"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>array([[ 0.02278053],
+       [-0.05482735],
+       [-0.02279413],
+       ...,
+       [-0.02620949],
+       [-0.05536316],
+       [ 0.06175045]])</code></pre>
 </div>
 </div>
 <p><strong>Interpretation</strong>: You can see the cost decreasing. It shows that the parameters are being learned. However, you see that you could train the model even more on the training set. Try to increase the number of iterations in the cell above and rerun the cells. You might see that the training set accuracy goes up, but the test set accuracy goes down. This is called overfitting.</p>
@@ -760,27 +1006,27 @@ test accuracy: 70.0 %</code></pre>
 <h3 class="anchored" data-anchor-id="all-of-this-with-a-logistic-regression">All of this with a logistic regression</h3>
 <p>Everything we did here was to implement a logistic regression by hand using a neural network framework.</p>
 <p>Let me show you how you would do this without a neural network</p>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import logistic regression</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the model</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">2000</span>)  </span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>clf.fit(train_set_x.T, train_set_y.ravel())  <span class="co"># transpose to shape (m, n_features)</span></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict</span></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>Y_prediction_train <span class="op">=</span> clf.predict(train_set_x.T)</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>Y_prediction_test <span class="op">=</span> clf.predict(test_set_x.T)</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute accuracy</span></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>train_accuracy <span class="op">=</span> accuracy_score(train_set_y.ravel(), Y_prediction_train) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>test_accuracy <span class="op">=</span> accuracy_score(test_set_y.ravel(), Y_prediction_test) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Train accuracy: </span><span class="sc">{</span>train_accuracy<span class="sc">:.2f}</span><span class="ss"> %"</span>)</span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test accuracy: </span><span class="sc">{</span>test_accuracy<span class="sc">:.2f}</span><span class="ss"> %"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import logistic regression</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the model</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">2000</span>)  </span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>clf.fit(train_set_x.T, train_set_y.ravel())  <span class="co"># transpose to shape (m, n_features)</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>Y_prediction_train <span class="op">=</span> clf.predict(train_set_x.T)</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>Y_prediction_test <span class="op">=</span> clf.predict(test_set_x.T)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute accuracy</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>train_accuracy <span class="op">=</span> accuracy_score(train_set_y.ravel(), Y_prediction_train) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>test_accuracy <span class="op">=</span> accuracy_score(test_set_y.ravel(), Y_prediction_test) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Train accuracy: </span><span class="sc">{</span>train_accuracy<span class="sc">:.2f}</span><span class="ss"> %"</span>)</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test accuracy: </span><span class="sc">{</span>test_accuracy<span class="sc">:.2f}</span><span class="ss"> %"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Train accuracy: 100.00 %
 Test accuracy: 72.00 %</code></pre>
@@ -795,17 +1041,17 @@ Test accuracy: 72.00 %</code></pre>
 <section id="step-1-define-activation-function" class="level4">
 <h4 class="anchored" data-anchor-id="step-1-define-activation-function">Step 1: define activation function</h4>
 <div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Activation functions</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(Z):</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>Z))</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(Z):</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.maximum(<span class="dv">0</span>, Z)</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu_derivative(Z):</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Z <span class="op">&gt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Activation functions</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(Z):</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>Z))</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(Z):</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.maximum(<span class="dv">0</span>, Z)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu_derivative(Z):</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Z <span class="op">&gt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step-2-initialize-the-parameters" class="level3">
@@ -817,20 +1063,20 @@ Test accuracy: 72.00 %</code></pre>
 <li>W1 matrix: n rows will be equal to the number of neurons on the second layer, and columns number of neurons (features/dimensions) of your observations.</li>
 </ul>
 <div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize parameters for 3-layer NN</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_parameters(n_x, n_h1, n_h2, n_y):</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    np.random.seed(<span class="dv">1</span>)</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    W1 <span class="op">=</span> np.random.randn(n_h1, n_x) <span class="op">*</span> <span class="fl">0.01</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    b1 <span class="op">=</span> np.zeros((n_h1, <span class="dv">1</span>))</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    W2 <span class="op">=</span> np.random.randn(n_h2, n_h1) <span class="op">*</span> <span class="fl">0.01</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    b2 <span class="op">=</span> np.zeros((n_h2, <span class="dv">1</span>))</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    W3 <span class="op">=</span> np.random.randn(n_y, n_h2) <span class="op">*</span> <span class="fl">0.01</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    b3 <span class="op">=</span> np.zeros((n_y, <span class="dv">1</span>))</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    parameters <span class="op">=</span> {<span class="st">"W1"</span>: W1, <span class="st">"b1"</span>: b1,</span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"W2"</span>: W2, <span class="st">"b2"</span>: b2,</span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"W3"</span>: W3, <span class="st">"b3"</span>: b3}</span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> parameters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize parameters for 3-layer NN</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_parameters(n_x, n_h1, n_h2, n_y):</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    np.random.seed(<span class="dv">1</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    W1 <span class="op">=</span> np.random.randn(n_h1, n_x) <span class="op">*</span> <span class="fl">0.01</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    b1 <span class="op">=</span> np.zeros((n_h1, <span class="dv">1</span>))</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    W2 <span class="op">=</span> np.random.randn(n_h2, n_h1) <span class="op">*</span> <span class="fl">0.01</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    b2 <span class="op">=</span> np.zeros((n_h2, <span class="dv">1</span>))</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    W3 <span class="op">=</span> np.random.randn(n_y, n_h2) <span class="op">*</span> <span class="fl">0.01</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    b3 <span class="op">=</span> np.zeros((n_y, <span class="dv">1</span>))</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    parameters <span class="op">=</span> {<span class="st">"W1"</span>: W1, <span class="st">"b1"</span>: b1,</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"W2"</span>: W2, <span class="st">"b2"</span>: b2,</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"W3"</span>: W3, <span class="st">"b3"</span>: b3}</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> parameters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="forward-propagation" class="level4">
 <h4 class="anchored" data-anchor-id="forward-propagation">Forward Propagation</h4>
@@ -842,21 +1088,21 @@ Test accuracy: 72.00 %</code></pre>
 </ul>
 <p>Notice, the final layer is just the output. It means W3 will be a matrix of form (1, Dimension Previous Layer)</p>
 <div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forward propagation</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> forward_propagation(X, parameters):</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    W1, b1 <span class="op">=</span> parameters[<span class="st">'W1'</span>], parameters[<span class="st">'b1'</span>]</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    W2, b2 <span class="op">=</span> parameters[<span class="st">'W2'</span>], parameters[<span class="st">'b2'</span>]</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    W3, b3 <span class="op">=</span> parameters[<span class="st">'W3'</span>], parameters[<span class="st">'b3'</span>]</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    Z1 <span class="op">=</span> np.dot(W1, X) <span class="op">+</span> b1</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    A1 <span class="op">=</span> relu(Z1)</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    Z2 <span class="op">=</span> np.dot(W2, A1) <span class="op">+</span> b2</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    A2 <span class="op">=</span> relu(Z2)</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    Z3 <span class="op">=</span> np.dot(W3, A2) <span class="op">+</span> b3</span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    A3 <span class="op">=</span> sigmoid(Z3)</span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    cache <span class="op">=</span> (Z1, A1, Z2, A2, Z3, A3)</span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A3, cache</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forward propagation</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> forward_propagation(X, parameters):</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    W1, b1 <span class="op">=</span> parameters[<span class="st">'W1'</span>], parameters[<span class="st">'b1'</span>]</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    W2, b2 <span class="op">=</span> parameters[<span class="st">'W2'</span>], parameters[<span class="st">'b2'</span>]</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    W3, b3 <span class="op">=</span> parameters[<span class="st">'W3'</span>], parameters[<span class="st">'b3'</span>]</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    Z1 <span class="op">=</span> np.dot(W1, X) <span class="op">+</span> b1</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    A1 <span class="op">=</span> relu(Z1)</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    Z2 <span class="op">=</span> np.dot(W2, A1) <span class="op">+</span> b2</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    A2 <span class="op">=</span> relu(Z2)</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    Z3 <span class="op">=</span> np.dot(W3, A2) <span class="op">+</span> b3</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    A3 <span class="op">=</span> sigmoid(Z3)</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    cache <span class="op">=</span> (Z1, A1, Z2, A2, Z3, A3)</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A3, cache</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="training" class="level4">
@@ -869,92 +1115,92 @@ Test accuracy: 72.00 %</code></pre>
 <li><p>Iterate many times until convergence</p></li>
 </ul>
 <div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute cost</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_cost(A3, Y):</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> Y.shape[<span class="dv">1</span>]</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    cost <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.<span class="bu">sum</span>(Y <span class="op">*</span> np.log(A3) <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> Y) <span class="op">*</span> np.log(<span class="dv">1</span> <span class="op">-</span> A3))</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.squeeze(cost)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Backward propagation</span></span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> backward_propagation(X, Y, parameters, cache):</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> X.shape[<span class="dv">1</span>]</span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    W1, W2, W3 <span class="op">=</span> parameters[<span class="st">'W1'</span>], parameters[<span class="st">'W2'</span>], parameters[<span class="st">'W3'</span>]</span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    Z1, A1, Z2, A2, Z3, A3 <span class="op">=</span> cache</span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    dZ3 <span class="op">=</span> A3 <span class="op">-</span> Y</span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>    dW3 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.dot(dZ3, A2.T)</span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>    db3 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.<span class="bu">sum</span>(dZ3, axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>    dA2 <span class="op">=</span> np.dot(W3.T, dZ3)</span>
-<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>    dZ2 <span class="op">=</span> dA2 <span class="op">*</span> relu_derivative(Z2)</span>
-<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>    dW2 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.dot(dZ2, A1.T)</span>
-<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>    db2 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.<span class="bu">sum</span>(dZ2, axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>    dA1 <span class="op">=</span> np.dot(W2.T, dZ2)</span>
-<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>    dZ1 <span class="op">=</span> dA1 <span class="op">*</span> relu_derivative(Z1)</span>
-<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a>    dW1 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.dot(dZ1, X.T)</span>
-<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a>    db1 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.<span class="bu">sum</span>(dZ1, axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-27"><a href="#cb37-27" aria-hidden="true" tabindex="-1"></a>    grads <span class="op">=</span> {<span class="st">"dW1"</span>: dW1, <span class="st">"db1"</span>: db1,</span>
-<span id="cb37-28"><a href="#cb37-28" aria-hidden="true" tabindex="-1"></a>             <span class="st">"dW2"</span>: dW2, <span class="st">"db2"</span>: db2,</span>
-<span id="cb37-29"><a href="#cb37-29" aria-hidden="true" tabindex="-1"></a>             <span class="st">"dW3"</span>: dW3, <span class="st">"db3"</span>: db3}</span>
-<span id="cb37-30"><a href="#cb37-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb37-31"><a href="#cb37-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grads</span>
-<span id="cb37-32"><a href="#cb37-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-33"><a href="#cb37-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Update parameters</span></span>
-<span id="cb37-34"><a href="#cb37-34" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_parameters(parameters, grads, learning_rate):</span>
-<span id="cb37-35"><a href="#cb37-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">4</span>):</span>
-<span id="cb37-36"><a href="#cb37-36" aria-hidden="true" tabindex="-1"></a>        parameters[<span class="st">"W"</span> <span class="op">+</span> <span class="bu">str</span>(l)] <span class="op">-=</span> learning_rate <span class="op">*</span> grads[<span class="st">"dW"</span> <span class="op">+</span> <span class="bu">str</span>(l)]</span>
-<span id="cb37-37"><a href="#cb37-37" aria-hidden="true" tabindex="-1"></a>        parameters[<span class="st">"b"</span> <span class="op">+</span> <span class="bu">str</span>(l)] <span class="op">-=</span> learning_rate <span class="op">*</span> grads[<span class="st">"db"</span> <span class="op">+</span> <span class="bu">str</span>(l)]</span>
-<span id="cb37-38"><a href="#cb37-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> parameters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute cost</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_cost(A3, Y):</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> Y.shape[<span class="dv">1</span>]</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    cost <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.<span class="bu">sum</span>(Y <span class="op">*</span> np.log(A3) <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> Y) <span class="op">*</span> np.log(<span class="dv">1</span> <span class="op">-</span> A3))</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.squeeze(cost)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Backward propagation</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> backward_propagation(X, Y, parameters, cache):</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> X.shape[<span class="dv">1</span>]</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    W1, W2, W3 <span class="op">=</span> parameters[<span class="st">'W1'</span>], parameters[<span class="st">'W2'</span>], parameters[<span class="st">'W3'</span>]</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    Z1, A1, Z2, A2, Z3, A3 <span class="op">=</span> cache</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    dZ3 <span class="op">=</span> A3 <span class="op">-</span> Y</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    dW3 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.dot(dZ3, A2.T)</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>    db3 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.<span class="bu">sum</span>(dZ3, axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>    dA2 <span class="op">=</span> np.dot(W3.T, dZ3)</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>    dZ2 <span class="op">=</span> dA2 <span class="op">*</span> relu_derivative(Z2)</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>    dW2 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.dot(dZ2, A1.T)</span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>    db2 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.<span class="bu">sum</span>(dZ2, axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>    dA1 <span class="op">=</span> np.dot(W2.T, dZ2)</span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>    dZ1 <span class="op">=</span> dA1 <span class="op">*</span> relu_derivative(Z1)</span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>    dW1 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.dot(dZ1, X.T)</span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>    db1 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.<span class="bu">sum</span>(dZ1, axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>    grads <span class="op">=</span> {<span class="st">"dW1"</span>: dW1, <span class="st">"db1"</span>: db1,</span>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>             <span class="st">"dW2"</span>: dW2, <span class="st">"db2"</span>: db2,</span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a>             <span class="st">"dW3"</span>: dW3, <span class="st">"db3"</span>: db3}</span>
+<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grads</span>
+<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Update parameters</span></span>
+<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_parameters(parameters, grads, learning_rate):</span>
+<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">4</span>):</span>
+<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>        parameters[<span class="st">"W"</span> <span class="op">+</span> <span class="bu">str</span>(l)] <span class="op">-=</span> learning_rate <span class="op">*</span> grads[<span class="st">"dW"</span> <span class="op">+</span> <span class="bu">str</span>(l)]</span>
+<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a>        parameters[<span class="st">"b"</span> <span class="op">+</span> <span class="bu">str</span>(l)] <span class="op">-=</span> learning_rate <span class="op">*</span> grads[<span class="st">"db"</span> <span class="op">+</span> <span class="bu">str</span>(l)]</span>
+<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> parameters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 <section id="run-the-model" class="level3">
 <h3 class="anchored" data-anchor-id="run-the-model">Run the Model</h3>
 <div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model function</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> model_deep(X, Y, n_h1, n_h2, X_test, Y_test, num_iterations<span class="op">=</span><span class="dv">10000</span>, learning_rate<span class="op">=</span><span class="fl">0.01</span>, print_cost<span class="op">=</span><span class="va">False</span>):</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    np.random.seed(<span class="dv">3</span>)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    n_x <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    n_y <span class="op">=</span> Y.shape[<span class="dv">0</span>]</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    parameters <span class="op">=</span> initialize_parameters(n_x, n_h1, n_h2, n_y)</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, num_iterations):</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>        A3, cache <span class="op">=</span> forward_propagation(X, parameters)</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>        cost <span class="op">=</span> compute_cost(A3, Y)</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>        grads <span class="op">=</span> backward_propagation(X, Y, parameters, cache)</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>        parameters <span class="op">=</span> update_parameters(parameters, grads, learning_rate)</span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> print_cost <span class="kw">and</span> i <span class="op">%</span> <span class="dv">1000</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Cost after iteration </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>cost<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># define predict function</span></span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"getting accuracy"</span>)</span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> predict(X_input, parameters):</span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>        A3, _ <span class="op">=</span> forward_propagation(X_input, parameters)</span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>        predictions <span class="op">=</span> A3 <span class="op">&gt;</span> <span class="fl">0.5</span>  <span class="co"># threshold at 0.5</span></span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> predictions.astype(<span class="bu">int</span>)</span>
-<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make predictions</span></span>
-<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(X.shape)</span>
-<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>    Y_prediction_train <span class="op">=</span> predict(X, parameters)</span>
-<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>    Y_prediction_test <span class="op">=</span> predict(X_test, parameters)</span>
-<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute accuracy</span></span>
-<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>    train_accuracy <span class="op">=</span> <span class="dv">100</span> <span class="op">-</span> np.mean(np.<span class="bu">abs</span>(Y_prediction_train <span class="op">-</span> Y)) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>    test_accuracy <span class="op">=</span> <span class="dv">100</span> <span class="op">-</span> np.mean(np.<span class="bu">abs</span>(Y_prediction_test <span class="op">-</span> Y_test)) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Train accuracy: </span><span class="sc">{</span>train_accuracy<span class="sc">:.2f}</span><span class="ss"> %"</span>)</span>
-<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Test accuracy: </span><span class="sc">{</span>test_accuracy<span class="sc">:.2f}</span><span class="ss"> %"</span>) </span>
-<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> parameters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model function</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> model_deep(X, Y, n_h1, n_h2, X_test, Y_test, num_iterations<span class="op">=</span><span class="dv">10000</span>, learning_rate<span class="op">=</span><span class="fl">0.01</span>, print_cost<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    np.random.seed(<span class="dv">3</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    n_x <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    n_y <span class="op">=</span> Y.shape[<span class="dv">0</span>]</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    parameters <span class="op">=</span> initialize_parameters(n_x, n_h1, n_h2, n_y)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, num_iterations):</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>        A3, cache <span class="op">=</span> forward_propagation(X, parameters)</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>        cost <span class="op">=</span> compute_cost(A3, Y)</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>        grads <span class="op">=</span> backward_propagation(X, Y, parameters, cache)</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>        parameters <span class="op">=</span> update_parameters(parameters, grads, learning_rate)</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> print_cost <span class="kw">and</span> i <span class="op">%</span> <span class="dv">1000</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Cost after iteration </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>cost<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># define predict function</span></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"getting accuracy"</span>)</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> predict(X_input, parameters):</span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>        A3, _ <span class="op">=</span> forward_propagation(X_input, parameters)</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>        predictions <span class="op">=</span> A3 <span class="op">&gt;</span> <span class="fl">0.5</span>  <span class="co"># threshold at 0.5</span></span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> predictions.astype(<span class="bu">int</span>)</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make predictions</span></span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(X.shape)</span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>    Y_prediction_train <span class="op">=</span> predict(X, parameters)</span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>    Y_prediction_test <span class="op">=</span> predict(X_test, parameters)</span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute accuracy</span></span>
+<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>    train_accuracy <span class="op">=</span> <span class="dv">100</span> <span class="op">-</span> np.mean(np.<span class="bu">abs</span>(Y_prediction_train <span class="op">-</span> Y)) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>    test_accuracy <span class="op">=</span> <span class="dv">100</span> <span class="op">-</span> np.mean(np.<span class="bu">abs</span>(Y_prediction_test <span class="op">-</span> Y_test)) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Train accuracy: </span><span class="sc">{</span>train_accuracy<span class="sc">:.2f}</span><span class="ss"> %"</span>)</span>
+<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Test accuracy: </span><span class="sc">{</span>test_accuracy<span class="sc">:.2f}</span><span class="ss"> %"</span>) </span>
+<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> parameters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Training</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>par <span class="op">=</span> model_deep(train_set_x, train_set_y, <span class="dv">128</span>, <span class="dv">64</span>,test_set_x, test_set_y,</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>               num_iterations<span class="op">=</span><span class="dv">10000</span>, print_cost <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Training</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>par <span class="op">=</span> model_deep(train_set_x, train_set_y, <span class="dv">128</span>, <span class="dv">64</span>,test_set_x, test_set_y,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>               num_iterations<span class="op">=</span><span class="dv">10000</span>, print_cost <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Cost after iteration 0: 0.6928232758641192
 Cost after iteration 1000: 0.5556033301345353
