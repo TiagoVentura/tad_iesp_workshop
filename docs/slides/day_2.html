@@ -340,27 +340,27 @@
 
 </section>
 <section id="plans-for-today" class="slide level2">
-<h2>Plans for Today:</h2>
+<h2>Plans for Today</h2>
 <ul>
-<li><p>Word Embeddings</p>
+<li class="fragment"><p>Word Embeddings</p>
 <ul>
-<li><p>Semantics, Distributional Hypothesis, Moving from Sparse to Dense Vectors</p></li>
-<li><p>Word2Vec Algorithm</p>
+<li class="fragment"><p>Semantics, Distributional Hypothesis, Moving from Sparse to Dense Vectors</p></li>
+<li class="fragment"><p>Word2Vec Algorithm</p>
 <ul>
-<li><p>Mathematical Model</p></li>
-<li><p>Estimate with Neural Networks</p></li>
-<li><p>Estimate using co-occurance matrices</p></li>
+<li class="fragment"><p>Mathematical Model</p></li>
+<li class="fragment"><p>Estimate with Neural Networks</p></li>
+<li class="fragment"><p>Estimate using co-occurance matrices</p></li>
 </ul></li>
 </ul></li>
-<li><p>Practice</p>
+<li class="fragment"><p>Practice</p>
 <ul>
-<li><p>Work through:</p>
+<li class="fragment"><p>Work through:</p>
 <ul>
-<li><p>Estimating Word Embeddings</p></li>
-<li><p>Working with pre-trained models</p></li>
+<li class="fragment"><p>Working with pre-trained models</p></li>
+<li class="fragment"><p>Discuss Word Embeddings Applications</p></li>
+<li class="fragment"><p>time permits: estimating word embeddings with matrix factorization</p></li>
 </ul></li>
 </ul></li>
-<li><p>Discuss Word Embeddings Applications</p></li>
 </ul>
 </section>
 <section>
@@ -372,20 +372,16 @@
 <h2>Vector Space Model: From yesterday</h2>
 <p>In the vector space model, we learned:</p>
 <ul>
-<li><p>A document <span class="math inline">\(D_i\)</span> is represented as a collection of features <span class="math inline">\(W\)</span> (words, tokens, n-grams..)</p></li>
-<li><p>Each feature <span class="math inline">\(w_i\)</span> can be place in a real line, then a document <span class="math inline">\(D_i\)</span> is a point in a <span class="math inline">\(W\)</span> dimensional space.</p></li>
+<li class="fragment"><p>A document <span class="math inline">\(D_i\)</span> is represented as a collection of features <span class="math inline">\(W\)</span> (words, tokens, n-grams..)</p></li>
+<li class="fragment"><p>Each feature <span class="math inline">\(w_i\)</span> can be place in a real line, then a document <span class="math inline">\(D_i\)</span> is a point in a <span class="math inline">\(W\)</span> dimensional space.</p></li>
 </ul>
+<div class="fragment">
 <p>Embedded in this model, there is the idea we represent <span class="red">words</span> as a <span class="red">one-hot encoding</span>.</p>
 <ul>
-<li>“cat”: [0,0, 0, 0, 0, 0, 1, 0, ….., V] , on a V dimensional vector</li>
-<li>“dog”: [0,0, 0, 0, 0, 0, 0, 1, …., V], on a V dimensional vector</li>
+<li class="fragment">“cat”: [0,0, 0, 0, 0, 0, 1, 0, ….., V] , on a V dimensional vector</li>
+<li class="fragment">“dog”: [0,0, 0, 0, 0, 0, 0, 1, …., V], on a V dimensional vector</li>
 </ul>
-<p><strong>What these vectors look like?</strong></p>
-<ul>
-<li><p>really sparse</p></li>
-<li><p>vectors are orthogonal</p></li>
-<li><p>no natural notion of similarity</p></li>
-</ul>
+</div>
 </section></section>
 <section>
 <section id="how-can-we-embed-some-notion-of-meaning-in-the-way-we-represent-words" class="title-slide slide level1 center">
@@ -412,6 +408,7 @@
 </section>
 <section id="sparse-vs-dense-vectors" class="slide level2">
 <h2>Sparse vs Dense Vectors</h2>
+<div>
 <p><strong>One-hot encoding / Sparse Representation:</strong></p>
 <ul>
 <li><p>cat = <span class="math inline">\(\begin{bmatrix} 0,0, 0, 0, 0, 0, 1, 0, 0 \end{bmatrix}\)</span></p></li>
@@ -422,22 +419,18 @@
 <li><p>cat = <span class="math inline">\(\begin{bmatrix} 0.25, -0.75, 0.90, 0.12, -0.50, 0.33, 0.66, -0.88, 0.10, -0.45 \end{bmatrix}\)</span></p></li>
 <li><p>dog = <span class="math inline">\(\begin{bmatrix} 0.25, 1.75, 0.90, 0.12, -0.50, 0.33, 0.66, -0.88, 0.10, -0.45 \end{bmatrix}\)</span></p></li>
 </ul>
-</section>
-<section id="with-colors-and-real-word-vectors" class="slide level2">
-<h2>With colors and real word vectors</h2>
-
-<img data-src="./week7_figs/embed_color.png" style="width:100.0%" class="r-stretch"><p>Source: <a href="https://jalammar.github.io/illustrated-word2vec/">Illustrated Word2Vec</a></p>
+</div>
 </section>
 <section id="why-word-embeddings" class="slide level2">
 <h2>Why Word Embeddings?</h2>
 <p><strong>Encoding similarity:</strong> vectors are not ortogonal anymore!</p>
+<p><strong>Encodes Meaning:</strong> by learning the context, I can somewhat learn what a word means.</p>
 <p><strong>Automatic Generalization:</strong> learn about one word allow us to automatically learn about related words</p>
-<p><strong>Encodes Meaning:</strong> by learning the context, I can learn what a word means.</p>
 <p><strong>As a consequence:</strong></p>
 <ul>
-<li><p>Word Embeddings improves several NLP/Text-as-Data Tasks.</p></li>
-<li><p>Allows to deal with unseen words.</p></li>
-<li><p>Form the core idea of state-of-the-art models, such as LLMs.</p></li>
+<li class="fragment"><p>Word Embeddings improves several NLP/Text-as-Data Tasks.</p></li>
+<li class="fragment"><p>Allows to deal with unseen words.</p></li>
+<li class="fragment"><p>Form the core idea of state-of-the-art models, such as LLMs.</p></li>
 </ul>
 </section>
 <section id="estimating-word-embeddings" class="slide level2">
@@ -445,24 +438,23 @@
 <h3 id="approches">Approches:</h3>
 <div class="fragment">
 <ul>
-<li><span class="red">Count-based methods</span>: look at how often words co-occur with neighbors.
+<li class="fragment"><span class="red">Count-based methods</span>: look at how often words co-occur with neighbors.
 <ul>
-<li>use this matrix, and some some factorization to retrieve vectors for the words</li>
-<li>This approach is called “GloVE” algorithm</li>
-<li>fast, not computationally intensive, but not the best representation</li>
-<li>we will see code doing this next week</li>
+<li class="fragment">Use this matrix, and use some factorization to retrieve vectors for the words</li>
+<li class="fragment">This approach is called “GloVE” algorithm</li>
+<li class="fragment">Fast, not computationally intensive, but not the best representation, because it is not fully local</li>
 </ul></li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li><span class="red">Neural Networks:</span> rely on the idea of <strong>self-supervision</strong>
+<li class="fragment"><span class="red">Neural Networks:</span> rely on the idea of <strong>self-supervision</strong>
 <ul>
-<li>use unlabeled data and use words to predict sequence</li>
-<li>the famous word2vec algorithm
+<li class="fragment">use unlabeled data and use words to predict sequence</li>
+<li class="fragment">the famous <strong>word2vec</strong> algorithm
 <ul>
-<li>Skipgram: predicts context words</li>
-<li>Continuous Bag of Words: predict center word</li>
+<li class="fragment">Skipgram: predicts context words</li>
+<li class="fragment">Continuous Bag of Words: predict center word</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -503,49 +495,60 @@
 </div>
 <div class="fragment">
 <ul>
-<li><strong>In logistic regression: probability of a event occur given data X and parameters</strong> <span class="math inline">\(\beta\)</span>.:
+<li class="fragment"><p><strong>In logistic regression: probability of a event occur given data X and parameters</strong> <span class="math inline">\(\beta\)</span>:</p>
+<p><span class="math display">\[ P(y=1| X, \beta ) = X * \beta  + \epsilon\]</span></p>
 <ul>
-<li><p>$ P(y=1| X, ) = X * <span class="math inline">\(\beta\)</span> $</p></li>
-<li><p><span class="math inline">\(X*\beta\)</span> is not a proper probability function, so we make it to proper probability by using a logit transformation.</p></li>
-<li><p><span class="math inline">\(P(y=1|X, \beta ) = \frac{exp(XB)}{1 + exp(XB)}\)</span></p></li>
-<li><p>Throw this transformation inside of a bernouilli distribution, get the likelihood function, and find the parameters using MLE.</p></li>
+<li class="fragment"><p><span class="math inline">\(X * \beta\)</span> is not a proper probability function, so we make it to proper probability by using a logit transformation.</p></li>
+<li class="fragment"><p><span class="math inline">\(P(y=1|X, \beta ) = \frac{exp(XB)}{1 + exp(XB)}\)</span></p></li>
 </ul></li>
 </ul>
 </div>
-</section>
-<section id="pametrizing-pw_tw_t-1" class="slide level2">
-<h2>Pametrizing <span class="math inline">\(P(w_t|w_{t-1})\)</span></h2>
+<div class="fragment">
 <ul>
-<li><span class="math inline">\(P(w_t|w_{t-1})\)</span> must be condition on how similar these words are.
-<ul>
-<li><span class="red">Exactly the same</span> intuition behind placing documents in the vector space model.</li>
-<li>Now words are vectors!</li>
-<li><span class="math inline">\(P(w_t|w_{t-1}) = u_c \cdot u_t\)</span>
-<ul>
-<li><span class="math inline">\(u_c \cdot u_t\)</span></li>
-<li>dot product between vectors</li>
-<li>measures similarity using vector projection</li>
-<li><span class="math inline">\(u_c\)</span>: center vector</li>
-<li><span class="math inline">\(u_t\)</span>: target vectors</li>
-</ul></li>
-</ul></li>
-<li><span class="math inline">\(u_c \cdot u_t\)</span> is also not a proper probability distribution: Logit on them!</li>
+<li class="fragment"><p>Use transformation inside of a bernouilli distribution, get the likelihood function, and find the parameters using maximum likelihood estimation:</p>
+<p><span class="math display">\[L(\beta)  = \prod_{i=1}^n \bigl[\sigma(X_i^\top \beta)\bigr]^{y_i}
+                        \bigl[1 - \sigma(X_i^\top \beta)\bigr]^{1 - y_i} \]</span></p></li>
 </ul>
+</div>
+</section>
+<section id="pw_tw_t-1" class="slide level2">
+<h2><span class="math inline">\(P(w_t|w_{t-1})\)</span></h2>
+<p>This is the probability we want to estimate. To do so, we need to add parameters to it:</p>
+<ul>
+<li class="fragment"><span class="math inline">\(P(w_t|w_{t-1})\)</span> represents how similar these words are.
+<ul>
+<li class="fragment"><span class="red">The jump:</span> if we assume words are vectors, we can estimate their similarities:</li>
+<li class="fragment"><span class="math inline">\(P(w_t|w_{t-1}) = u_c \cdot u_t\)</span>
+<ul>
+<li class="fragment"><span class="math inline">\(u_c \cdot u_t\)</span></li>
+<li class="fragment">dot product between vectors (<span class="math inline">\(x_1*y_1 + x_2*y_2 .... x_n*y_n\)</span>)</li>
+<li class="fragment">measures similarity using vector projection</li>
+<li class="fragment"><span class="math inline">\(u_c\)</span>: center vector</li>
+<li class="fragment"><span class="math inline">\(u_t\)</span>: target/neighbor vectors</li>
+</ul></li>
+</ul></li>
+<li class="fragment"><span class="math inline">\(u_c \cdot u_t\)</span> is also not a proper probability distribution. So we will use a softmax transformation.</li>
+</ul>
+<div class="fragment">
 <p><span class="math display">\[P(w_t|w_{t-1}) = \frac{exp(u_c \cdot u_t)}{{\sum_{w}^V exp(u_c*u_w)}}\]</span></p>
+</div>
+<ul>
+<li class="fragment">mathematically, this is the logistic transformation (sigmoid) for multiple classes.</li>
+</ul>
 </section>
 <section id="softmax-transformation" class="slide level2">
 <h2>Softmax Transformation</h2>
 <p><span class="math display">\[P(w_t|w_{t-1}) = \frac{exp(u_c \cdot u_t)}{{\sum_{w}^V exp(u_c*u_w)}}\]</span></p>
 <ul>
-<li><p>Dot product compares similarity between vectors</p></li>
-<li><p>numerator: center vs target vectors</p></li>
-<li><p>exponentiation makes everything positive</p></li>
-<li><p>Denominator: normalize over entire vocabulary to give probability distribution</p></li>
-<li><p>What is the meaning of softmax?</p>
+<li class="fragment"><p>Dot product compares similarity between vectors</p></li>
+<li class="fragment"><p>numerator: center vs target vectors</p></li>
+<li class="fragment"><p>exponentiation makes everything positive</p></li>
+<li class="fragment"><p>Denominator: normalize over entire vocabulary to give probability distribution</p></li>
+<li class="fragment"><p>What is the meaning of softmax?</p>
 <ul>
-<li><p>max: assign high values to be 1</p></li>
-<li><p>soft: still assigns some probability to smaller values</p></li>
-<li><p>generalization of the logit ~ multinomial logistic function.</p></li>
+<li class="fragment"><p>max: assign high values to be 1</p></li>
+<li class="fragment"><p>soft: still assigns some probability to smaller values</p></li>
+<li class="fragment"><p>generalization of the logit ~ multinomial logistic function.</p></li>
 </ul></li>
 </ul>
 </section>
@@ -556,8 +559,8 @@
 <h4 id="likelihood-function">Likelihood Function</h4>
 <p><span class="math display">\[ L(\theta) = \prod_{t=1}^{T} \prod_{\substack{-m&lt;= j&lt;=m \\ j \neq 0}}^{m} P(w_{t+j} | w_t; \theta) \]</span></p>
 <ul>
-<li><p>Assuming independence, this means you multiplying the probability of every target for every center word in your dictionary.</p></li>
-<li><p>This likelihood function will change if you do skipgram with negative sampling (See SLP chapter 6)</p></li>
+<li class="fragment"><p>Assuming independence, this means you multiplying the probability of every target for every center word in your dictionary.</p></li>
+<li class="fragment"><p>This likelihood function will change if you do skipgram with negative sampling (See SLP chapter 6)</p></li>
 </ul>
 </div>
 <div class="fragment">
@@ -565,8 +568,8 @@
 <h4 id="objective-function-negative-log-likelihood">Objective Function: Negative log likelihood</h4>
 <p><span class="math display">\[J(\theta) = - \frac{1}{T}log(L(\theta))\]</span></p>
 <ul>
-<li><p>better to take the gradient with sums</p></li>
-<li><p>the average increases the numerical stability of the gradient.</p></li>
+<li class="fragment"><p>better to take the gradient with sums</p></li>
+<li class="fragment"><p>the average increases the numerical stability of the gradient.</p></li>
 </ul>
 </div>
 </section>
@@ -582,26 +585,69 @@
 <h2></h2>
 
 <img data-src="./week7_figs/rustic.png" style="width:100.0%" class="r-stretch"></section>
-<section id="check-your-matrices" class="slide level2">
-<h2>Check your matrices</h2>
-<div class="columns">
-<div class="column" style="width:70%;">
-<div class="cell" data-hash="day_2_cache/revealjs/unnamed-chunk-7_58506911827196b0d26ac9f26e391f57">
-<div class="cell-output-display">
-<p><img data-src="./week7_figs/skipgram_matrices.png" style="width:100.0%"></p>
-</div>
-</div>
-</div><div class="column" style="width:30%;">
-<p><br> <br> <br></p>
-<p>Practice with a vocabulary of size 5, a embedding with 3 dimensions, and the task is to predict the next word.</p>
+<section id="simple-example" class="slide level2">
+<h2>Simple Example</h2>
+<p>Let’s practice with a vocabulary of size 5, a embedding with 3 dimensions, and the task is to predict ONLY the next word.</p>
+<p><strong>Step 1: v_{1,5} * W_{5,3} = C_{1,3}</strong></p>
 <ul>
-<li><p><strong>Step 1: v_1^5 * W_5^3</strong></p></li>
-<li><p><strong>Step 2: w_1^3 * C_3^5</strong></p></li>
-<li><p><strong>Step 3: Softmax entire vector</strong></p></li>
+<li class="fragment">Where W is the embedding for center words</li>
 </ul>
-</div>
+<p><span class="math display">\[
+\mathbf{v} =
+\begin{bmatrix}
+0 \\
+0 \\
+1 \\
+0 \\
+0
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{W} =
+\begin{bmatrix}
+.1 &amp; .3 &amp; -.23 \\
+.2 &amp; -.06 &amp; -.26 \\
+.3 &amp; -.16&amp; -.13 \\
+.5 &amp; .26 &amp; -.03 \\
+.6 &amp; -.46 &amp; -.53
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[v_T*W = C = \begin{bmatrix}.3 &amp; -.16&amp; -.13 \end{bmatrix} \]</span></p>
+</section>
+<section id="dot-product-between-vectors" class="slide level2">
+<h2>Dot Product between vectors</h2>
+<p><strong>Step 2:</strong> <span class="math inline">\(C_{1,3} * W2_{3,5} = P_{1,5}\)</span></p>
+<ul>
+<li class="fragment">Where <span class="math inline">\(W_2\)</span> is the embedding for context/target words</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[ C_{1,3} * W2_{3,5} = P_{1,5} \]</span></p>
+<p><span class="math display">\[ \begin{bmatrix}.3 &amp; -.16&amp; -.13 \end{bmatrix} *
+\begin{bmatrix}
+.1 &amp; .3 &amp; -.23 &amp; .3  &amp; .5 \\
+.2 &amp; -.06 &amp; -.26 &amp; .3  &amp; .5 \\
+.3 &amp; -.16&amp; -.13 * .3  &amp; .5\\
+\end{bmatrix} \]</span></p>
+<p><span class="math display">\[
+P_{1,5}= \begin{bmatrix} -0.041  &amp;  0.1204 &amp; -0.02233 &amp; -0.023   &amp; 0.07  \end{bmatrix}
+\]</span></p>
 </div>
 </section>
+<section id="take-the-softmax" class="slide level2">
+<h2>Take the softmax</h2>
+<p><span class="math display">\[
+P(w_t|w_{t-1}) = \frac{exp(0.041)}{{-0.041  +  0.1204 + -0.02233 + -0.023   + 0.07}}
+\]</span></p>
+<ul>
+<li class="fragment"><p>Repeat this for all the words in the vocabulary.</p></li>
+<li class="fragment"><p>After that, you calculate the loss function with the negative likelihood (because you know which word you are predicting)</p></li>
+<li class="fragment"><p>Use the loss to perform gradient descent and update the parameters</p></li>
+</ul>
+</section>
+<section id="real-skipgram-algorithm" class="slide level2">
+<h2>Real Skipgram Algorithm</h2>
+
+<img data-src="./week7_figs/skipgram_matrices.png" style="width:80.0%" class="r-stretch"></section>
 <section id="word-embeddings-matrices" class="slide level2">
 <h2>Word Embeddings Matrices</h2>
 
@@ -610,31 +656,23 @@
 <h2>Training Embeddings</h2>
 <p>Embeddings need quite a lot of text to train: e.g.&nbsp;want to disambiguate meanings from contexts. You can download <span class="red">pre-trained</span>, or get the code and <span class="red">train locally</span></p>
 <ul>
-<li><p><span class="red">Word2Vec</span> is trained on the Google News dataset (∼ 100B words, 2013)</p></li>
-<li><p><span class="red">GloVe</span> are trained on different things: Wikipedia (2014) + Gigaword (6B words), Common Crawl, Twitter. And uses a co-occurence matrix instead of Neural Networks</p></li>
-<li><p><span class="red">fastext</span> from facebook</p></li>
+<li class="fragment"><p><span class="red">Word2Vec</span> is trained on the Google News dataset (∼ 100B words, 2013)</p></li>
+<li class="fragment"><p><span class="red">GloVe</span> are trained on different things: Wikipedia (2014) + Gigaword (6B words), Common Crawl, Twitter. And uses a co-occurence matrix instead of Neural Networks</p></li>
+<li class="fragment"><p><span class="red">fastext</span> from facebook</p></li>
 </ul>
 </section>
 <section id="applications" class="slide level2">
 <h2>Applications:</h2>
 <p>Once we’ve optimized, we can extract the word specific vectors from W as embedding vectors. These real valued vectors can be used for analogies and related tasks</p>
 
-<img data-src="./week7_figs/king.png" style="width:80.0%" class="r-stretch quarto-figure-center"><p>We will see several applications next week. Most important:</p>
-<ul>
-<li><p>Alternative to bag-of-words feature representation in supervised learning tasks</p></li>
-<li><p>Support for other automated text analysis tasks: expand dictionaries</p></li>
-<li><p>Understanding word meaning: variation over time, bias, variation by groups</p></li>
-<li><p>as a scaling method</p></li>
-</ul>
-</section>
+<img data-src="./week7_figs/king.png" style="width:80.0%" class="r-stretch quarto-figure-center"></section>
 <section id="applications-1" class="slide level2">
 <h2>Applications</h2>
 <p>Let’s discuss now several applications of embeddings on social science papers. These paper show:</p>
 <ul>
-<li><p>How to use embeddings to track semantic changes over time</p></li>
-<li><p>How to use embeddings to measure emotion in political language.</p></li>
-<li><p>How to use embeddings to measure gender and ethnic stereotypes</p></li>
-<li><p>And a favorite of political scientists, how to use embeddings to measure ideology.</p></li>
+<li class="fragment"><p>How to map words on cultural dimensions</p></li>
+<li class="fragment"><p>How to use embeddings to measure emotion in political language.</p></li>
+<li class="fragment"><p>And a favorite of political scientists, how to use embeddings to measure ideology.</p></li>
 </ul>
 </section>
 <section id="capturing-cultural-dimensions-with-embeddings" class="slide level2">
@@ -643,9 +681,9 @@
 <p>Austin C. Kozlowski, Austin C., Matt Taddy, and James A. Evans. 2019. “The Geometry of Culture: Analyzing the Meanings of Class through Word Embeddings.” American Sociological Review 84, no. 5: 905–49. https://doi.org/10.1177/0003122419877135.</p>
 </blockquote>
 <ul>
-<li><p>Word Embeddings can be use to capture cultural dimensions</p></li>
-<li><p>Dimensions of word embedding vector space models closely correspond to meaningful “cultural dimensions,” such as rich-poor, moral-immoral, and masculine-feminine.</p></li>
-<li><p>a word vector’s position on these dimensions reflects the word’s respective cultural associations</p></li>
+<li class="fragment"><p>Word Embeddings can be use to capture cultural dimensions</p></li>
+<li class="fragment"><p>Dimensions of word embedding vector space models closely correspond to meaningful “cultural dimensions,” such as rich-poor, moral-immoral, and masculine-feminine.</p></li>
+<li class="fragment"><p>a word vector’s position on these dimensions reflects the word’s respective cultural associations</p></li>
 </ul>
 </section>
 <section id="method" class="slide level2">
@@ -662,12 +700,12 @@
 <p>Rheault, Ludovic, and Christopher Cochrane. “Word embeddings for the analysis of ideological placement in parliamentary corpora.” Political Analysis 28, no. 1 (2020): 112-133.</p>
 </blockquote>
 <ul>
-<li><p>Can word vectors be used to produce scaling estimates of ideological placement on political text?</p>
+<li class="fragment"><p>Can word vectors be used to produce scaling estimates of ideological placement on political text?</p>
 <ul>
-<li><p>Yes, and word vectors are even better</p>
+<li class="fragment"><p>Yes, and word vectors are even better</p>
 <ul>
-<li><p>It captures semantics</p></li>
-<li><p>No need of training data (self-supervision)</p></li>
+<li class="fragment"><p>It captures semantics</p></li>
+<li class="fragment"><p>No need of training data (self-supervision)</p></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -680,13 +718,13 @@
 <h2>Results</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-hash="day_2_cache/revealjs/unnamed-chunk-13_8e8f28b8598bc22d2de077755d29a58e">
+<div class="cell" data-hash="day_2_cache/revealjs/unnamed-chunk-12_ad1ee53afb9c14ee55fa87dcaa375f05">
 <div class="cell-output-display">
 <p><img data-src="./week9_figs/scaling_01.png" style="width:100.0%"></p>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell" data-hash="day_2_cache/revealjs/unnamed-chunk-14_d09acfdda3c3441a3f81a293868b85a4">
+<div class="cell" data-hash="day_2_cache/revealjs/unnamed-chunk-13_5ad2ad1104e71772c860db14ec1ced07">
 <div class="cell-output-display">
 <p><img data-src="./week9_figs/scaling_02.png" style="width:100.0%"></p>
 </div>
@@ -704,18 +742,23 @@
 <section id="method-2" class="slide level2">
 <h2>Method</h2>
 <ul>
-<li><p>Building seed lists: They start with small seed lists of words clearly associated with “emotion” and “reason”</p></li>
-<li><p>Expanding dictionaries with word embeddings: Instead of just using these short lists, they expand them automatically using word embeddings.</p></li>
-<li><p>Emotionality Score:</p></li>
+<li class="fragment"><p>Building seed lists: They start with small seed lists of words clearly associated with “emotion” and “reason”</p></li>
+<li class="fragment"><p>Expanding dictionaries with word embeddings: Instead of just using these short lists, they expand them automatically using word embeddings.</p></li>
+<li class="fragment"><p>Emotionality Score:</p></li>
 </ul>
+<div class="fragment">
 <p><span class="math display">\[
 Y_i = \frac{\text{sim}(\vec{d}_i, \vec{A}) + b}{\text{sim}(\vec{d}_i, \vec{C}) + b}
-\]</span> # Coding</p>
+\]</span></p>
+</div>
+</section></section>
+<section id="coding" class="title-slide slide level1 center">
+<h1>Coding</h1>
 
 <div class="footer footer-default">
 <p>Text-as-Data</p>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
@@ -895,9 +938,9 @@ Y_i = \frac{\text{sim}(\vec{d}_i, \vec{A}) + b}{\text{sim}(\vec{d}_i, \vec{C}) +
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1200,
+        width: 1400,
 
-        height: 800,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,

@@ -44,15 +44,14 @@ Here is where you can find all the lectures and code we will be using during the
 1. Slides for "Introduction to Transformers": [link.](https://github.com/svallejovera/iesp-uerj/blob/main/IESP_Transformers.pdf)
 2. Slides for "Pre-Trained Transformers-Based Models": [link.](https://github.com/svallejovera/iesp-uerj/blob/main/IESP_Pre_Trained_Models.pdf)
 3. Code for:
-    i) Using Fine-Tuned Models: link.
-    ii) Fine-Tuning a Model: link.
-    iii) Further Pre-Training a Model: link. 
-    iv) Other applications: link. 
-  
+    i) Using Fine-Tuned Models: [link.](https://colab.research.google.com/drive/1IrKX1W0h4HTw3SmcvrMlv9CBWAUS44fw#scrollTo=VtypFSfiWfcS)
+    ii) Fine-Tuning a Model: [link.](https://colab.research.google.com/drive/1t18hP-yngLEEvSgiMSUD1FrDpzTWdTfG#scrollTo=vuKuXDDyxF2M)
+    iii) Further Pre-Training a Model: [link.](https://colab.research.google.com/drive/1_nmDGG_OzU3MjIa4T6JZTD_ra6kAa0wW#scrollTo=5p8Ok39iGEEU) 
+
 ---
 
 4. Slides for "A Primer on Large Language Models": [link.](https://github.com/svallejovera/iesp-uerj/blob/main/IESP_LLMs.pdf) 
 5. Code for:
-    i) Using LLMs: link. 
-    ii) LLMs as Annotators: link. 
+    i) Using LLMs: [link.](https://colab.research.google.com/drive/10D2nZ0NolNk_KZBYQaC9tqwmNG9JIDTE#scrollTo=dYsBItY2QB84) 
+    ii) LLMs as Annotators: [link.](https://colab.research.google.com/drive/19KXG7mauoCBwNfyvwR6mrXsAXS4TgX86#scrollTo=lpEniq0rSeZV) 
   

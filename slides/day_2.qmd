@@ -11,11 +11,11 @@ format:
     transition: slide
     background-transition: fade
     code-line-numbers: false
-    width: 1200
-    height: 800
+    width: 1400
+    height: 900
     center: false
     slide-number: true
-    incremental: false
+    incremental: true
     chalkboard: 
       buttons: false
     preview-links: auto
@@ -25,7 +25,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Plans for Today:
+## Plans for Today
 
 -   Word Embeddings
 
@@ -36,18 +36,18 @@ editor_options:
         -   Mathematical Model
 
         -   Estimate with Neural Networks
-        
+
         -   Estimate using co-occurance matrices
 
 -   Practice
 
-    -   Work through: 
-    
-        -   Estimating Word Embeddings
-    
+    -   Work through:
+
         -   Working with pre-trained models
 
--   Discuss Word Embeddings Applications
+        -   Discuss Word Embeddings Applications
+         
+        -   time permits: estimating word embeddings with matrix factorization 
 
 # Word Embeddings
 
@@ -59,18 +59,13 @@ In the vector space model, we learned:
 
 -   Each feature $w_i$ can be place in a real line, then a document $D_i$ is a point in a $W$ dimensional space.
 
+::: fragment
 Embedded in this model, there is the idea we represent [words]{.red} as a [one-hot encoding]{.red}.
 
 -   "cat": \[0,0, 0, 0, 0, 0, 1, 0, ....., V\] , on a V dimensional vector
 -   "dog": \[0,0, 0, 0, 0, 0, 0, 1, ...., V\], on a V dimensional vector
 
-**What these vectors look like?**
-
--   really sparse
-
--   vectors are orthogonal
-
--   no natural notion of similarity
+:::
 
 # How can we embed some notion of meaning in the way we represent words?
 
@@ -94,6 +89,8 @@ Embedded in this model, there is the idea we represent [words]{.red} as a [one-h
 
 ## Sparse vs Dense Vectors
 
+:::nonincremental
+
 **One-hot encoding / Sparse Representation:**
 
 -   cat = $\begin{bmatrix} 0,0, 0, 0, 0, 0, 1, 0, 0 \end{bmatrix}$
@@ -106,21 +103,15 @@ Embedded in this model, there is the idea we represent [words]{.red} as a [one-h
 
 -   dog = $\begin{bmatrix} 0.25, 1.75, 0.90, 0.12, -0.50, 0.33, 0.66, -0.88, 0.10, -0.45 \end{bmatrix}$
 
-## With colors and real word vectors
-
-```{r echo=FALSE, out.width = "100%"}
-knitr::include_graphics("./week7_figs/embed_color.png") 
-```
-
-Source: [Illustrated Word2Vec](https://jalammar.github.io/illustrated-word2vec/)
+:::
 
 ## Why Word Embeddings?
 
 **Encoding similarity:** vectors are not ortogonal anymore!
 
-**Automatic Generalization:** learn about one word allow us to automatically learn about related words
+**Encodes Meaning:** by learning the context, I can somewhat learn what a word means.
 
-**Encodes Meaning:** by learning the context, I can learn what a word means.
+**Automatic Generalization:** learn about one word allow us to automatically learn about related words
 
 **As a consequence:**
 
@@ -136,16 +127,15 @@ Source: [Illustrated Word2Vec](https://jalammar.github.io/illustrated-word2vec/)
 
 ::: fragment
 -   [Count-based methods]{.red}: look at how often words co-occur with neighbors.
-    -   use this matrix, and some some factorization to retrieve vectors for the words
+    -   Use this matrix, and use some factorization to retrieve vectors for the words
     -   This approach is called "GloVE" algorithm
-    -   fast, not computationally intensive, but not the best representation
-    -   we will see code doing this next week
+    -   Fast, not computationally intensive, but not the best representation, because it is not fully local
 :::
 
 ::: fragment
 -   [Neural Networks:]{.red} rely on the idea of **self-supervision**
     -   use unlabeled data and use words to predict sequence
-    -   the famous word2vec algorithm
+    -   the famous **word2vec** algorithm
         -   Skipgram: predicts context words
         -   Continuous Bag of Words: predict center word
 :::
@@ -155,7 +145,6 @@ Source: [Illustrated Word2Vec](https://jalammar.github.io/illustrated-word2vec/)
 ### Core Idea:
 
 ::: incremental
-
 -   We have a large corpus ("body") of text: a long list of words
 
 -   Every word in a fixed vocabulary is represented by a vector
@@ -194,30 +183,45 @@ To estimate the model, we first need to formalize the probability function we wa
 :::
 
 ::: fragment
--   **In logistic regression: probability of a event occur given data X and parameters** $\beta$.:
-    -   \$ P(y=1\| X, \beta ) = X \* $\beta$ \$
+-   **In logistic regression: probability of a event occur given data X and parameters** $\beta$:
 
-    -   $X*\beta$ is not a proper probability function, so we make it to proper probability by using a logit transformation.
+    $$ P(y=1| X, \beta ) = X * \beta  + \epsilon$$ 
+
+    -   $X * \beta$ is not a proper probability function, so we make it to proper probability by using a logit transformation.
 
     -   $P(y=1|X, \beta ) = \frac{exp(XB)}{1 + exp(XB)}$
-
-    -   Throw this transformation inside of a bernouilli distribution, get the likelihood function, and find the parameters using MLE.
 :::
 
-## Pametrizing $P(w_t|w_{t-1})$
+::: fragment
 
--   $P(w_t|w_{t-1})$ must be condition on how similar these words are.
-    -   [Exactly the same]{.red} intuition behind placing documents in the vector space model.
-    -   Now words are vectors!
+- Use transformation inside of a bernouilli distribution, get the likelihood function, and find the parameters using maximum likelihood estimation:
+    
+  $$L(\beta)  = \prod_{i=1}^n \bigl[\sigma(X_i^\top \beta)\bigr]^{y_i}
+                          \bigl[1 - \sigma(X_i^\top \beta)\bigr]^{1 - y_i} $$
+    
+:::
+
+## $P(w_t|w_{t-1})$
+
+This is the probability we want to estimate. To do so, we need to add parameters to it:
+
+-   $P(w_t|w_{t-1})$ represents how similar these words are.
+    -   [The jump:]{.red} if we assume words are vectors, we can estimate their similarities:
     -   $P(w_t|w_{t-1}) = u_c \cdot u_t$
         -   $u_c \cdot u_t$
-        -   dot product between vectors
+        -   dot product between vectors ($x_1*y_1 + x_2*y_2 .... x_n*y_n$)
         -   measures similarity using vector projection
         -   $u_c$: center vector
-        -   $u_t$: target vectors
--   $u_c \cdot u_t$ is also not a proper probability distribution: Logit on them!
+        -   $u_t$: target/neighbor vectors
+        
+-   $u_c \cdot u_t$ is also not a proper probability distribution. So we will use a softmax transformation. 
+
+:::fragment
 
 $$P(w_t|w_{t-1}) = \frac{exp(u_c \cdot u_t)}{{\sum_{w}^V exp(u_c*u_w)}}$$
+:::
+
+- mathematically, this is the logistic transformation (sigmoid) for multiple classes. 
 
 ## Softmax Transformation
 
@@ -261,7 +265,6 @@ $$J(\theta) = - \frac{1}{T}log(L(\theta))$$
 -   better to take the gradient with sums
 
 -   the average increases the numerical stability of the gradient.
-
 :::
 
 ## Neural Networks
@@ -276,35 +279,83 @@ knitr::include_graphics("./week7_figs/nn.png")
 knitr::include_graphics("./week7_figs/sg_arc.png") 
 ```
 
-
-##
+## 
 
 ```{r echo=FALSE, out.width = "100%"}
 knitr::include_graphics("./week7_figs/rustic.png") 
 ```
 
+## Simple Example
 
-## Check your matrices
+Let's practice with a vocabulary of size 5, a embedding with 3 dimensions, and the task is to predict ONLY the next word.
 
-::: columns
-::: {.column width="70%"}
-```{r echo=FALSE, out.width = "100%"}
+**Step 1: v_{1,5} \* W_{5,3} = C_{1,3}**
+
+- Where W is the embedding for center words
+
+$$ 
+\mathbf{v} = 
+\begin{bmatrix}
+0 \\
+0 \\
+1 \\
+0 \\
+0
+\end{bmatrix} 
+$$
+
+$$ 
+\mathbf{W} =
+\begin{bmatrix}
+.1 & .3 & -.23 \\
+.2 & -.06 & -.26 \\
+.3 & -.16& -.13 \\
+.5 & .26 & -.03 \\
+.6 & -.46 & -.53
+\end{bmatrix}
+$$
+
+$$v_T*W = C = \begin{bmatrix}.3 & -.16& -.13 \end{bmatrix} $$ 
+
+## Dot Product between vectors
+
+**Step 2:** $C_{1,3} * W2_{3,5} = P_{1,5}$ 
+
+- Where $W_2$ is the embedding for context/target words
+
+:::fragment
+
+$$ C_{1,3} * W2_{3,5} = P_{1,5} $$
+
+$$ \begin{bmatrix}.3 & -.16& -.13 \end{bmatrix} * 
+\begin{bmatrix}
+.1 & .3 & -.23 & .3  & .5 \\
+.2 & -.06 & -.26 & .3  & .5 \\
+.3 & -.16& -.13 * .3  & .5\\
+\end{bmatrix} $$
+
+$$
+P_{1,5}= \begin{bmatrix} -0.041  &  0.1204 & -0.02233 & -0.023   & 0.07  \end{bmatrix}
+$$
+:::
+
+## Take the softmax
+
+$$
+P(w_t|w_{t-1}) = \frac{exp(0.041)}{{-0.041  +  0.1204 + -0.02233 + -0.023   + 0.07}}
+$$
+
+- Repeat this for all the words in the vocabulary. 
+
+- After that, you calculate the loss function with the negative likelihood (because you know which word you are predicting)
+
+- Use the loss to perform gradient descent and update the parameters
+
+## Real Skipgram Algorithm
+
+```{r echo=FALSE, out.width = "80%"}
 knitr::include_graphics("./week7_figs/skipgram_matrices.png") 
 ```
-:::
-
-::: {.column width="30%"}
-<br> <br> <br>
-
-Practice with a vocabulary of size 5, a embedding with 3 dimensions, and the task is to predict the next word.
-
--   **Step 1: v_1\^5 \* W_5\^3**
-
--   **Step 2: w_1\^3 \* C_3\^5**
-
--   **Step 3: Softmax entire vector**
-:::
-:::
 
 ## Word Embeddings Matrices
 
@@ -330,29 +381,16 @@ Once we've optimized, we can extract the word specific vectors from W as embeddi
 knitr::include_graphics("./week7_figs/king.png") 
 ```
 
-We will see several applications next week. Most important:
-
--   Alternative to bag-of-words feature representation in supervised learning tasks
-
--   Support for other automated text analysis tasks: expand dictionaries
-
--   Understanding word meaning: variation over time, bias, variation by groups
-
--   as a scaling method 
-
 
 ## Applications
 
 Let's discuss now several applications of embeddings on social science papers. These paper show:
 
--   How to use embeddings to track semantic changes over time
+-   How to map words on cultural dimensions
 
 -   How to use embeddings to measure emotion in political language.
 
--   How to use embeddings to measure gender and ethnic stereotypes
-
 -   And a favorite of political scientists, how to use embeddings to measure ideology.
-
 
 ## Capturing cultural dimensions with embeddings
 
@@ -363,7 +401,6 @@ Let's discuss now several applications of embeddings on social science papers. T
 -   Dimensions of word embedding vector space models closely correspond to meaningful "cultural dimensions," such as rich-poor, moral-immoral, and masculine-feminine.
 
 -   a word vector's position on these dimensions reflects the word's respective cultural associations
-
 
 ## Method
 
@@ -376,7 +413,6 @@ knitr::include_graphics("cultural_vector.jpg")
 ```{r echo=FALSE, out.width = "100%", fig.align="center"}
 knitr::include_graphics("./week9_figs/culture_1.png") 
 ```
-
 
 ## Ideological Scaling
 
@@ -396,10 +432,9 @@ knitr::include_graphics("./week9_figs/culture_1.png")
 knitr::include_graphics("./week9_figs/scaling_00.png") 
 ```
 
-
 ## Results
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r echo=FALSE, out.width = "100%"}
 knitr::include_graphics("./week9_figs/scaling_01.png") 
@@ -411,7 +446,7 @@ knitr::include_graphics("./week9_figs/scaling_01.png")
 knitr::include_graphics("./week9_figs/scaling_02.png") 
 ```
 :::
-:::
+:::::
 
 ## Measuring Emotion
 
@@ -423,13 +458,18 @@ knitr::include_graphics("./week9_figs/emotion.png")
 
 ## Method
 
-- Building seed lists: They start with small seed lists of words clearly associated with “emotion” and “reason”
 
-- Expanding dictionaries with word embeddings: Instead of just using these short lists, they expand them automatically using word embeddings. 
+-   Building seed lists: They start with small seed lists of words clearly associated with “emotion” and “reason”
 
-- Emotionality Score: 
+-   Expanding dictionaries with word embeddings: Instead of just using these short lists, they expand them automatically using word embeddings.
 
+-   Emotionality Score:
+
+::: fragment
 $$
 Y_i = \frac{\text{sim}(\vec{d}_i, \vec{A}) + b}{\text{sim}(\vec{d}_i, \vec{C}) + b}
 $$
+
+:::
+
 # Coding
